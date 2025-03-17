@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Support Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6c5ce7;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 20px 10px 40px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background-color: #f0f2f5;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            background-color: #fff;
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-icon:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 15px;
+            cursor: pointer;
+            border: 2px solid #6c5ce7;
+        }
+        
+        /* Scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background-color: #6c5ce7;
+            width: 100%;
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1000;
+        }
+        
+        /* Main content styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+        }
+        
+        .sidebar {
+            width: 280px;
+            padding-right: 20px;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .main-content.scrolled {
+            margin-top: 10px;
+        }
+        
+        /* Categories section */
+        .categories {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .category-list {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 5px;
+        }
+        
+        .category-item:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .category-item.active {
+            background-color: rgba(108, 92, 231, 0.1);
+            color: #6c5ce7;
+            font-weight: 500;
+        }
+        
+        .category-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #f0f2f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+        
+        .category-item.active .category-icon {
+            background-color: rgba(108, 92, 231, 0.2);
+        }
+        
+        .category-name {
+            font-size: 14px;
+        }
+        
+        .view-all {
+            color: #6c5ce7;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .view-all:hover {
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+        
+        /* Recommendations section */
+        .recommendations {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .recommendation-cards {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 5px;
+            gap: 15px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        
+        .recommendation-cards::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #555;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        
+        .scroll-button:hover {
+            background-color: #6c5ce7;
+            color: #fff;
+        }
+        
+        .scroll-prev {
+            left: 5px;
+        }
+        
+        .scroll-next {
+            right: 5px;
+        }
+        
+        .recommendation-card {
+            min-width: 200px;
+            background-color: #f8f9fb;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rec-card-img {
+            height: 100px;
+            background-color: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rec-card-content {
+            padding: 12px;
+        }
+        
+        .rec-card-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .rec-card-desc {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .rec-card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        /* Post card styles */
+        .post-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            position: relative;
+            margin-right: 12px;
+        }
+        
+        .online-status {
+            width: 12px;
+            height: 12px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+        
+        .post-user-info {
+            flex-grow: 1;
+        }
+        
+        .post-user-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .post-user-title {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .post-time {
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f2f5;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .post-actions {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+        
+        .post-action {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .post-action:hover {
+            background-color: #f0f2f5;
+            color: #6c5ce7;
+        }
+        
+        .post-action i {
+            margin-right: 5px;
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .loading-spinner.visible {
+            opacity: 1;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(108, 92, 231, 0.2);
+            border-top: 4px solid #6c5ce7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* FAB button */
+        .fab-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #6c5ce7;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 100;
+        }
+        
+        .fab-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(108, 92, 231, 0.5);
+        }
+        
+        .fab-button:active {
+            transform: scale(0.95);
+        }
+        
+        .fab-button div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.5s linear;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #6c5ce7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background-color: #6c5ce7;
+            color: white;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .recommendations {
+                overflow: hidden;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .header-content {
+                padding: 10px 15px;
+            }
+            
+            .post-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">OneStopWoman</div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search for resources, groups, or topics...">
+            </div>
+            
+            <div class="nav-icons">
+                <div class="nav-icon">
+                    <i class="far fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <div class="nav-icon">
+                    <i class="far fa-envelope"></i>
+                    <div class="notification-badge">5</div>
+                </div>
+                <img src="/api/placeholder/40/40" alt="Profile" class="profile-pic">
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="categories">
+                <div class="section-title">Categories</div>
+                <div class="category-list">
+                    <div class="category-item active">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="category-name">Home Feed</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="category-name">Career Opportunities</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="category-name">Education & Scholarships</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="category-name">Support Networks</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="category-name">Housing & Accommodations</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="category-name">Health & Wellness</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="category-name">Safety Resources</div>
+                    </div>
+                </div>
+                <div class="view-all">View All</div>
+            </div>
+            
+            <div class="recommendations">
+                <div class="section-title">Recommended For You</div>
+                <button class="scroll-button scroll-prev" aria-label="Previous recommendations">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="scroll-button scroll-next" aria-label="Next recommendations">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="recommendation-cards">
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Women in Tech Mentorship</div>
+                            <div class="rec-card-desc">Connect with experienced tech mentors for career guidance</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-users"></i> 1.2k members</span>
+                                <span><i class="fas fa-star"></i> 4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Entrepreneurship Workshop</div>
+                            <div class="rec-card-desc">Learn business skills from successful women founders</div>
+                            <div class="rec-card-meta">
+                                <span><i class="far fa-calendar"></i> Mar 15</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Online</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Scholarship Program</div>
+                            <div class="rec-card-desc">Applications open for STEM scholarships</div>
+                            <div class="rec-card-meta">
+                                <span><i class="far fa-clock"></i> Deadline: Apr 5</span>
+                                <span><i class="fas fa-graduation-cap"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Safe Housing Network</div>
+                            <div class="rec-card-desc">Find verified accommodations in your city</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-home"></i> 500+ listings</span>
+                                <span><i class="fas fa-shield-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Health & Wellness Group</div>
+                            <div class="rec-card-desc">Tips and resources for women's health</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-users"></i> 3.5k members</span>
+                                <span><i class="fas fa-heart"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <i class="fas fa-image" style="color: #aaa; font-size: 24px;"></i>
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Government Grants</div>
+                            <div class="rec-card-desc">New funding opportunities for women entrepreneurs</div>
+                            <div class="rec-card-meta">
+                                <span><i class="far fa-clock"></i> Updated today</span>
+                                <span><i class="fas fa-landmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Posts Section -->
+            <div class="post-card" style="animation-delay: 0.1s;">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="/api/placeholder/50/50" alt="User profile" class="profile-pic">
+                        <div class="online-status"></div>
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Priya Sharma</div>
+                        <div class="post-user-title">Tech Entrepreneur | Women in AI</div>
+                    </div>
+                    <div class="post-time">
+                        <i class="far fa-clock"></i>
+                        2 hours ago
+                    </div>
+                </div>
+                <div class="post-content">
+                    Just got accepted into the Women Founders Accelerator Program! 🚀 This is a huge milestone for our startup focused on AI solutions for healthcare. Looking forward to connecting with other women entrepreneurs in this community. Anyone else here part of this cohort?
+                </div>
+                <div class="post-image">
+                    <i class="fas fa-image" style="color: #aaa; font-size: 48px;"></i>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        142 Likes
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        38 Comments
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-share-square"></i>
+                        Share
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card" style="animation-delay: 0.2s;">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="/api/placeholder/50/50" alt="User profile" class="profile-pic">
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Ananya Desai</div>
+                        <div class="post-user-title">Financial Advisor | Govt. Schemes Expert</div>
+                    </div>
+                    <div class="post-time">
+                        <i class="far fa-clock"></i>
+                        5 hours ago
+                    </div>
+                </div>
+                <div class="post-content">
+                    Important update: The Ministry of Women and Child Development has launched a new financial support scheme for single mothers pursuing higher education. Applications are now open! 📢 
+                    <br><br>
+                    Key benefits include:
+                    <br>- Monthly stipend of ₹12,000
+                    <br>- Tuition fee reimbursement up to ₹50,000 per year
+                    <br>- Child care support
+                    <br><br>
+                    DM me if you need help with the application process. Let's make sure eligible women don't miss this opportunity!
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        215 Likes
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        72 Comments
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-share-square"></i>
+                        Share
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card" style="animation-delay: 0.3s;">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="/api/placeholder/50/50" alt="User profile" class="profile-pic">
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Dr. Meera Patel</div>
+                        <div class="post-user-title">Women's Health Specialist | Mental Health Advocate</div>
+                    </div>
+                    <div class="post-time">
+                        <i class="far fa-clock"></i>
+                        Yesterday
+                    </div>
+                </div>
+                <div class="post-content">
+                    Hosting a free webinar on "Women's Health: Balancing Career & Wellness" next Tuesday at 7 PM. We'll cover stress management, work-life balance, and preventive health measures specifically for working women.
+                    <br><br>
+                    I've seen so many of us neglect our health while pursuing careers - let's talk about practical ways to prioritize both! Link to register in comments. Feel free to suggest specific topics you'd like me to address!
+                </div>
+                <div class="post-image">
+                    <i class="fas fa-image" style="color: #aaa; font-size: 48px;"></i>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        178 Likes
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        43 Comments
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-share-square"></i>
+                        Share
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card" style="animation-delay: 0.4s;">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="/api/placeholder/50/50" alt="User profile" class="profile-pic">
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Riya Kapoor</div>
+                        <div class="post-user-title">Housing Rights Activist | Community Organizer</div>
+                    </div>
+                    <div class="post-time">
+                        <i class="far fa-clock"></i>
+                        2 days ago
+                    </div>
+                </div>
+                <div class="post-content">
+                    Our petition for improved safety measures in women's hostels has reached 5,000 signatures! 🎉 Thank you to everyone who supported this initiative. The local housing authority has agreed to a meeting next week to discuss implementing better security systems and protocols.
+                    <br><br>
+                    We're looking for 2-3 volunteers who have lived in hostels to join the meeting and share their experiences. If interested, please comment below or message me directly.
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="far fa-heart"></i>
+                        312 Likes
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-comment"></i>
+                        87 Comments
+                    </div>
+                    <div class="post-action">
+                        <i class="far fa-share-square"></i>
+                        Share
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="fab-button" aria-label="Create new post">
+        <i class="fas fa-plus"></i>
+    </button>
+    
+    <button class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            document.querySelector('.scroll-progress').style.transform = `scaleX(${scrollPercent})`;
+            
+            // Show/hide scroll to top button
+            if (scrollTop > 300) {
+                document.querySelector('.scroll-top').classList.add('visible');
+            } else {
+                document.querySelector('.scroll-top').classList.remove('visible');
+            }
+            
+            // Shrink header on scroll
+            if (scrollTop > 50) {
+                document.querySelector('.header').style.padding = '5px 0';
+                document.querySelector('.main-content').classList.add('scrolled');
+            } else {
+                document.querySelector('.header').style.padding = '';
+                document.querySelector('.main-content').classList.remove('scrolled');
+            }
+            
+            // Infinite scroll simulation
+            if (scrollPercent > 0.8) {
+                document.querySelector('.loading-spinner').classList.add('visible');
+                
+                // Simulate loading new posts
+                setTimeout(function() {
+                    document.querySelector('.loading-spinner').classList.remove('visible');
+                    
+                    // Add a new post (simplified for demo)
+                    const newPost = document.createElement('div');
+                    newPost.className = 'post-card';
+                    newPost.style.animationDelay = '0.1s';
+                    newPost.innerHTML = `
+                        <div class="post-header">
+                            <div class="post-avatar">
+                                <img src="/api/placeholder/50/50" alt="User profile" class="profile-pic">
+                            </div>
+                            <div class="post-user-info">
+                                <div class="post-user-name">Lakshmi Nair</div>
+                                <div class="post-user-title">Education Consultant | Scholarship Guide</div>
+                            </div>
+                            <div class="post-time">
+                                <i class="far fa-clock"></i>
+                                Just now
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Just published a comprehensive guide to international scholarships for women in STEM! 📚 This guide covers opportunities across 15 countries with detailed application requirements and tips.
+                            <br><br>
+                            Download the free PDF from the link in comments. And remember, the Fulbright Women in Tech deadline is coming up in two weeks!
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <i class="far fa-heart"></i>
+                                42 Likes
+                            </div>
+                            <div class="post-action">
+                                <i class="far fa-comment"></i>
+                                8 Comments
+                            </div>
+                            <div class="post-action">
+                                <i class="far fa-share-square"></i>
+                                Share
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.querySelector('.main-content').insertBefore(newPost, document.querySelector('.loading-spinner'));
+                }, 1500);
+            }
+        });
+        
+        // Scroll to top button
+        document.querySelector('.scroll-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // FAB button ripple effect
+        document.querySelector('.fab-button').addEventListener('click', function(e) {
+            const button = this;
+            const ripple = document.createElement('div');
+            const rect = button.getBoundingClientRect();
+            
+            ripple.style.width = ripple.style.height = '100%';
+            ripple.style.left = e.clientX - rect.left + 'px';
+            ripple.style.top = e.clientY - rect.top + 'px';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(function() {
+                ripple.remove();
+            }, 500);
+            
+            // Here you would normally open a post creation modal
+            alert('Create a new post');
+        });
+        
+        // Horizontal scroll for recommendation cards
+        const scrollLeftBtn = document.querySelector('.scroll-prev');
+        const scrollRightBtn = document.querySelector('.scroll-next');
+        const recommendationCards = document.querySelector('.recommendation-cards');
+        
+        scrollLeftBtn.addEventListener('click', function() {
+            recommendationCards.scrollBy({
+                left: -220,
+                behavior: 'smooth'
+            });
+        });
+        
+        scrollRightBtn.addEventListener('click', function() {
+            recommendationCards.scrollBy({
+                left: 220,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Category selection
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.category-item').forEach(el => {
+                    el.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

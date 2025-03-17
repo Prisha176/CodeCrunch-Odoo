@@ -1,0 +1,2022 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Woman - Community Hub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS styles from previous artifact would be linked here -->
+</head>
+<style>    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        scroll-behavior: smooth;
+    }
+    
+    :root {
+        --primary-purple: #7c54b0;
+        --primary-purple-dark: #6a1b9a;
+        --secondary-orange: #ff8c42;
+        --secondary-orange-light: #ffaa70;
+        --light-purple: #f0ebf7;
+        --grey-bg: #f8f8f8;
+        --grey-light: #e5e5e5;
+        --grey-dark: #666666;
+        --white: #ffffff;
+        --scrollbar-thumb: #bfa5e0;
+        --scrollbar-track: #f0ebf7;
+        --plain-grey: #e0e0e0;
+    }
+    
+    body {
+        background-color: var(--grey-bg);
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    
+    /* Custom scrollbar styles */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-purple);
+    }
+    
+    .container {
+        display: flex;
+        position: relative;
+    }
+    
+    .sidebar {
+        width: 280px;
+        background-color: var(--white);
+        border-right: 1px solid var(--grey-light);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+    
+    .sidebar-logo {
+        margin-bottom: 25px;
+        position: sticky;
+        top: 0;
+        background-color: var(--white);
+        padding: 10px 0;
+        z-index: 10;
+    }
+    
+    .sidebar-logo a {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--primary-purple-dark);
+        text-decoration: none;
+    }
+    
+    .search-container {
+        margin-bottom: 20px;
+        position: sticky;
+        top: 65px;
+        z-index: 9;
+        background-color: var(--white);
+        padding: 5px 0;
+    }
+    
+    .search-input {
+        display: flex;
+        align-items: center;
+        background: var(--grey-bg);
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: 1px solid var(--grey-light);
+        transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    
+    .search-input:focus-within {
+        box-shadow: 0 0 0 2px var(--primary-purple);
+        transform: translateY(-2px);
+    }
+    
+    .search-input i {
+        color: var(--grey-dark);
+        margin-right: 10px;
+    }
+    
+    .search-input input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        background: transparent;
+    }
+    
+    .travel-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--secondary-orange);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .travel-button:hover {
+        background-color: var(--secondary-orange-light);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .travel-button:active {
+        transform: translateY(0);
+    }
+    
+    .travel-button i {
+        margin-right: 10px;
+    }
+    
+    .categories-title {
+        font-size: 12px;
+        font-weight: bold;
+        color: var(--grey-dark);
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        position: sticky;
+        top: 120px;
+        background-color: var(--white);
+        padding: 5px 0;
+        z-index: 8;
+    }
+    
+    .sidebar-menu, .category-list {
+        list-style: none;
+        margin-bottom: 20px;
+        overflow-y: auto;
+        padding-right: 5px;
+        scrollbar-width: thin;
+    }
+    
+    .sidebar-menu li, .category-item {
+        margin-bottom: 8px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-menu li a {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    
+    .category-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        cursor: pointer;
+    }
+    
+    .sidebar-menu li.active a, .category-item.active {
+        background-color: var(--light-purple);
+        color: var(--primary-purple);
+        font-weight: bold;
+        transform: translateX(5px);
+    }
+    
+    .sidebar-menu li:hover a, .category-item:hover {
+        background-color: var(--grey-bg);
+        transform: translateX(5px);
+    }
+    
+    .category-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        margin-right: 15px;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+    
+    .category-item:hover .category-icon {
+        transform: scale(1.1);
+    }
+    
+    .category-icon.education {
+        background-color: var(--primary-purple-dark);
+    }
+    
+    .category-icon.startup {
+        background-color: #e91e63;
+    }
+    
+    .category-icon.government {
+        background-color: #2196f3;
+    }
+    
+    .category-icon.consultant {
+        background-color: var(--secondary-orange);
+    }
+    
+    .category-icon.health {
+        background-color: #4caf50;
+    }
+    
+    .category-icon.room {
+        background-color: #795548;
+    }
+    
+    .category-icon.job {
+        background-color: #607d8b;
+    }
+    
+    .category-icon.events {
+        background-color: var(--primary-purple);
+    }
+    
+    .category-name {
+        font-size: 14px;
+    }
+    
+    .quick-access {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .quick-access-title {
+        font-size: 12px;
+        font-weight: bold;
+        color: var(--grey-dark);
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+    
+    .quick-access-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .quick-access-button {
+        flex: 1;
+        min-width: 100px;
+        padding: 10px;
+        background-color: var(--light-purple);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .quick-access-button:hover {
+        background-color: var(--primary-purple);
+        color: white;
+        transform: translateY(-3px);
+    }
+    
+    .quick-access-button i {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--primary-purple);
+    }
+    
+    .quick-access-button:hover i {
+        color: white;
+    }
+    
+    .quick-access-button span {
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .sidebar-divider {
+        height: 1px;
+        background-color: var(--grey-light);
+        margin: 15px 0;
+    }
+    
+    .sidebar-footer {
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 1px solid var(--grey-light);
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-link {
+        font-size: 12px;
+        color: var(--grey-dark);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+        color: var(--primary-purple);
+    }
+    
+    .footer {
+        font-size: 12px;
+        color: var(--grey-dark);
+        text-align: center;
+        padding-bottom: 15px;
+    }
+    
+    .main-content {
+        flex: 1;
+        padding: 20px;
+        min-height: 100vh;
+        width: calc(100% - 280px);
+        scroll-padding-top: 70px;
+    }
+    
+    /* Header with sticky behavior */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        position: sticky;
+        top: 0;
+        background-color: var(--grey-bg);
+        padding: 20px 0;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .feed-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--primary-purple);
+    }
+    
+    .header-actions {
+        display: flex;
+        align-items: center;
+    }
+    
+    .recommended-button {
+        display: flex;
+        align-items: center;
+        background-color: var(--light-purple);
+        color: var(--primary-purple);
+        border: none;
+        border-radius: 20px;
+        padding: 8px 15px;
+        margin-right: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .recommended-button:hover {
+        background-color: var(--primary-purple);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .recommended-button:active {
+        transform: translateY(0);
+    }
+    
+    .recommended-button i {
+        margin-right: 8px;
+    }
+    
+    .filter-button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--light-purple);
+        border: none;
+        color: var(--primary-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .filter-button:hover {
+        background-color: var(--primary-purple);
+        color: white;
+        transform: rotate(90deg);
+    }
+    
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary-purple);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .user-avatar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* Community stats section */
+    .community-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .stat-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: var(--light-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: var(--primary-purple);
+        font-size: 20px;
+    }
+    
+    .stat-info {
+        flex: 1;
+    }
+    
+    .stat-number {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary-purple);
+        margin-bottom: 5px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+        color: var(--grey-dark);
+    }
+    
+    /* Announcements banner */
+    .announcements {
+        background: linear-gradient(135deg, var(--primary-purple), var(--primary-purple-dark));
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        color: white;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .announcement-icon {
+        font-size: 30px;
+        margin-right: 20px;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    .announcement-content {
+        flex: 1;
+    }
+    
+    .announcement-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    
+    .announcement-text {
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    
+    .announcement-action {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin-left: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+    
+    .announcement-action:hover {
+        background-color: white;
+        color: var(--primary-purple);
+    }
+    
+    /* Post cards and scroll-triggered animations */
+    .post-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+        opacity: 1;
+    }
+    
+    .post-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .post-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--primary-purple);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin-right: 15px;
+        font-size: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .post-user-info {
+        flex: 1;
+    }
+    
+    .post-user-name {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 3px;
+    }
+    
+    .post-user-title {
+        color: var(--grey-dark);
+        font-size: 14px;
+    }
+    
+    .post-time {
+        color: #999;
+        font-size: 13px;
+    }
+    
+    .post-content {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .post-tag {
+        background-color: var(--light-purple);
+        color: var(--primary-purple);
+        border-radius: 15px;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .post-tag:hover {
+        background-color: var(--primary-purple);
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .post-image {
+        width: 100%;
+        height: 300px;
+        border-radius: 8px;
+        background-color: var(--plain-grey);
+        margin-bottom: 15px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .post-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .post-image:hover::before {
+        opacity: 1;
+    }
+    
+    .post-actions {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid var(--grey-light);
+        padding-top: 15px;
+    }
+    
+    .post-action {
+        display: flex;
+        align-items: center;
+        color: var(--grey-dark);
+        margin-right: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .post-action:hover {
+        color: var(--primary-purple);
+        transform: scale(1.05);
+    }
+    
+    .post-action i {
+        margin-right: 8px;
+    }
+    
+    .post-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 13px;
+        color: var(--grey-dark);
+    }
+    
+    .post-stat {
+        display: flex;
+        align-items: center;
+    }
+    
+    .post-stat i {
+        margin-right: 5px;
+        color: var(--secondary-orange);
+    }
+    
+    /* Recommendations Section with horizontal scrolling */
+    .recommendations {
+        background-color: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .recommendations-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .recommendations-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--primary-purple);
+        display: flex;
+        align-items: center;
+    }
+    
+    .recommendations-title i {
+        margin-right: 10px;
+        color: var(--secondary-orange);
+    }
+    
+    .view-all {
+        color: var(--secondary-orange);
+        font-size: 14px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .view-all:hover {
+        color: var(--primary-purple);
+        transform: translateX(3px);
+    }
+    
+    .recommendation-cards {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: thin;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .recommendation-cards::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .recommendation-card {
+        min-width: 220px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: var(--light-purple);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        scroll-snap-align: start;
+    }
+    
+    .recommendation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    
+    .rec-card-img {
+        background-color: var(--plain-grey);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .rec-card-content {
+        padding: 15px;
+    }
+    
+    .rec-card-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: var(--primary-purple);
+    }
+    
+    .rec-card-desc {
+        font-size: 13px;
+        color: var(--grey-dark);
+        margin-bottom: 10px;
+    }
+    
+    .rec-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #888;
+    }
+    
+    .rec-card-meta i {
+        margin-right: 4px;
+        color: var(--secondary-orange);
+    }
+    
+    .recommendation-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    
+    .recommendation-nav-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--white);
+        border: 1px solid var(--light-purple);
+        color: var(--primary-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .recommendation-nav-btn:hover {
+        background-color: var(--primary-purple);
+        color: white;
+        transform: scale(1.1);
+    }
+    
+    .recommendation-nav-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    .online-status {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #4CAF50;
+        border: 2px solid white;
+    }
+    
+    /* Upcoming events section */
+    .upcoming-events {
+        background-color: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .events-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .events-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--primary-purple);
+        display: flex;
+        align-items: center;
+    }
+    
+    .events-title i {
+        margin-right: 10px;
+        color: var(--secondary-orange);
+    }
+    
+    .events-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .event-card {
+        background-color: var(--light-purple);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    
+    .event-card-header {
+        background-color: var(--primary-purple);
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .event-date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        color: var(--primary-purple);
+        border-radius: 8px;
+        padding: 5px;
+        margin-right: 15px;
+    }
+    
+    .event-month {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    
+    .event-day {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+    }
+    
+    .event-title {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .event-card-body {
+        padding: 15px;
+    }
+    
+    .event-details {
+        margin-bottom: 15px;
+    }
+    
+    .event-detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: var(--grey-dark);
+    }
+    
+    .event-detail i {
+        width: 20px;
+        margin-right: 8px;
+        color: var(--primary-purple);
+    }
+    
+    .event-participants {
+        display: flex;
+        align-items: center;
+    }
+    
+    .event-participant {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: var(--plain-grey);
+        border: 2px solid white;
+        margin-left: -10px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--grey-dark);
+        font-weight: 600;
+        font-size: 12px;
+    }
+    
+    .event-participant:first-child {
+        margin-left: 0;
+    }
+    
+    .more-participants {
+        margin-left: 5px;
+        font-size: 13px;
+        color: var(--grey-dark);
+    }
+    
+    /* Floating action button with smooth animation */
+    .fab-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--secondary-orange);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .fab-button:hover {
+        transform: scale(1.1) rotate(90deg);
+        background-color: var(--primary-purple);
+    }
+    
+    /* Scroll to top button */
+    .scroll-top-button {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: white;
+    }
+    .scroll-top-button {
+position: fixed;
+bottom: 100px;
+right: 30px;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+background-color: white;
+color: var(--primary-purple);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+cursor: pointer;
+border: none;
+transition: all 0.3s ease;
+opacity: 0;
+transform: translateY(20px);
+z-index: 990;
+}
+
+.scroll-top-button.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.scroll-top-button:hover {
+background-color: var(--light-purple);
+transform: translateY(-5px);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+.community-stats {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.events-list {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 992px) {
+.sidebar {
+    width: 250px;
+}
+
+.main-content {
+    width: calc(100% - 250px);
+}
+}
+
+@media (max-width: 768px) {
+.container {
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--grey-light);
+    padding: 15px;
+}
+
+.main-content {
+    width: 100%;
+    padding: 15px;
+}
+
+.community-stats {
+    grid-template-columns: 1fr;
+}
+
+.events-list {
+    grid-template-columns: 1fr;
+}
+
+.stat-card, .post-card, .recommendations, .upcoming-events {
+    padding: 15px;
+}
+
+.announcement-action {
+    display: none;
+}
+}
+
+@media (max-width: 576px) {
+.header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-actions {
+    margin-top: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.recommended-button {
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+.post-header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.post-avatar {
+    margin-bottom: 10px;
+}
+
+.announcement-icon {
+    display: none;
+}
+}
+
+/* Animation classes */
+.fade-in {
+animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-up {
+animation: slideUp 0.5s ease forwards;
+}
+
+.slide-right {
+animation: slideRight 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+}
+
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(30px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@keyframes slideRight {
+from {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+to {
+    opacity: 1;
+    transform: translateX(0);
+}
+}
+
+/* Loading animations */
+.skeleton-loader {
+background: linear-gradient(90deg, var(--grey-light) 25%, var(--grey-bg) 50%, var(--grey-light) 75%);
+background-size: 200% 100%;
+animation: loading 1.5s infinite;
+border-radius: 4px;
+}
+
+@keyframes loading {
+0% {
+    background-position: 200% 0;
+}
+100% {
+    background-position: -200% 0;
+}
+}
+
+/* Modal styles */
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 2000;
+backdrop-filter: blur(5px);
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+opacity: 1;
+visibility: visible;
+}
+
+.modal-content {
+background-color: white;
+border-radius: 12px;
+max-width: 500px;
+width: 90%;
+max-height: 90vh;
+overflow-y: auto;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+transform: scale(0.9);
+transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+transform: scale(1);
+}
+
+.modal-header {
+padding: 20px;
+border-bottom: 1px solid var(--grey-light);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.modal-title {
+font-size: 18px;
+font-weight: 600;
+color: var(--primary-purple);
+}
+
+.modal-close {
+background: none;
+border: none;
+font-size: 20px;
+color: var(--grey-dark);
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+color: var(--primary-purple);
+transform: rotate(90deg);
+}
+
+.modal-body {
+padding: 20px;
+}
+
+.modal-footer {
+padding: 15px 20px;
+border-top: 1px solid var(--grey-light);
+display: flex;
+justify-content: flex-end;
+}
+
+/* Tooltip styles */
+.tooltip {
+position: relative;
+}
+
+.tooltip:hover::after {
+content: attr(data-tooltip);
+position: absolute;
+bottom: 125%;
+left: 50%;
+transform: translateX(-50%);
+background-color: rgba(0, 0, 0, 0.8);
+color: white;
+padding: 5px 10px;
+border-radius: 4px;
+font-size: 12px;
+white-space: nowrap;
+z-index: 100;
+}
+
+.tooltip:hover::before {
+content: '';
+position: absolute;
+bottom: 115%;
+left: 50%;
+transform: translateX(-50%);
+border: 5px solid transparent;
+border-top-color: rgba(0, 0, 0, 0.8);
+z-index: 100;
+}
+
+/* Dark mode toggle */
+.dark-mode-toggle {
+position: fixed;
+bottom: 30px;
+left: 30px;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+background-color: white;
+color: var(--primary-purple);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+cursor: pointer;
+border: none;
+transition: all 0.3s ease;
+z-index: 990;
+}
+
+.dark-mode-toggle:hover {
+background-color: var(--light-purple);
+transform: translateY(-5px);
+}
+</style>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search communities...">
+                </div>
+            </div>
+            
+            <button class="travel-button">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list">
+                <li class="category-item active">
+                    <div class="category-icon education">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="category-name">Education</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon startup">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span class="category-name">Startups</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span class="category-name">Government</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span class="category-name">Consultants</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="category-name">Health & Wellness</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="category-name">Room Rentals</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon job">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <span class="category-name">Job Board</span>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span class="category-name">Events</span>
+                </li>
+            </ul>
+            
+            <div class="quick-access">
+                <div class="quick-access-title">QUICK ACCESS</div>
+                <div class="quick-access-buttons">
+                    <div class="quick-access-button">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Resources</span>
+                    </div>
+                    <div class="quick-access-button">
+                        <i class="fas fa-podcast"></i>
+                        <span>Podcast</span>
+                    </div>
+                    <div class="quick-access-button">
+                        <i class="fas fa-users"></i>
+                        <span>Network</span>
+                    </div>
+                    <div class="quick-access-button">
+                        <i class="fas fa-book"></i>
+                        <span>Courses</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-divider"></div>
+            
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Help</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="feed-title">Community Hub</h1>
+                <div class="header-actions">
+                    <button class="recommended-button">
+                        <i class="fas fa-star"></i> Recommended
+                    </button>
+                    <button class="filter-button">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                    <div class="user-avatar">
+                        SW
+                        <div class="online-status"></div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Community Stats -->
+            <section class="community-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number">15,240</div>
+                        <div class="stat-label">Community Members</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number">8,932</div>
+                        <div class="stat-label">Active Discussions</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number">412</div>
+                        <div class="stat-label">Upcoming Events</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number">1,876</div>
+                        <div class="stat-label">Networking Connections</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Announcements -->
+            <section class="announcements">
+                <div class="announcement-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="announcement-content">
+                    <div class="announcement-title">Women in Tech Conference 2025</div>
+                    <div class="announcement-text">Join us for the biggest tech event of the year! Early bird registration closes in 3 days.</div>
+                </div>
+                <div class="announcement-action">Register Now</div>
+            </section>
+            
+            <!-- Recommendations -->
+            <section class="recommendations">
+                <div class="recommendations-header">
+                    <div class="recommendations-title">
+                        <i class="fas fa-fire"></i> Recommended for You
+                    </div>
+                    <div class="view-all">View All</div>
+                </div>
+                
+                <div class="recommendation-cards">
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <!-- Placeholder for image -->
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Entrepreneurship Workshop</div>
+                            <div class="rec-card-desc">Learn how to launch your business with minimal resources.</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-calendar"></i> Mar 15</span>
+                                <span><i class="fas fa-user"></i> 45 joined</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <!-- Placeholder for image -->
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Financial Freedom Course</div>
+                            <div class="rec-card-desc">Master your finances and build wealth as a woman professional.</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-calendar"></i> Mar 18</span>
+                                <span><i class="fas fa-user"></i> 68 joined</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <!-- Placeholder for image -->
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Health & Wellness Retreat</div>
+                            <div class="rec-card-desc">Weekend retreat to rejuvenate and restore balance.</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-calendar"></i> Apr 2</span>
+                                <span><i class="fas fa-user"></i> 32 joined</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="rec-card-img">
+                            <!-- Placeholder for image -->
+                        </div>
+                        <div class="rec-card-content">
+                            <div class="rec-card-title">Leadership Mastermind</div>
+                            <div class="rec-card-desc">Exclusive group for women leaders to share insights.</div>
+                            <div class="rec-card-meta">
+                                <span><i class="fas fa-calendar"></i> Mar 22</span>
+                                <span><i class="fas fa-user"></i> 24 joined</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recommendation-nav">
+                    <button class="recommendation-nav-btn" id="rec-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="recommendation-nav-btn" id="rec-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Post Cards -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        JD
+                        <div class="online-status"></div>
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Jane Doe</div>
+                        <div class="post-user-title">Tech Entrepreneur</div>
+                    </div>
+                    <div class="post-time">2 hours ago</div>
+                </div>
+                <div class="post-content">
+                    <p>Just secured our first round of funding for my healthtech startup! It's been a challenging journey, but I'm excited to share that we raised $1.5M to develop our women's health platform. Looking for talented developers and UX designers to join our team.</p>
+                </div>
+                <div class="post-tags">
+                    <div class="post-tag">#WomenInTech</div>
+                    <div class="post-tag">#Startup</div>
+                    <div class="post-tag">#Funding</div>
+                    <div class="post-tag">#HealthTech</div>
+                </div>
+                <div class="post-stats">
+                    <div class="post-stat">
+                        <i class="fas fa-heart"></i> 156 likes
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-comment"></i> 42 comments
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-eye"></i> 578 views
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-heart"></i> Like
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-comment"></i> Comment
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i> Share
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-bookmark"></i> Save
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        SM
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Sara Miller</div>
+                        <div class="post-user-title">Career Coach</div>
+                    </div>
+                    <div class="post-time">5 hours ago</div>
+                </div>
+                <div class="post-content">
+                    <p>I'm hosting a free webinar next week on "Negotiating Your Salary as a Woman." We'll cover practical strategies to advocate for yourself, overcome common objections, and walk away with the compensation you deserve. Drop a comment if you're interested, and I'll send you the registration link!</p>
+                </div>
+                <div class="post-image">
+                    <!-- Placeholder for image -->
+                </div>
+                <div class="post-tags">
+                    <div class="post-tag">#CareerAdvice</div>
+                    <div class="post-tag">#SalaryNegotiation</div>
+                    <div class="post-tag">#ProfessionalDevelopment</div>
+                </div>
+                <div class="post-stats">
+                    <div class="post-stat">
+                        <i class="fas fa-heart"></i> 248 likes
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-comment"></i> 89 comments
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-eye"></i> 1,032 views
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-heart"></i> Like
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-comment"></i> Comment
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i> Share
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-bookmark"></i> Save
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        RL
+                    </div>
+                    <div class="post-user-info">
+                        <div class="post-user-name">Rebecca Liu</div>
+                        <div class="post-user-title">Financial Advisor</div>
+                    </div>
+                    <div class="post-time">Yesterday</div>
+                </div>
+                <div class="post-content">
+                    <p>Quick reminder: The deadline for retirement account contributions is coming up! I've been noticing that many women tend to under-contribute to their retirement compared to male counterparts. Let's close that gap! I'm offering free 15-minute consultations this week to help you optimize your contributions and investment strategy.</p>
+                </div>
+                <div class="post-tags">
+                    <div class="post-tag">#FinancialLiteracy</div>
+                    <div class="post-tag">#Retirement</div>
+                    <div class="post-tag">#WomenAndMoney</div>
+                </div>
+                <div class="post-stats">
+                    <div class="post-stat">
+                        <i class="fas fa-heart"></i> 187 likes
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-comment"></i> 63 comments
+                    </div>
+                    <div class="post-stat">
+                        <i class="fas fa-eye"></i> 842 views
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-heart"></i> Like
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-comment"></i> Comment
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i> Share
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-bookmark"></i> Save
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Events -->
+            <section class="upcoming-events">
+                <div class="events-header">
+                    <div class="events-title">
+                        <i class="fas fa-calendar-alt"></i> Upcoming Events
+                    </div>
+                    <div class="view-all">View All</div>
+                </div>
+                
+                <div class="events-list">
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <div class="event-date">
+                                <span class="event-month">MAR</span>
+                                <span class="event-day">15</span>
+                            </div>
+                            <div class="event-title">Women in Leadership Summit</div>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i> 10:00 AM - 4:00 PM
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i> Grand Hotel Conference Center
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-ticket-alt"></i> $120 - Early Bird Special
+                                </div>
+                            </div>
+                            <div class="event-participants">
+                                <div class="event-participant">AJ</div>
+                                <div class="event-participant">BK</div>
+                                <div class="event-participant">CL</div>
+                                <div class="event-participant">+</div>
+                                <span class="more-participants">86 Going</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <div class="event-date">
+                                <span class="event-month">MAR</span>
+                                <span class="event-day">22</span>
+                            </div>
+                            <div class="event-title">Work-Life Balance Workshop</div>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i> 6:30 PM - 8:30 PM
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i> Community Center
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-ticket-alt"></i> Free - RSVP Required
+                                </div>
+                            </div>
+                            <div class="event-participants">
+                                <div class="event-participant">DM</div>
+                                <div class="event-participant">EN</div>
+                                <div class="event-participant">FO</div>
+                                <div class="event-participant">+</div>
+                                <span class="more-participants">42 Going</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-card-header">
+                            <div class="event-date">
+                                <span class="event-month">APR</span>
+                                <span class="event-day">05</span>
+                            </div>
+                            <div class="event-title">Networking Mixer</div>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-details">
+                                <div class="event-detail">
+                                    <i class="fas fa-clock"></i> 7:00 PM - 9:00 PM
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-map-marker-alt"></i> Urban Lounge
+                                </div>
+                                <div class="event-detail">
+                                    <i class="fas fa-ticket-alt"></i> $25 - Includes Drinks
+                                </div>
+                            </div>
+                            <div class="event-participants">
+                                <div class="event-participant">GP</div>
+                                <div class="event-participant">HQ</div>
+                                <div class="event-participant">IR</div>
+                                <div class="event-participant">+</div>
+                                <span class="more-participants">63 Going</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Floating Action Button -->
+    <button class="fab-button">
+        <i class="fas fa-plus"></i>
+    </button>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-button" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <!-- Modal Example -->
+    <div class="modal-overlay" id="exampleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Create New Post</div>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Modal content goes here...</p>
+            </div>
+            <div class="modal-footer">
+                <button class="recommended-button">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript would be linked here -->
+    <script>
+        // Basic JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll to top functionality
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            darkModeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                const icon = darkModeToggle.querySelector('i');
+                if (body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+            
+            // Recommendation carousel navigation
+            const recCards = document.querySelector('.recommendation-cards');
+            const prevBtn = document.getElementById('rec-prev');
+            const nextBtn = document.getElementById('rec-next');
+            
+            nextBtn.addEventListener('click', function() {
+                recCards.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                recCards.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Modal functionality
+            const modalOverlay = document.getElementById('exampleModal');
+            const closeModal = document.getElementById('closeModal');
+            const fabButton = document.querySelector('.fab-button');
+            
+            fabButton.addEventListener('click', function() {
+                modalOverlay.classList.add('active');
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modalOverlay.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside the content
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                }
+            });
+            
+            // Animation on scroll
+            const animateElements = document.querySelectorAll('.post-card, .stat-card, .event-card');
+            
+            function checkScroll() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('slide-up');
+                    }
+                });
+            }
+            
+            // Initial check on page load
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
