@@ -12,147 +12,110 @@
 <body>
 
     <aside class="sidebar">
-      <div class="sidebar-logo">
-          <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
-      </div>
-      <div class="search-container">
-          <div class="search-input">
-              <i class="fas fa-search"></i>
-              <input type="text" id="searchInput" placeholder="Search communities...">
-          </div>
-      </div>
-      <button class="travel-button" onclick="sendLiveLocation()">
-          <i class="fas fa-plane-departure"></i> Guardian Mode
-      </button>
-      <div class="categories-title">BROWSE CATEGORIES</div>
-      <ul class="category-list" id="categoryList">
-          <!-- Security Main Module -->
-          <li class="category-item" data-category="security">
-              <div class="category-icon security">
-                  <i class="fas fa-shield-alt"></i>
-              </div>
-              <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
-          </li>
-  
-          <!-- Finance Main Module with Dropdown -->
-          <li class="category-item dropdown" data-category="finance">
-              <div class="category-icon finance">
-                  <i class="fas fa-coins"></i>
-              </div>
-              <span class="category-name">Finance</span>
-              <i class="fas fa-chevron-down dropdown-arrow"></i>
-              <ul class="dropdown-menu">
-                  <li onclick="window.location.href='job2.html';">Job</li>
-                  <li onclick="window.location.href='internship.html';">Internships</li>
-                  <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
-              </ul>
-          </li>
-  
-          <!-- Consultant Main Module -->
-          <li class="category-item" data-category="consultant">
-              <div class="category-icon consultant">
-                  <i class="fas fa-briefcase"></i>
-              </div>
-              <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
-          </li>
-  
-          <!-- Health & Wellness Main Module -->
-          <li class="category-item" data-category="health">
-              <div class="category-icon health">
-                  <i class="fas fa-heartbeat"></i>
-              </div>
-              <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
-          </li>
-  
-          <!-- Govt. Main Module -->
-          <li class="category-item" data-category="government">
-              <div class="category-icon government">
-                  <i class="fas fa-landmark"></i>
-              </div>
-              <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
-          </li>
-  
-          <!-- Events Main Module -->
-          <li class="category-item" data-category="events">
-              <div class="category-icon events">
-                  <i class="fas fa-calendar-alt"></i>
-              </div>
-              <span onclick="window.location.href='events.html';" class="category-name">Events</span>
-          </li>
-  
-          <!-- Room Rental Main Module -->
-          <li class="category-item" data-category="room">
-              <div class="category-icon room">
-                  <i class="fas fa-home"></i>
-              </div>
-              <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
-          </li>
-      </ul>
-      <div class="sidebar-divider"></div>
-      <div class="sidebar-footer">
-          <div class="footer-links">
-            <a href="aboutus.html" class="footer-link">About</a>
-            <a href="privacy.html" class="footer-link">Privacy</a>
-            <a href="faq.html" class="footer-link">FAQ</a>
-            <a href="contactus.html" class="footer-link">Contact</a>
-          </div>
-          <div class="footer">
-              &copy; 2025 One Stop Woman. All rights reserved.
-          </div>
-      </div>
-  </aside>
-  
+        <div class="sidebar-logo">
+            <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+        </div>
+        
+        <div class="search-container">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search communities...">
+            </div>
+        </div>
+        
+        <button class="travel-button">
+            <i class="fas fa-plane-departure"></i> Guardian Mode
+        </button>
+        
+        <div class="categories-title">BROWSE CATEGORIES</div>
+        <ul class="category-list">
+            <li class="category-item active">
+                <div class="category-icon education">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="category-name">Education</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon startup">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <span class="category-name">Startups</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon government">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <span class="category-name">Government</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon consultant">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <span class="category-name">Consultants</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon health">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span class="category-name">Health & Wellness</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon room">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span class="category-name">Room Rentals</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon job">
+                    <i class="fas fa-suitcase"></i>
+                </div>
+                <span class="category-name">Job Board</span>
+            </li>
+            <li class="category-item">
+                <div class="category-icon events">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span class="category-name">Events</span>
+            </li>
+        </ul>
+        <div class="sidebar-divider"></div>
+            
+        <div class="sidebar-footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Help</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <div class="footer">
+                &copy; 2025 One Stop Woman. All rights reserved.
+            </div>
+        </div>
+    </aside>
 
   <div class="main-content">
-    <div class="page-header">
-      <!-- <h1>Discover Job Opportunities</h1> -->
-      <h1 class="page-title">Consultant</h1>
-      <div class="user-actions">
-      <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
-          <i class="fas fa-home"></i>
-      </button>
-      <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
-          <i class="fas fa-bookmark"></i>
-      </button> -->
-      <!-- <button class="notification-btn" title="Notifications">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
-      </button> -->
-      <div class="user-profile" id="userProfileDropdown">
+        <header class="header">
+      <h1 class="feed-title">Consult with Experts</h1>
+     
+      <div class="header-actions">
+          <button class="recommended-button">
+              <i class="fas fa-star"></i> Recommended
+          </button>
+          <!-- <button class="filter-button">
+              <i class="fas fa-filter"></i>
+          </button> -->
           <div class="user-avatar">
-              <i class="fas fa-user"></i>
-          </div>
-          <span class="user-name">Priya</span>
-          <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
-          
-          <!-- Dropdown Menu -->
-          <div class="dropdown-menu" id="profileDropdown">
-              <div class="dropdown-item">
-                  <i class="fas fa-user-circle"></i>
-                  <span>My Profile</span>
-              </div>
-              
-              
-              
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-item">
-                  <i class="fas fa-question-circle"></i>
-                  <span>Help & Support</span>
-              </div>
-              <div class="dropdown-divider"></div>
-              <div class="dropdown-item">
-                  <i class="fas fa-sign-out-alt"></i>
-                  <span>Sign Out</span>
-              </div>
+              SW
+              <div class="online-status"></div>
           </div>
       </div>
- 
-    </div>
-    </div>
-<p>Connect with professional consultants in various domains.</p>
+  </header>
+  <!-- <p>Connect with professional consultants in various domains.</p> -->
+
     <!-- Consultant 1 -->
     <div class="consultant-card">
-      <img src="https://i.imgur.com/0y0y0y0.jpg" alt="Sheryl Sandberg" />
+      <img src="Screenshot_1.png" alt="Sheryl Sandberg" />
       <div class="consultant-info">
         <h3>Sara Blakely</h3>
         <span>Business Strategy & Entrepreneurship</span>
@@ -169,7 +132,7 @@
 
     <!-- Consultant 2 -->
     <div class="consultant-card">
-      <img src="https://i.imgur.com/1a1a1a1.jpg" alt="Dr. Sanjay Gupta" />
+      <img src="Screenshot_2.png" alt="Dr. Sanjay Gupta" />
       <div class="consultant-info">
         <h3>Dr. Rebecca Brightman</h3>
         <span>Women's Health & Hormonal Therapy</span>
@@ -186,7 +149,7 @@
 
     <!-- Consultant 3 -->
     <div class="consultant-card">
-      <img src="https://i.imgur.com/2b2b2b2.jpg" alt="Marie Forleo" />
+      <img src="Screenshot_3.png" alt="Marie Forleo" />
       <div class="consultant-info">
         <h3>Marie Forleo</h3>
         <span>Career & Life Coaching</span>
@@ -203,7 +166,7 @@
 
     <!-- Consultant 4 -->
     <div class="consultant-card">
-      <img src="https://i.imgur.com/3c3c3c3.jpg" alt="Indra Nooyi" />
+      <img src="Screenshot_5.png" alt="Indra Nooyi" />
       <div class="consultant-info">
         <h3>Indra Nooyi</h3>
         <span>Business Leadership</span>
@@ -218,7 +181,38 @@
       </div>
     </div>
 
-    
+    <!-- Consultant 5 -->
+    <div class="consultant-card">
+      <img src="Screenshot_6.png" alt="Dr. Jane Goodall" />
+      <div class="consultant-info">
+        <h3>Dr. Jane Goodall</h3>
+        <span>Environmental Advocacy</span>
+        <p>Primatologist, anthropologist, and UN Messenger of Peace.</p>
+        <div class="rating">
+          ★★★★★ (4.8)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('Dr. Jane Goodall')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('Dr. Jane Goodall')">Video Call</button>
+      </div>
+    </div>
+
+    <!-- Consultant 6 -->
+    <div class="consultant-card">
+      <img src="Screenshot_4.png" alt="Malala Yousafzai" />
+      <div class="consultant-info">
+        <h3>Gabrielle Bernstein</h3>
+        <span>Education & Activism</span>
+        <p>Nobel Peace Prize laureate and advocate for girls' education.</p>
+        <div class="rating">
+          ★★★★★ (4.9)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('+91 7069692906')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('+91 7069692906')">Video Call</button>
+      </div>
       
     </div>
 
@@ -250,6 +244,7 @@
   </div>
 
   <script>
+    
    let api;
 let chatData = {}; // Store chat history for each phone number
 
@@ -376,39 +371,6 @@ function leaveVideoCall() {
     console.log('Left the video call.');
   }
 }
-const userProfileDropdown = document.getElementById('userProfileDropdown');
-    const profileDropdown = document.getElementById('profileDropdown');
-
-    userProfileDropdown.addEventListener('click', function (e) {
-        e.stopPropagation(); // Prevent the click from bubbling up to the window
-        profileDropdown.classList.toggle('show');
-    });
-
-    // Close the dropdown when clicking outside of it
-    window.addEventListener('click', function () {
-        if (profileDropdown.classList.contains('show')) {
-            profileDropdown.classList.remove('show');
-        }
-    });
-    const dropdownItems = document.querySelectorAll('.category-item.dropdown');
-
-dropdownItems.forEach(item => {
-    const dropdownMenu = item.querySelector('.dropdown-menu');
-
-    item.addEventListener('click', function (e) {
-        e.stopPropagation(); // Prevent the click from bubbling up
-        item.classList.toggle('active');
-        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!item.contains(e.target)) {
-            item.classList.remove('active');
-            dropdownMenu.style.display = 'none';
-        }
-    });
-});
 
   </script>
 
