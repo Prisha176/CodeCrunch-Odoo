@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     // Sample health alerts data with headings
     const healthAlerts = {
         urgent: [
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Diily health tips
 
 document.addEventListener('DOMContentLoaded', () => {
+    
     // Sample daily health tips data with additional information
     const dailyHealthTips = [
         {
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "🩺 Supports kidney function and detoxification."
                 ],
                 funFact: "Did you know? Your brain is about 75% water! Staying hydrated helps you think clearly and stay focused.",
-                videoLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                videoLink: "https://www.youtube.com/watch?v=XGeygVl3ReY"
             }
         },
         {
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "😊 Enhances sleep quality by reducing blue light exposure."
                 ],
                 funFact: "Did you know? The average person spends over 7 hours a day looking at screens! Take a break!",
-                videoLink: "https://www.youtube.com/watch?v=mno678" // Replace with a real link
+                videoLink: "https://www.youtube.com/watch?v=MI9GyCqhKV4" // Replace with a real link
             }
         },
         {
@@ -114,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "😊 Enhances overall emotional well-being."
                 ],
                 funFact: "Did you know? Laughing for 15 minutes burns up to 40 calories! Self-care can be fun too!",
-                videoLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                videoLink: "https://www.youtube.com/watch?v=ZsTKyYOuK84"
             }
         },
         {
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "💪 Boosts energy levels without crashes."
                 ],
                 funFact: "Did you know? The average person consumes about 17 teaspoons of added sugar daily—way more than the recommended 6 teaspoons!",
-                videoLink: "https://www.youtube.com/watch?v=stu234" // Replace with a real link
+                videoLink: "https://www.youtube.com/watch?v=86uC5fgraiI" // Replace with a real link
             }
         },
         {
@@ -142,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "🩺 Reduces the risk of chronic diseases like diabetes and heart disease."
                 ],
                 funFact: "Did you know? Eating a rainbow of fruits and vegetables ensures you get a wide range of nutrients!",
-                videoLink: "https://www.youtube.com/watch?v=abc123" // Replace with a real link
+                videoLink: "https://www.youtube.com/watch?v=81G22t2UHxA" // Replace with a real link
             }
         },
         {
@@ -156,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "🩺 Maintains healthy skin cells."
                 ],
                 funFact: "Did you know? Even on cloudy days, up to 80% of the sun's UV rays can reach your skin!",
-                videoLink: "https://www.youtube.com/watch?v=yza890" // Replace with a real link
+                videoLink: "https://www.youtube.com/watch?v=4D0SW35uvq0" // Replace with a real link
             }
         },
         {
@@ -170,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "😊 Enhances mood and reduces irritability."
                 ],
                 funFact: "Did you know? During sleep, your brain cleans itself by removing toxins that build up during the day!",
-                videoLink: "https://www.youtube.com/watch?v=ghi012" // Replace with a real link
+                videoLink: "https://www.youtube.com/watch?v=XQ767LlrDc0" // Replace with a real link
             }
         },
     ];
@@ -180,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipTitle = document.querySelector('.tip-title');
     const tipText = document.querySelector('.tip-text');
     const readMoreBtn = document.querySelector('.read-more-btn');
-    const bookmarkBtn = document.querySelector('.bookmark-btn');
+    // const bookmarkBtn = document.querySelector('.bookmark-btn');
     const tipPopup = document.getElementById('tip-popup');
     const popupTitle = document.getElementById('popup-title');
     const popupText = document.getElementById('popup-text');
@@ -188,6 +190,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
 
     let currentTipIndex = 0;
+    // let currentTipIndex = 0;
+    let tipInterval; // Variable to store the interval ID
+
+    readMoreBtn.addEventListener("click", () => {
+        tipPopup.style.display = "block";
+    });
+    
+    // Function to close the popup
+    closeBtn.addEventListener("click", () => {
+        tipPopup.style.display = "none";
+    });
+    // Close the popup if the user clicks outside of it
+window.addEventListener("click", (event) => {
+    if (event.target === tipPopup) {
+        tipPopup.style.display = "none";
+    }
+});
 
     // Function to display the current tip
     function displayCurrentTip() {
@@ -201,6 +220,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function cycleTips() {
         currentTipIndex = (currentTipIndex + 1) % dailyHealthTips.length; // Move to the next tip
         displayCurrentTip();
+    }
+
+    // Start the timer to cycle through tips
+    function startTipTimer() {
+        tipInterval = setInterval(cycleTips, 2000); // 2 seconds
+    }
+
+      // Stop the timer
+      function stopTipTimer() {
+        clearInterval(tipInterval);
     }
 
     // Function to show the popup with additional info
@@ -223,23 +252,18 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         tipPopup.style.display = 'flex'; // Show the popup
+        stopTipTimer();
     }
 
     // Function to hide the popup
     function hidePopup() {
         tipPopup.style.display = 'none'; // Hide the popup
-    }
-
-    // Function to bookmark the current tip
-    function bookmarkTip() {
-        const currentTip = dailyHealthTips[currentTipIndex];
-        alert(`Bookmarked: ${currentTip.title}`);
-        // You can save the bookmark to localStorage or a backend server here.
+        startTipTimer(); // Restart the timer when the popup is closed
     }
 
     // Event listeners
     readMoreBtn.addEventListener('click', showPopup);
-    bookmarkBtn.addEventListener('click', bookmarkTip);
+ //   bookmarkBtn.addEventListener('click', bookmarkTip);
     closeBtn.addEventListener('click', hidePopup);
     window.addEventListener('click', (event) => {
         if (event.target === tipPopup) {
@@ -250,145 +274,142 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display the first tip immediately
     displayCurrentTip();
 
-    // Cycle through tips every 10 seconds
-    setInterval(cycleTips, 2000); // 10 seconds
+    // Start the timer to cycle through tips
+    startTipTimer();
 
 
      // Pagination and Filtering Logic
      let currentPage = 1;
      const articlesPerPage = 3;
-     let allArticles = []; // To store fetched articles
+     //let allArticles = []; // To store fetched articles
 
-  // Function to fetch articles from the API
-  async function fetchArticles() {
-    try {
-        const response = await fetch('https://api.example.com/articles'); // Replace with your API endpoint
-        if (!response.ok) {
-            throw new Error('Failed to fetch articles');
-        }
-        const data = await response.json();
-        allArticles = data; // Store fetched articles
-        displayArticles(); // Display articles after fetching
-    } catch (error) {
-        console.error('Error fetching articles:', error);
-    }
-}
+     const articles = [
+        {
+            title: "Understanding Hormonal Health: A Comprehensive Guide",
+            author: "Dr. Sarah Johnson",
+            date: "March 5, 2025",
+            content: "Hormones play a crucial role in women's health throughout different life stages. This article explores how to maintain hormonal balance through nutrition, exercise, and lifestyle changes.",
+            category: "Hormonal Health",
+            tags: ["Hormonal Health", "Nutrition", "Women's Health"],
+            readMoreLink: "https://en.wikipedia.org/wiki/Hormone" // Example link
+        },
+        {
+            title: "Mindfulness and Mental Health: Techniques for Stress Reduction",
+            author: "Maya Williams, M.D.",
+            date: "March 2, 2025",
+            content: "Discover effective mindfulness practices and meditation techniques that can help manage stress, anxiety, and improve overall mental wellbeing for busy women.",
+            category: "Mental Health",
+            tags: ["Mental Health", "Mindfulness", "Stress Management"],
+            readMoreLink: "https://en.wikipedia.org/wiki/Mindfulness" // Example link
+        },
+        {
+            title: "Nutrition for Women: Age-Specific Dietary Recommendations",
+            author: "Priya Sharma, Nutritionist",
+            date: "February 28, 2025",
+            content: "Explore how nutritional needs change throughout a woman's life from adolescence through menopause, and how to adjust your diet accordingly for optimal health.",
+            category: "Nutrition",
+            tags: ["Nutrition", "Diet", "Aging Well"],
+            readMoreLink: "https://en.wikipedia.org/wiki/Nutrition" // Example link
+        },
+        // Add more articles with real links
+    ];
 
      // Function to display articles based on the current page and filter
      function displayArticles() {
-         const filterValue = document.getElementById('filter').value;
-         const allArticles = Array.from(document.querySelectorAll('.article-card'));
-         const filteredArticles = filterValue === 'all' 
-             ? allArticles 
-             : allArticles.filter(article => article.getAttribute('data-category') === filterValue);
- 
-              // Clear the articles container
-        const articlesContainer = document.getElementById('articles-container');
-        articlesContainer.innerHTML = '';
-
-         // Create and append article cards for the current page
-         paginatedArticles.forEach(article => {
-            const articleCard = document.createElement('div');
-            articleCard.className = 'article-card';
-            articleCard.setAttribute('data-category', article.category);
-            articleCard.innerHTML = `
-                <h3 class="article-title">${article.title}</h3>
-                <p class="article-author">By ${article.author} · ${article.date}</p>
-                <p class="article-content">${article.content}</p>
-                <div class="article-tags">
-                    ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
-                <a href="#" class="read-more">Read More</a>
-            `;
-            articlesContainer.appendChild(articleCard);
-        });
-
-         // Hide all articles
-         allArticles.forEach(article => article.style.display = 'none');
- 
-         // Calculate the range of articles to display
-         const start = (currentPage - 1) * articlesPerPage;
-         const end = start + articlesPerPage;
-         const paginatedArticles = filteredArticles.slice(start, end);
- 
-         // Show the articles for the current page
-         paginatedArticles.forEach(article => article.style.display = 'block');
- 
-         // Update the pagination indicator
-         const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
-         document.getElementById('page-indicator').textContent = `Page ${currentPage} of ${totalPages}`;
- 
-         // Enable/disable pagination buttons
-         document.getElementById('prev-page').disabled = currentPage === 1;
-         document.getElementById('next-page').disabled = currentPage === totalPages;
-     }
- 
-     // Event listener for the filter dropdown
-     document.getElementById('filter').addEventListener('change', () => {
-         currentPage = 1; // Reset to the first page when filtering
-         displayArticles();
-     });
- 
-     // Event listener for the "Previous" button
-     document.getElementById('prev-page').addEventListener('click', () => {
-         if (currentPage > 1) {
-             currentPage--;
-             displayArticles();
-         }
-     });
- 
-     // Event listener for the "Next" button
-     document.getElementById('next-page').addEventListener('click', () => {
-         const filterValue = document.getElementById('filter').value;
-         const allArticles = Array.from(document.querySelectorAll('.article-card'));
-         const filteredArticles = filterValue === 'all' 
-             ? allArticles 
-             : allArticles.filter(article => article.getAttribute('data-category') === filterValue);
-         const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
- 
-         if (currentPage < totalPages) {
-             currentPage++;
-             displayArticles();
-         }
-     });
- 
-     // Fetch articles when the page loads
-    fetchArticles();
-     // Initial display of articles
-   //  displayArticles();
+        const filterValue = document.getElementById('filter').value;
+        const allArticles = articles; // Use the articles array
     
-});
-const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+        // Filter articles based on the selected category
+        const filteredArticles = filterValue === 'all'
+            ? allArticles
+            : allArticles.filter(article => article.getAttribute('data-category') === filterValue);
+    
+        // Clear the articles container
+        const articlesContainer = document.getElementById('articles-container');
+        if (!articlesContainer) {
+            console.error('Articles container not found!');
+            return;
+        }
+        articlesContainer.innerHTML = '';
+    
+        // Calculate the range of articles to display
+        const start = (currentPage - 1) * articlesPerPage;
+        const end = start + articlesPerPage;
+        const paginatedArticles = filteredArticles.slice(start, end);
+    
+        // Show the articles for the current page
+    paginatedArticles.forEach(article => {
+        const articleCard = document.createElement('div');
+        articleCard.className = 'article-card';
+        articleCard.setAttribute('data-category', article.category);
 
-dropdownItems.forEach(item => {
-    const dropdownMenu = item.querySelector('.dropdown-menu');
+        // Set the "Read More" link dynamically
+        const readMoreLink = article.readMoreLink || '#'; // Fallback to '#' if no link is provided
 
-    item.addEventListener('click', function (e) {
-        e.stopPropagation(); // Prevent the click from bubbling up
-        item.classList.toggle('active');
-        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+        articleCard.innerHTML = `
+            <h3 class="article-title">${article.title}</h3>
+            <p class="article-author">By ${article.author} · ${article.date}</p>
+            <p class="article-content">${article.content}</p>
+            <div class="article-tags">
+                ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <a href="${readMoreLink}" class="read-more" target="_blank">Read More</a>
+        `;
+        articlesContainer.appendChild(articleCard);
     });
+    
+        // Update the pagination indicator
+        const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+        const pageIndicator = document.getElementById('page-indicator');
+        if (pageIndicator) {
+            pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+        }
+    
+        // Enable/disable pagination buttons
+        const prevPageButton = document.getElementById('prev-page');
+        const nextPageButton = document.getElementById('next-page');
+        if (prevPageButton && nextPageButton) {
+            prevPageButton.disabled = currentPage === 1;
+            nextPageButton.disabled = currentPage === totalPages;
+        }
+    }
+     // Event listener for the filter dropdown
+const filterDropdown = document.getElementById('filter');
+if (filterDropdown) {
+    filterDropdown.addEventListener('change', () => {
+        currentPage = 1; // Reset to the first page when filtering
+        displayArticles();
+    });
+}
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!item.contains(e.target)) {
-            item.classList.remove('active');
-            dropdownMenu.style.display = 'none';
+// Event listener for the "Previous" button
+const prevPageButton = document.getElementById('prev-page');
+if (prevPageButton) {
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayArticles();
         }
     });
-});
-const userProfileDropdown = document.getElementById('userProfileDropdown');
-const profileDropdown = document.getElementById('profileDropdown');
+}
 
-userProfileDropdown.addEventListener('click', function (e) {
-    e.stopPropagation(); // Prevent the click from bubbling up to the window
-    profileDropdown.classList.toggle('show');
-});
+// Event listener for the "Next" button
+const nextPageButton = document.getElementById('next-page');
+if (nextPageButton) {
+    nextPageButton.addEventListener('click', () => {
+        const filterValue = document.getElementById('filter').value;
+        const allArticles = Array.from(document.querySelectorAll('.article-card'));
+        const filteredArticles = filterValue === 'all'
+            ? allArticles
+            : allArticles.filter(article => article.getAttribute('data-category') === filterValue);
+        const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
 
-// Close the dropdown when clicking outside of it
-window.addEventListener('click', function () {
-    if (profileDropdown.classList.contains('show')) {
-        profileDropdown.classList.remove('show');
-    }
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayArticles();
+        }
+    });
+}
+// Initial display of articles
+displayArticles();
 });
-

@@ -1,183 +1,6 @@
 @import url('home.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-.category-icon.startup {
-    background-color: #e91e63;
-}
 
-.category-icon.government {
-    background-color: #2196f3;
-}
-.category-icon.finance {
-    background-color: #0c170f;
-}
-.category-icon.security {
-    background-color: #f23ad6;
-}
-.home-btn {
-    background: transparent;
-    border: none;
-    color: var(--primary-purple);
-    font-size: 18px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    position: relative;
-}
-
-.home-btn:hover {
-    background-color: var(--light-purple);
-    transform: translateY(-2px);
-}
-
-/* Page Header */
-.page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-.page-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary-purple-dark);
-}
-/* User Profile & Actions */
-.user-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.bookmark-btn, .notification-btn {
-    background: transparent;
-    border: none;
-    color: var(--primary-purple);
-    font-size: 18px;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    position: relative;
-}
-
-.bookmark-btn:hover, .notification-btn:hover {
-    background-color: var(--light-purple);
-    transform: translateY(-2px);
-}
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--light-purple);
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-}
-
-.user-profile:hover {
-    background-color: #e5dcf0;
-    
-}
-
-.user-avatar {
-    width: 30px;
-    height: 30px;
-    background-color: var(--primary-purple);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.user-name {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    min-width: 200px;
-    padding: 10px 0;
-    margin-top: 10px;
-    z-index: 1000;
-    display: none;
-}
-
-.dropdown-menu.show {
-    display: block;
-    animation: fadeIn 0.3s ease;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-item:hover {
-    background-color: var(--grey-bg);
-}
-
-.dropdown-item i {
-    margin-right: 12px;
-    color: var(--primary-purple);
-    width: 20px;
-    text-align: center;
-}
-
-.dropdown-divider {
-    height: 1px;
-    background-color: var(--grey-light);
-    margin: 5px 0;
-}
-/* Page Header */
-.page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-.page-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary-purple-dark);
-}
-:root {
-    --primary-purple: #7c54b0;
-    --primary-purple-dark: #6a1b9a;
-    --secondary-orange: #ff8c42;
-    --secondary-orange-light: #ffaa70;
-    --light-purple: #f0ebf7;
-    --grey-bg: #f8f8f8;
-    --grey-light: #e5e5e5;
-    --grey-dark: #666666;
-    --white: #ffffff;
-    --scrollbar-thumb: #bfa5e0;
-    --scrollbar-track: #f0ebf7;
-    --plain-grey: #e0e0e0;
-}
-
-body {
-    background-color: var(--grey-bg);
-    color: #333;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
 * {
     margin: 0;
     padding: 0;
@@ -185,6 +8,12 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+body {
+    display: flex;
+    background-color: #f9fafb;
+    color: #333;
+    min-height: 100vh;
+}
 
 
 
