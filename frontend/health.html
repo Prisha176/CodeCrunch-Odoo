@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Health & Wellness</title>
+    <link rel="stylesheet" href="health.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <!-- <div class="sidebar"> -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+            <button class="travel-button" onclick="sendLiveLocation()">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <!-- Security Main Module -->
+                <li class="category-item" data-category="security">
+                    <div class="category-icon security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+                </li>
+        
+                <!-- Finance Main Module with Dropdown -->
+                <li class="category-item dropdown" data-category="finance">
+                    <div class="category-icon finance">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <span class="category-name">Finance</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <ul class="dropdown-menu">
+                        <li onclick="window.location.href='job2.html';">Job</li>
+                        <li onclick="window.location.href='internship.html';">Internships</li>
+                        <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                    </ul>
+                </li>
+        
+                <!-- Consultant Main Module -->
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+                </li>
+        
+                <!-- Health & Wellness Main Module -->
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+                </li>
+        
+                <!-- Govt. Main Module -->
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+                </li>
+        
+                <!-- Events Main Module -->
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+                </li>
+        
+                <!-- Room Rental Main Module -->
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+                </li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="aboutus.css" class="footer-link">About</a>
+                    <a href="#" class="privacy.html">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="faq.html" class="footer-link">FAQs</a>
+                    <a href="contactus.html" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+        
+    <!-- </div> -->
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="page-header">
+            <!-- <h1>Discover Job Opportunities</h1> -->
+            <h1 class="page-title">Health & Wellness</h1>
+            <div class="user-actions">
+            <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+                <i class="fas fa-home"></i>
+            </button>
+            
+            <!-- <button class="notification-btn" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button> -->
+        <!-- </button> --> 
+        <div class="user-profile" id="userProfileDropdown">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+            <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="profileDropdown">
+                <div class="dropdown-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Profile</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </div>
+            </div>
+        </div>
+       
+          </div>
+          </div>
+        
+        <!-- Alerts Section -->
+            <div class="alerts-section">
+                <h2 class="section-title">Health Alerts & Updates</h2>
+                <div id="alerts-container" class="alerts-container">
+                    <!-- Alerts will be dynamically added here -->
+                </div>
+             </div>
+        
+        <!-- Content Layout -->
+        <!-- <div class="content-layout"> -->
+            <!-- Articles Section -->
+            <!-- <div class="articles-section">
+                <h2 class="section-title">Featured Health Articles</h2>
+                 -->
+ <!-- Filter Options -->
+ <!-- <div class="filter-options">
+    <label for="filter">Filter by Category:</label>
+    <select id="filter">
+        <option value="all">All</option>
+        <option value="Hormonal Health">Hormonal Health</option>
+        <option value="Nutrition">Nutrition</option>
+        <option value="Mental Health">Mental Health</option>
+        <option value="Mindfulness">Mindfulness</option>
+        <option value="Stress Management">Stress Management</option>
+        <option value="Diet">Diet</option>
+        <option value="Aging Well">Aging Well</option>
+    </select>
+</div> -->
+
+                  <!-- Articles Container -->
+                  <!-- <div id="articles-container" class="articles-container"> -->
+                    <!-- Static Articles -->
+                    <!-- <div class="article-card" data-category="Hormonal Health">
+                        <h3 class="article-title">Understanding Hormonal Health: A Comprehensive Guide</h3>
+                        <p class="article-author">By Dr. Sarah Johnson · March 5, 2025</p>
+                        <p class="article-content">Hormones play a crucial role in women's health throughout different life stages. This article explores how to maintain hormonal balance through nutrition, exercise, and lifestyle changes.</p>
+                        <div class="article-tags">
+                            <span class="tag">Hormonal Health</span>
+                            <span class="tag">Nutrition</span>
+                            <span class="tag">Women's Health</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div> -->
+
+                    <!-- <div class="article-card" data-category="Mental Health">
+                        <h3 class="article-title">Mindfulness and Mental Health: Techniques for Stress Reduction</h3>
+                        <p class="article-author">By Maya Williams, M.D. · March 2, 2025</p>
+                        <p class="article-content">Discover effective mindfulness practices and meditation techniques that can help manage stress, anxiety, and improve overall mental wellbeing for busy women.</p>
+                        <div class="article-tags">
+                            <span class="tag">Mental Health</span>
+                            <span class="tag">Mindfulness</span>
+                            <span class="tag">Stress Management</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div> -->
+
+                    <!-- <div class="article-card" data-category="Nutrition">
+                        <h3 class="article-title">Nutrition for Women: Age-Specific Dietary Recommendations</h3>
+                        <p class="article-author">By Priya Sharma, Nutritionist · February 28, 2025</p>
+                        <p class="article-content">Explore how nutritional needs change throughout a woman's life from adolescence through menopause, and how to adjust your diet accordingly for optimal health.</p>
+                        <div class="article-tags">
+                            <span class="tag">Nutrition</span>
+                            <span class="tag">Diet</span>
+                            <span class="tag">Aging Well</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+
+                    <div class="article-card" data-category="Aging Well">
+                        <h3 class="article-title">The Importance of Regular Health Checkups</h3>
+                        <p class="article-author">By Dr. Emily Carter · March 10, 2025</p>
+                        <p class="article-content">Regular health checkups are essential for early detection of potential health issues. Learn what tests are recommended for women at different ages.</p>
+                        <div class="article-tags">
+                            <span class="tag">Preventive Care</span>
+                            <span class="tag">Women's Health</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div> -->
+
+                    <!-- <div class="article-card" data-category="Aging Well">
+                        <h3 class="article-title">Exercise Routines for Women Over 40</h3>
+                        <p class="article-author">By Fitness Expert Jane Doe · March 8, 2025</p>
+                        <p class="article-content">Staying active is crucial as we age. Discover tailored exercise routines that help maintain strength, flexibility, and overall health for women over 40.</p>
+                        <div class="article-tags">
+                            <span class="tag">Exercise</span>
+                            <span class="tag">Aging Well</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+
+                    <div class="article-card" data-category="Mental Health">
+                        <h3 class="article-title">Balancing Work and Mental Health</h3>
+                        <p class="article-author">By Psychologist Dr. Rachel Green · March 7, 2025</p>
+                        <p class="article-content">Learn strategies to balance work demands with mental health, including time management, setting boundaries, and self-care practices.</p>
+                        <div class="article-tags">
+                            <span class="tag">Mental Health</span>
+                            <span class="tag">Stress Management</span>
+                        </div>
+                        <a href="#" class="read-more">Read More</a>
+                    </div> -->
+                <!-- </div> -->
+
+                <!-- Pagination -->
+                <!-- <div class="pagination">
+                    <button id="prev-page" class="pagination-button">Previous</button>
+                    <span id="page-indicator">Page 1 of 2</span>
+                    <button id="next-page" class="pagination-button">Next</button>
+                </div>
+              </div>
+              </div> -->
+            
+            <!-- Sidebar Section -->
+            <div class="sidebar-section">
+                <!-- Tips Section -->
+                <div class="tips-section">
+                    <h3 class="tips-title">Daily Health Tips</h3>
+                    
+                    <!-- Tip 1 -->
+                    <div class="tip">
+                        <div class="tip-icon">💧</div>
+                        <div class="tip-content">
+                            <div class="tip-title">Stay Hydrated</div>
+                            <p class="tip-text">Aim for 8-10 glasses of water daily to maintain energy levels and support metabolic functions.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tip 2 -->
+                    <!-- <div class="tip">
+                        <div class="tip-icon">🧘</div>
+                        <div class="tip-content">
+                            <div class="tip-title">Practice Self-Care</div>
+                            <p class="tip-text">Schedule at least 15 minutes daily for activities that bring you joy and relaxation.</p>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Tip 3 -->
+                    <!-- <div class="tip">
+                        <div class="tip-icon">🪑</div>
+                        <div class="tip-content">
+                            <div class="tip-title">Posture Check</div>
+                            <p class="tip-text">Take frequent breaks if you work at a desk. Stand up, stretch, and realign your posture every hour.</p>
+                        </div>
+                    </div> -->
+                    
+                        <!-- Read More Button and Bookmark -->
+                        <div class="tip-actions">
+                            <button class="read-more-btn">Read More</button>
+                           ?
+                        </dv>
+
+                </div>
+                
+                 <!-- Popup Box -->
+                        <div id="tip-popup" class="tip-popup">
+                            <div class="popup-content">
+                                <span class="close-btn">&times;</span>
+                                <h3 id="popup-title">Stay Hydrated</h3>
+                                <p id="popup-text">Aim for 8-10 glasses of water daily to maintain energy levels and support metabolic functions.</p>
+                                <!-- Additional Information -->
+                                <div id="popup-additional-info">
+                                    <h4>Why is this important? 🤔</h4>
+                                    <ul>
+                                        <li>💧 Improves skin health and hydration.</li>
+                                        <li>⚡ Boosts energy and reduces fatigue.</li>
+                                        <li>🩺 Supports kidney function and detoxification.</li>
+                                    </ul>
+                                    
+                                    <!-- Fun Fact -->
+                                    <div class="fun-fact">
+                                        <h4>Fun Fact! 😄</h4>
+                                        <p>Did you know? Your brain is about 75% water! Staying hydrated helps you think clearly and stay focused.</p>
+                                    </div>
+                                    
+                                    <!-- Video Link -->
+                                    <div class="video-link">
+                                        <h4>Learn More 🎥</h4>
+                                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch this video on the importance of hydration!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!-- Experts Section
+                <div class="experts-section">
+                    <h3 class="experts-title">Connect with Experts</h3>
+                    <div class="experts-grid">
+                        Expert 1
+                        <div class="expert-card">
+                            <div class="expert-avatar">👩‍⚕️</div>
+                            <div class="expert-name">Dr. Lisa Chen</div>
+                            <div class="expert-title">OB-GYN Specialist</div>
+                            <div class="expert-availability">Available: Tue, Thu</div>
+                            <a href="#" class="book-btn">Book Consultation</a>
+                        </div>
+                        
+                        Expert 2
+                        <div class="expert-card">
+                            <div class="expert-avatar">👩‍⚕️</div>
+                            <div class="expert-name">Anita Kumar</div>
+                            <div class="expert-title">Nutritionist</div>
+                            <div class="expert-availability">Available: Mon, Fri</div>
+                            <a href="#" class="book-btn">Book Appointment</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="health.css">
+    <script src="health.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>

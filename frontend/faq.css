@@ -1,0 +1,66 @@
+/* FAQ Section */
+@import url('home.css');
+.category-icon.startup {
+    background-color: #e91e63;
+}
+
+.category-icon.government {
+    background-color: #2196f3;
+}
+.category-icon.finance {
+    background-color: #0c170f;
+}
+.category-icon.security {
+    background-color: #f23ad6;
+}
+.faq-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--grey-light);
+    padding-bottom: 15px;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-purple);
+    padding: 10px 0;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.6;
+}
+
+.faq-answer.active {
+    max-height: 200px; /* Adjust based on content */
+    padding-top: 10px;
+}

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Stop Woman - Job Board</title>
+    <link rel="stylesheet" href="job2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Sidebar - Kept exactly the same -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+            <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+        </div>
+        <div class="search-container">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search communities...">
+            </div>
+        </div>
+        <button class="travel-button" onclick="sendLiveLocation()">
+            <i class="fas fa-plane-departure"></i> Guardian Mode
+        </button>
+        <div class="categories-title">BROWSE CATEGORIES</div>
+        <ul class="category-list" id="categoryList">
+            <!-- Security Main Module -->
+            <li class="category-item" data-category="security">
+                <div class="category-icon security">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span onclick="window.location.href='security.html';" class="category-name">Security</span>
+            </li>
+    
+            <!-- Finance Main Module with Dropdown -->
+            <li class="category-item dropdown" data-category="finance">
+                <div class="category-icon finance">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <span class="category-name">Finance</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+                <ul class="dropdown-menu">
+                    <li onclick="window.location.href='job2.html';">Job</li>
+                    <li onclick="window.location.href='internship.html';">Internships</li>
+                    <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                </ul>
+            </li>
+    
+            <!-- Consultant Main Module -->
+            <li class="category-item" data-category="consultant">
+                <div class="category-icon consultant">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+            </li>
+    
+            <!-- Health & Wellness Main Module -->
+            <li class="category-item" data-category="health">
+                <div class="category-icon health">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+            </li>
+    
+            <!-- Govt. Main Module -->
+            <li class="category-item" data-category="government">
+                <div class="category-icon government">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+            </li>
+    
+            <!-- Events Main Module -->
+            <li class="category-item" data-category="events">
+                <div class="category-icon events">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+            </li>
+    
+            <!-- Room Rental Main Module -->
+            <li class="category-item" data-category="room">
+                <div class="category-icon room">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+            </li>
+        </ul>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Help</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <div class="footer">
+                &copy; 2025 One Stop Woman. All rights reserved.
+            </div>
+        </div>
+    </aside>
+
+      <!-- Main Content - Job Board -->
+      <main class="main-content">
+        <!-- Header -->
+        <div class="page-header">
+          <!-- <h1>Discover Job Opportunities</h1> -->
+          <h1 class="page-title">Job</h1>SSS
+          <div class="user-actions">
+          <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+              <i class="fas fa-home"></i>
+          </button>
+          <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+              <i class="fas fa-bookmark"></i>
+          </button>
+          <!-- <button class="notification-btn" title="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+          </button> -->
+          <div class="user-profile" id="userProfileDropdown">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+            <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="profileDropdown">
+                <div class="dropdown-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Profile</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </div>
+            </div>
+        </div>
+          </div>
+     
+        </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label class="filter-label">JOB TYPE</label>
+              <select class="filter-select" id="jobTypeFilter">
+                <option value="">All Types</option>
+                <option value="full-time">Full-time</option>
+                <option value="part-time">Part-time</option>
+                <option value="contract">Contract</option>
+                <option value="remote">Remote</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">LOCATION</label>
+              <input
+                type="text"
+                class="filter-input"
+                id="locationFilter"
+                placeholder="City, State, or Remote"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">EXPERIENCE LEVEL</label>
+              <select class="filter-select" id="experienceFilter">
+                <option value="">All Levels</option>
+                <option value="entry">Entry Level</option>
+                <option value="mid">Mid Level</option>
+                <option value="senior">Senior Level</option>
+                <option value="executive">Executive</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">INDUSTRY</label>
+              <select class="filter-select" id="industryFilter">
+                <option value="">All Industries</option>
+                <option value="tech">Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="finance">Finance</option>
+                <option value="education">Education</option>
+                <option value="creative">Creative Arts</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">SALARY RANGE</label>
+              <select class="filter-select" id="salaryFilter">
+                <option value="">Any Range</option>
+                <option value="30-50">$30K - $50K</option>
+                <option value="50-80">$50K - $80K</option>
+                <option value="80-120">$80K - $120K</option>
+                <option value="120-150">$120K - $150K</option>
+                <option value="150+">$150K+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="reset-filters" id="resetFilters">
+              Reset Filters
+            </button>
+            <button class="apply-filters" id="applyFilters">
+              Apply Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div
+          id="loadingIndicator"
+          style="display: none; text-align: center; margin: 20px 0"
+        >
+          <i class="fas fa-spinner fa-spin fa-2x"></i>
+          <p>Loading job listings...</p>
+        </div>
+
+        <!-- Job listings container -->
+        <div class="job-grid" id="jobGrid">
+          <!-- Sample job cards (will be replaced by API data) -->
+          <div class="job-card">
+            <div class="job-company-logo">SF</div>
+            <h3 class="job-title">Financial Analyst</h3>
+            <p class="job-company">SheFinance</p>
+            <div class="job-details">
+              <span class="job-detail"
+                ><i class="fas fa-map-marker-alt"></i> Chicago, IL</span
+              >
+              <span class="job-detail"
+                ><i class="fas fa-dollar-sign"></i> $70K - $90K</span
+              >
+            </div>
+            <span class="job-type full-time">Full-time</span>
+            <p class="job-description">
+              Analyze financial data, create financial models, and provide
+              insights to support business decisions.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Finance</span>
+              <span class="job-tag">Excel</span>
+              <span class="job-tag">Data Analysis</span>
+            </div>
+            <div class="job-footer">
+              <span class="job-posted">Posted 1 day ago</span>
+              <button class="job-apply">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-company-logo">WE</div>
+            <h3 class="job-title">Online Curriculum Developer</h3>
+            <p class="job-company">Women Educate</p>
+            <div class="job-details">
+              <span class="job-detail"
+                ><i class="fas fa-map-marker-alt"></i> Remote</span
+              >
+              <span class="job-detail"
+                ><i class="fas fa-dollar-sign"></i> $65K - $85K</span
+              >
+            </div>
+            <span class="job-type part-time">Part-time</span>
+            <p class="job-description">
+              Create engaging online courses focused on professional development
+              for women in various industries.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Education</span>
+              <span class="job-tag">Content Creation</span>
+              <span class="job-tag">E-Learning</span>
+            </div>
+            <div class="job-footer">
+              <span class="job-posted">Posted 3 days ago</span>
+              <button class="job-apply">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-company-logo">WF</div>
+            <h3 class="job-title">Data Scientist</h3>
+            <p class="job-company">WomenForward Tech</p>
+            <div class="job-details">
+              <span class="job-detail"
+                ><i class="fas fa-map-marker-alt"></i> Austin, TX</span
+              >
+              <span class="job-detail"
+                ><i class="fas fa-dollar-sign"></i> $95K - $125K</span
+              >
+            </div>
+            <span class="job-type full-time">Full-time</span>
+            <p class="job-description">
+              Analyze large datasets to extract insights and build predictive
+              models to improve our product and user experience.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Python</span>
+              <span class="job-tag">Machine Learning</span>
+              <span class="job-tag">Data Analysis</span>
+            </div>
+            <div class="job-footer">
+              <span class="job-posted">Posted 2 days ago</span>
+              <button class="job-apply">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- No results message -->
+        <div
+          id="noResults"
+          style="display: none; text-align: center; margin: 20px 0"
+        >
+          <i
+            class="fas fa-search fa-2x"
+            style="color: #ccc; margin-bottom: 10px"
+          ></i>
+          <p>
+            No job listings found matching your criteria. Try adjusting your
+            filters.
+          </p>
+        </div>
+
+        <!-- Error message -->
+        <div
+          id="errorMessage"
+          style="
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #d9534f;
+          "
+        >
+          <i
+            class="fas fa-exclamation-circle fa-2x"
+            style="margin-bottom: 10px"
+          ></i>
+          <p>
+            There was an error fetching job listings. Please try again later.
+          </p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <div class="pagination-button pagination-arrow">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="pagination-button active">1</div>
+          <div class="pagination-button">2</div>
+          <div class="pagination-button">3</div>
+          <div class="pagination-button">4</div>
+          <div class="pagination-button">5</div>
+          <div class="pagination-button pagination-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Elements
+        const applyFiltersBtn = document.getElementById("applyFilters");
+        const resetFiltersBtn = document.getElementById("resetFilters");
+        const jobGrid = document.getElementById("jobGrid");
+        const loadingIndicator = document.getElementById("loadingIndicator");
+        const noResults = document.getElementById("noResults");
+        const errorMessage = document.getElementById("errorMessage");
+        const pagination = document.getElementById("pagination");
+
+        // Display initial jobs
+        displaySampleJobs();
+
+        // Reset filters
+        resetFiltersBtn.addEventListener("click", function () {
+          document.getElementById("jobTypeFilter").value = "";
+          document.getElementById("locationFilter").value = "";
+          document.getElementById("experienceFilter").value = "";
+          document.getElementById("industryFilter").value = "";
+          document.getElementById("salaryFilter").value = "";
+
+          // Display sample jobs again
+          displaySampleJobs();
+        });
+
+        // Apply filters and fetch jobs
+        applyFiltersBtn.addEventListener("click", async function () {
+          // Show loading indicator
+          jobGrid.style.display = "none";
+          loadingIndicator.style.display = "block";
+          noResults.style.display = "none";
+          errorMessage.style.display = "none";
+          pagination.style.display = "none";
+
+          // Get filter values
+          const jobType = document.getElementById("jobTypeFilter").value;
+          const location = document.getElementById("locationFilter").value;
+          const experience = document.getElementById("experienceFilter").value;
+          const industry = document.getElementById("industryFilter").value;
+          const salaryRange = document.getElementById("salaryFilter").value;
+
+          // Prepare request payload
+          const filters = {
+            jobType,
+            location,
+            experience,
+            industry,
+            salaryRange,
+          };
+
+          try {
+            // Fetch job listings from server
+            const response = await fetch("http://localhost:5000/fetch-jobs", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(filters),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const jobs = await response.json();
+
+            // Hide loading indicator
+            loadingIndicator.style.display = "none";
+
+            // Check if jobs were fetched successfully
+            if (!Array.isArray(jobs) || jobs.length === 0) {
+              noResults.style.display = "block";
+              jobGrid.style.display = "none";
+              return;
+            }
+
+            // Clear previous jobs
+            jobGrid.innerHTML = "";
+
+            // Render job cards
+            jobs.forEach((job) => {
+              // Create company logo initials
+              const companyInitials = job.company
+                .split(" ")
+                .map((word) => word.charAt(0))
+                .join("")
+                .substring(0, 2);
+
+              // Format job type CSS class
+              const jobTypeClass = job.jobType
+                ? job.jobType.toLowerCase().replace(/\s+/g, "-")
+                : "other";
+
+              // Create skills/tags HTML
+              let skillsHTML = "";
+              if (job.skills && Array.isArray(job.skills)) {
+                skillsHTML = job.skills
+                  .map((skill) => `<span class="job-tag">${skill}</span>`)
+                  .join("");
+              }
+
+              const jobCard = `
+                        <div class="job-card">
+                            <div class="job-company-logo">${companyInitials}</div>
+                            <h3 class="job-title">${job.title}</h3>
+                            <p class="job-company">${job.company}</p>
+                            <div class="job-details">
+                                <span class="job-detail"><i class="fas fa-map-marker-alt"></i> ${
+                                  job.location || "Flexible"
+                                }</span>
+                                <span class="job-detail"><i class="fas fa-dollar-sign"></i> ${
+                                  job.salary || "Competitive"
+                                }</span>
+                            </div>
+                            <span class="job-type ${jobTypeClass}">${
+                job.jobType || "Not specified"
+              }</span>
+                            <p class="job-description">${
+                              job.description || "No description provided."
+                            }</p>
+                            <div class="job-tags">
+                                ${skillsHTML}
+                            </div>
+                            <div class="job-footer">
+                                <span class="job-posted">Posted recently</span>
+                                <a href="${
+                                  job.applyUrl || "#"
+                                }" target="_blank" class="job-apply">Apply Now</a>
+                            </div>
+                        </div>
+                    `;
+              jobGrid.innerHTML += jobCard;
+            });
+
+            // Show job grid and pagination
+            jobGrid.style.display = "grid";
+            pagination.style.display = "flex";
+          } catch (error) {
+            console.error("Error fetching jobs:", error);
+            loadingIndicator.style.display = "none";
+            errorMessage.style.display = "block";
+            jobGrid.style.display = "none";
+          }
+        });
+
+        // Function to display sample jobs
+        function displaySampleJobs() {
+          // Clear status displays
+          loadingIndicator.style.display = "none";
+          noResults.style.display = "none";
+          errorMessage.style.display = "none";
+
+          // Show existing job cards and pagination
+          jobGrid.style.display = "grid";
+          pagination.style.display = "flex";
+        }
+
+        // Optional: Toggle filters visibility
+        const filterButton = document.querySelector(".filter-button");
+        const filtersSection = document.querySelector(".filters-section");
+
+        filterButton.addEventListener("click", function () {
+          filtersSection.classList.toggle("show-filters");
+        });
+      });
+      const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    userProfileDropdown.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+    const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+
+dropdownItems.forEach(item => {
+    const dropdownMenu = item.querySelector('.dropdown-menu');
+
+    item.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        item.classList.toggle('active');
+        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!item.contains(e.target)) {
+            item.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+    <script src="job2"></script>
+    <script src="home.js"></script>
+  </body>
+</html>

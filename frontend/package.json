@@ -1,0 +1,28 @@
+{
+  "type": "module",
+  "name": "one-stop-women",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000O\u0000n\u0000e\u0000-\u0000S\u0000t\u0000o\u0000p\u0000-\u0000W\u0000o\u0000m\u0000e\u0000n\u0000\r\u0000 \u0000",
+  "main": "script.js",
+  "scripts": {
+  "start": "concurrently \"npm run server1\" \"npm run internship\" \"npm run gov\" \"npm run job2\"",
+  "server1": "node server1.js",
+  "internship": "node internship.js",
+  "gov": "node gov.js",
+  "job2": "node job2.js"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "node-fetch": "^3.3.2",
+    "twilio": "^5.5.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Women - My Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css"> <!-- Same CSS as the login page -->
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                One Stop <span>Women</span>
+            </div>
+            <div class="welcome-text">
+                <h1>My Profile</h1>
+                <p>View and manage your personal details here.</p>
+            </div>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Secure and private</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Quick and easy</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Personalized experience</div>
+                </div>
+            </div>
+            <div class="decoration"></div>
+        </div>
+        <div class="right-panel">
+            <!-- Profile Photo -->
+            <div class="profile-photo">
+                <img id="profile-image" src="#" alt="Profile Picture" style="display: none;">
+                <div id="profile-placeholder" class="profile-placeholder">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+
+            <!-- User Details -->
+            <div class="user-details">
+                <div class="form-group">
+                    <label for="user-name">Name</label>
+                    <input type="text" id="user-name" placeholder="Enter your name" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" placeholder="Enter your email" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="user-profession">Profession</label>
+                    <input type="text" id="user-profession" placeholder="Enter your profession" readonly>
+                </div>
+            </div>
+
+            <!-- Emergency Contacts -->
+            <div class="emergency-contacts">
+                <h2>Emergency Contacts</h2>
+                <div id="emergency-contacts-list" class="emergency-contacts-list">
+                    <!-- Emergency contacts will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="window.location.href='home.html'">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to dynamically add emergency contacts
+        function addEmergencyContact(name, number) {
+            const emergencyContactsList = document.getElementById('emergency-contacts-list');
+            const contactDiv = document.createElement('div');
+            contactDiv.className = 'emergency-contact-item';
+            contactDiv.innerHTML = `
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" value="${name}" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="tel" value="${number}" readonly>
+                </div>
+            `;
+            emergencyContactsList.appendChild(contactDiv);
+        }
+
+        // Example data (replace with actual data from the backend)
+        const userDetails = {
+            name: "",
+            email: "",
+            profession: "",
+            emergencyContacts: [
+                { name: "", number: "" },
+                { name: "", number: "" }
+            ]
+        };
+
+        // Populate user details
+        document.getElementById('user-name').value = userDetails.name;
+        document.getElementById('user-email').value = userDetails.email;
+        document.getElementById('user-profession').value = userDetails.profession;
+
+        // Populate emergency contacts
+        userDetails.emergencyContacts.forEach(contact => {
+            addEmergencyContact(contact.name, contact.number);
+        });
+    </script>
+</body>
+</html>

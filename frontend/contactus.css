@@ -1,0 +1,79 @@
+/* Contact Form Styles */
+@import url('home.css');
+.contact-form {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-purple);
+    margin-bottom: 10px;
+}
+
+.contact-form p {
+    font-size: 14px;
+    color: var(--grey-dark);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--grey-dark);
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey-light);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--grey-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-purple);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--light-purple);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-button {
+    background-color: var(--secondary-orange);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: var(--secondary-orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}

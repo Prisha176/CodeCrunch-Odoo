@@ -1,0 +1,144 @@
+/* Full-page layout */
+@import url('index.css');
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.container {
+    display: flex;
+    /* height: 100vh; Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-color: var(--white);
+    overflow: hidden;
+    /* padding: 20px 0; Add padding to top and bottom */
+}
+
+.left-panel {
+    flex: 1;
+    background: linear-gradient(145deg, var(--primary-purple), var(--primary-purple-dark));
+    color: var(--white);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* margin: 20px; Add margin to prevent touching borders */
+    border-radius: 16px; /* Optional: Add rounded corners */
+}
+
+.right-panel {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+    overflow-y: auto; /* Enable scrolling for content */
+    /* margin: 20px; Add margin to prevent touching borders */
+    border-radius: 16px; /* Optional: Add rounded corners */
+}
+
+/* Profile Photo Section */
+.profile-photo {
+    text-align: center;
+    margin-top: 20px; /* Add margin to prevent cutting */
+    margin-bottom: 30px;
+}
+
+#profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-purple);
+    object-fit: cover;
+    display: none; /* Hidden by default */
+}
+
+.profile-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--light-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.profile-placeholder i {
+    font-size: 80px;
+    color: var(--primary-purple);
+}
+
+/* User Details Section */
+.user-details {
+    margin-bottom: 30px;
+}
+
+.user-details .form-group {
+    margin-bottom: 20px;
+}
+
+.user-details .form-group label {
+    font-size: 14px;
+    color: var(--grey-dark);
+    font-weight: 500;
+}
+
+.user-details .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid var(--grey-light);
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: var(--grey-bg);
+    color: var(--grey-dark);
+    cursor: not-allowed;
+}
+
+/* Emergency Contacts Section */
+.emergency-contacts {
+    margin-bottom: 30px;
+}
+
+.emergency-contacts h2 {
+    font-size: 20px;
+    color: var(--primary-purple);
+    margin-bottom: 20px;
+}
+
+.emergency-contacts-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.emergency-contact-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.emergency-contact-item .form-group {
+    flex: 1;
+}
+
+.emergency-contact-item .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid var(--grey-light);
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: var(--grey-bg);
+    color: var(--grey-dark);
+    cursor: not-allowed;
+}
+
+/* Back Button */
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+}

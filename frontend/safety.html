@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Safety & Self-Defense Module</title>
+    <link rel="stylesheet" href="home.css"> <!-- Use the same CSS as home1.html -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="safety.css">
+    <!-- <script src="home.js"></script> -->
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar from home1.html -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+            <button class="travel-button" onclick="sendLiveLocation()">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <!-- Security Main Module -->
+                <li class="category-item" data-category="security">
+                    <div class="category-icon security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+                </li>
+        
+                <!-- Finance Main Module with Dropdown -->
+                <li class="category-item dropdown" data-category="finance">
+                    <div class="category-icon finance">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <span class="category-name">Finance</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <ul class="dropdown-menu">
+                        <li onclick="window.location.href='job2.html';">Job</li>
+                        <li onclick="window.location.href='internship.html';">Internships</li>
+                        <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                    </ul>
+                </li>
+        
+                <!-- Consultant Main Module -->
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+                </li>
+        
+                <!-- Health & Wellness Main Module -->
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+                </li>
+        
+                <!-- Govt. Main Module -->
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+                </li>
+        
+                <!-- Events Main Module -->
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+                </li>
+        
+                <!-- Room Rental Main Module -->
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+                </li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Help</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header from home1.html -->
+            <div class="page-header">
+                <h1 class="page-title">Women's Safety & Self-Defense</h1>
+                <div class="user-actions">
+                    <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Items">
+                        <i class="fas fa-bookmark"></i>
+                    </button> -->
+                    <div class="user-profile" id="userProfileDropdown">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+                        <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-item">
+                                <i class="fas fa-user-circle"></i>
+                                <span>My Profile</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Help & Support</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Sign Out</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="guardian-mode-card">
+                <h3><i class="fas fa-shield-alt"></i> Guardian Mode Active</h3>
+                <p>Your trusted contacts can see your location in real-time. Your last check-in was 30 minutes ago.</p>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="sos-button" style="background-color: var(--info); color: white;">
+                        <i class="fas fa-check-circle"></i> Check In Now
+                    </button>
+                    <button class="sos-button">
+                        <i class="fas fa-user-plus"></i> Add Guardians
+                    </button>
+                </div>
+            </div> -->
+
+            <!-- Tab Navigation -->
+            <div class="tab-container">
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="intro">Introduction</button>
+                    <button class="tab-button" data-tab="scenarios">Safety Scenarios</button>
+                    <button class="tab-button" data-tab="self-defense">Self-Defense Training</button>
+                    <button class="tab-button" data-tab="emergency">Emergency Actions</button>
+                    <!-- <button class="tab-button" data-tab="community">Community & Support</button> -->
+                </div>
+
+                <!-- Introduction Tab Content -->
+<div class="tab-content active" id="intro">
+    <div class="card">
+        <div class="section-title">
+            <i class="fas fa-info-circle"></i>
+            <h2>Women's Safety & Awareness Guide</h2>
+        </div>
+        <p>Personal safety is a fundamental right for everyone. This comprehensive guide aims to empower women with knowledge, skills, and resources to navigate various situations with confidence and security.</p>
+
+        <div class="info-box">
+            <div class="info-title">Why Women's Safety Matters</div>
+            <p>While safety is important for everyone, women often face unique challenges. Being prepared isn't about living in fear, but rather empowering yourself with knowledge and skills to handle various situations confidently.</p>
+        </div>
+
+        <h3>Quick Safety Tips</h3>
+        <ul>
+            <li><strong>Trust your instincts</strong> - Your intuition is a powerful tool. If something feels wrong, it probably is.</li>
+            <li><strong>Stay aware</strong> - Keep your head up and be mindful of your surroundings.</li>
+            <li><strong>Communicate</strong> - Let trusted people know your whereabouts when traveling or meeting new people.</li>
+            <li><strong>Prepare</strong> - Have a safety plan for different scenarios and know how to use emergency features on your devices.</li>
+            <li><strong>Project confidence</strong> - Walk with purpose and maintain an assertive posture.</li>
+        </ul>
+
+        <h3>Situational Awareness</h3>
+        <p>Being aware of your surroundings is your first line of defense. Situational awareness is the practice of being mindful of your environment and any potential threats.</p>
+
+        <h3>In Public Places</h3>
+        <ul>
+            <li>Keep your head up and be observant of people around you</li>
+            <li>Avoid using headphones at high volume that block outside sounds</li>
+            <li>Trust your instincts - if something feels wrong, it likely is</li>
+            <li>Maintain a confident posture and walk with purpose</li>
+            <li>Stay in well-lit areas and avoid shortcuts through isolated places</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">Safety Tip</div>
+            <p>When entering a new environment, identify potential exits and safe spaces. This habit becomes automatic with practice and can be crucial in emergency situations.</p>
+        </div>
+
+        <h3>At Home</h3>
+        <ul>
+            <li>Keep doors and windows locked, even when you're at home</li>
+            <li>Install good quality locks and consider a security system</li>
+            <li>Don't open the door for unexpected visitors without verifying identity</li>
+            <li>Keep emergency contacts readily accessible</li>
+            <li>Have a safety plan for home emergencies</li>
+        </ul>
+
+        <h3>When Traveling</h3>
+        <ul>
+            <li>Research your destination beforehand</li>
+            <li>Share your itinerary with trusted friends or family</li>
+            <li>Use reputable transportation services</li>
+            <li>Keep valuables secure and out of sight</li>
+            <li>Be especially vigilant in unfamiliar areas</li>
+        </ul>
+
+        <h3>Recognizing Potential Threats</h3>
+        <p>Learn to identify warning signs that may indicate potential danger:</p>
+        <ul>
+            <li>Someone showing excessive interest or following you</li>
+            <li>A person or group suddenly changing direction when you do</li>
+            <li>Unusual requests from strangers designed to isolate you</li>
+            <li>Individuals trying to invade your personal space</li>
+            <li>Vehicles that pass by multiple times or slow down near you</li>
+        </ul>
+
+        <!-- Emergency Quick Guide Button -->
+        <button class="emergency-button" id="emergencyGuideBtn">Emergency Quick Guide</button>
+    </div>
+</div>
+
+<!-- Emergency Modal -->
+<div id="emergencyModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div style="background: white; padding: 20px; border-radius: 8px; width: 80%; max-width: 400px; text-align: center;">
+        <h2>Emergency Quick Guide</h2>
+        <p id="emergencyInfo">Press the button for immediate assistance.</p>
+        <button id="closeEmergencyModal">Close</button>
+    </div>
+</div>
+
+                <!-- Scenarios Tab Content -->
+                <div class="tab-content" id="scenarios">
+                    <div class="card">
+                        <div class="section-title">
+                            <i class="fas fa-lightbulb"></i>
+                            <h2>Interactive Safety Scenarios</h2>
+                        </div>
+                        <p>Explore common situations women may encounter and learn effective strategies to handle them safely. Click on each scenario to reveal specific guidance.</p>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario1')">
+                            <h4><i class="fas fa-moon"></i> Walking Alone at Night</h4>
+                            <p>Learn strategies to stay safe when walking alone after dark.</p>
+                            <div class="scenario-content" id="scenario1">
+                                <h5>What to do:</h5>
+                                <ol>
+                                    <li>Stay in well-lit, populated areas whenever possible</li>
+                                    <li>Walk confidently with purpose and be aware of your surroundings</li>
+                                    <li>Keep your phone accessible but avoid being distracted by it</li>
+                                    <li>Consider using safety apps that track your location</li>
+                                    <li>Hold your keys in your hand as a potential defensive tool</li>
+                                    <li>If you feel uncomfortable, trust your instincts and change your route</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <div class="tip-title">Pro Tip</div>
+                                    <p>Share your live location with a trusted friend when walking alone at night. Use the Guardian Mode in this app to automatically share your location.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario2')">
+                            <h4><i class="fas fa-car"></i> Cab/Rideshare Safety</h4>
+                            <p>Essential precautions when using taxis, Uber, Ola or other rideshare services.</p>
+                            <div class="scenario-content" id="scenario2">
+                                <h5>Before Getting In:</h5>
+                                <ol>
+                                    <li>Verify the driver's identity and car details with your booking</li>
+                                    <li>Ask "Who are you picking up?" rather than revealing your name first</li>
+                                    <li>Check if child locks are engaged before entering</li>
+                                </ol>
+                                <h5>During the Ride:</h5>
+                                <ol>
+                                    <li>Share your trip details with a trusted contact</li>
+                                    <li>Sit in the back seat, preferably behind the passenger seat</li>
+                                    <li>Keep your phone accessible and monitor your route</li>
+                                    <li>If the driver deviates from the route, question them directly</li>
+                                </ol>
+                                <div class="warning-box">
+                                    <div class="warning-title">Safety Alert</div>
+                                    <p>If you feel unsafe during a ride, call someone and loudly mention your location and destination. This alerts the driver that someone knows where you are.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario3')">
+                            <h4><i class="fas fa-building"></i> Workplace Harassment</h4>
+                            <p>How to recognize, respond to, and report inappropriate behavior at work.</p>
+                            <div class="scenario-content" id="scenario3">
+                                <h5>Recognizing Workplace Harassment:</h5>
+                                <ul>
+                                    <li>Unwelcome comments about appearance or body</li>
+                                    <li>Inappropriate touching or invasion of personal space</li>
+                                    <li>Offensive jokes or repeated unwanted attention</li>
+                                    <li>Quid pro quo requests (favors in exchange for advancement)</li>
+                                </ul>
+                                <h5>How to Respond:</h5>
+                                <ol>
+                                    <li>Clearly state that the behavior is unwelcome</li>
+                                    <li>Document all incidents with dates, times, and witnesses</li>
+                                    <li>Report to HR or appropriate authority following company policy</li>
+                                    <li>Seek support from trusted colleagues or mentors</li>
+                                    <li>Know your legal rights and consider external resources if needed</li>
+                                </ol>
+                                <div class="info-box">
+                                    <div class="info-title">Legal Resources</div>
+                                    <p>The Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 protects women from harassment at workplaces in India. Every organization must have an Internal Complaints Committee (ICC).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario4')">
+                            <h4><i class="fas fa-glass-cheers"></i> Social Gatherings & Parties</h4>
+                            <p>Staying safe while socializing at events, parties and gatherings.</p>
+                            <div class="scenario-content" id="scenario4">
+                                <h5>Before the Event:</h5>
+                                <ol>
+                                    <li>Let someone know where you're going and when you expect to return</li>
+                                    <li>Have a plan for getting home safely</li>
+                                    <li>Charge your phone fully and bring a portable charger if possible</li>
+                                </ol>
+                                <h5>During the Event:</h5>
+                                <ol>
+                                    <li>Never leave your drink unattended</li>
+                                    <li>Use the buddy system - look out for each other</li>
+                                    <li>Be cautious about accepting drinks from strangers</li>
+                                    <li>Set a drink limit for yourself beforehand</li>
+                                    <li>Trust your instincts if someone makes you uncomfortable</li>
+                                </ol>
+                                <div class="warning-box">
+                                    <div class="warning-title">Drink Safety</div>
+                                    <p>If you suspect your drink has been tampered with, leave it and get a new one. Signs of drink spiking include feeling dizzy, nauseous, or disproportionately intoxicated relative to what you've consumed.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario5')">
+                            <h4><i class="fas fa-home"></i> Home Security</h4>
+                            <p>Essential measures to secure your living space and respond to home invasions.</p>
+                            <div class="scenario-content" id="scenario5">
+                                <h5>Preventive Measures:</h5>
+                                <ol>
+                                    <li>Install sturdy doors with peepholes and good quality locks</li>
+                                    <li>Secure all windows with locks and consider safety grilles</li>
+                                    <li>Install adequate lighting around entry points</li>
+                                    <li>Consider installing a home security system or camera doorbell</li>
+                                    <li>Never hide spare keys outside in obvious places</li>
+                                    <li>Be cautious about sharing on social media when you're away from home</li>
+                                </ol>
+                                <h5>If Someone Is Breaking In:</h5>
+                                <ol>
+                                    <li>If you're not home, do not enter - call police from a safe location</li>
+                                    <li>If you're inside, secure yourself in a room with a lock if possible</li>
+                                    <li>Call emergency services immediately</li>
+                                    <li>Make noise to alert neighbors</li>
+                                    <li>If possible, exit the house safely</li>
+                                </ol>
+                                <div class="info-box">
+                                    <div class="info-title">Safety Measure</div>
+                                    <p>Consider creating a "safe room" in your home with a solid door, good lock, and emergency supplies including a charged phone.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scenario-card" onclick="toggleScenario('scenario6')">
+                            <h4><i class="fas fa-bus"></i> Public Transportation Safety</h4>
+                            <p>Strategies for staying safe while using buses, trains, and metro systems.</p>
+                            <div class="scenario-content" id="scenario6">
+                                <h5>Before and During Travel:</h5>
+                                <ol>
+                                    <li>Wait in well-lit, populated areas</li>
+                                    <li>Sit near the driver or in women's section if available</li>
+                                    <li>Keep valuables secure and out of sight</li>
+                                    <li>Stay awake and alert during the journey</li>
+                                    <li>Trust your instincts if someone makes you uncomfortable</li>
+                                </ol>
+                                <h5>If You Feel Unsafe:</h5>
+                                <ol>
+                                    <li>Move to another seat or closer to the driver/conductor</li>
+                                    <li>Make a phone call or pretend to make one, mentioning your location</li>
+                                    <li>If someone is harassing you, speak up loudly to draw attention</li>
+                                    <li>Exit at a busy stop if possible and seek help if needed</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <div class="tip-title">App Feature Reminder</div>
+                                    <p>Use the Guardian Mode in this app when traveling on public transportation at night to share your live location with trusted contacts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Self-Defense Tab Content -->
+                <div class="tab-content" id="self-defense">
+                    <div class="card">
+                        <div class="section-title">
+                            <i class="fas fa-fist-raised"></i>
+                            <h2>Self-Defense Techniques</h2>
+                        </div>
+                        <p>Learning basic self-defense techniques can help you respond effectively if physically threatened. These techniques focus on creating distance and opportunity to escape rather than engaging in prolonged confrontation.</p>
+                        
+                        <div class="warning-box">
+                            <div class="warning-title">Important Note</div>
+                            <p>These instructions are not a substitute for proper in-person self-defense training. Consider taking a local self-defense class for hands-on practice with qualified instructors.</p>
+                        </div>
+
+                        <h3>Basic Principles of Self-Defense</h3>
+                        <ul>
+                            <li><strong>Awareness</strong> - Your first line of defense is avoiding dangerous situations</li>
+                            <li><strong>De-escalation</strong> - Use verbal strategies to defuse confrontation when possible</li>
+                            <li><strong>Distance</strong> - The goal is to create space to escape, not to "win" a fight</li>
+                            <li><strong>Decisive action</strong> - If forced to defend yourself, commit fully to your response</li>
+                            <li><strong>Voice</strong> - Use your voice powerfully to attract attention and show resolve</li>
+                        </ul>
+
+                        <h3>Fundamental Techniques</h3>
+                        <div class="techniques-container">
+                            <div class="technique-card">
+                                <div class="technique-image">
+                                    <img src="p1.jpg" alt="">
+                                </div>
+                                <div class="technique-content">
+                                    <h4>Defensive Stance</h4>
+                                    <p>A proper stance gives you balance and readiness to respond:</p>
+                                    <ul>
+                                        <li>Feet shoulder-width apart</li>
+                                        <li>Dominant foot slightly back</li>
+                                        <li>Knees slightly bent</li>
+                                        <li>Hands up to protect face</li>
+                                        <li>Chin down, shoulders relaxed</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="technique-card">
+                                <div class="technique-image">
+                                    <img src="p2.jpg" alt="">
+                                </div>
+                                <div class="technique-content">
+                                    <h4>Palm Strike</h4>
+                                    <p>An effective strike that minimizes risk of injury to your hand:</p>
+                                    <ul>
+                                        <li>Strike with the heel of your palm</li>
+                                        <li>Keep fingers tight and slightly curled back</li>
+                                        <li>Aim for the nose, chin, or throat</li>
+                                        <li>Use your body weight, not just arm strength</li>
+                                        <li>Follow through with the strike</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="technique-card">
+                                <div class="technique-image">
+                                    <img src="p3.jpg" alt="">
+                                </div>
+                                <div class="technique-content">
+                                    <h4>Elbow Strike</h4>
+                                    <p>One of the strongest strikes, useful at close range:</p>
+                                    <ul>
+                                        <li>Bend arm at roughly 90 degrees</li>
+                                        <li>Keep fist tight, strike with outside of elbow</li>
+                                        <li>Can be delivered horizontally or vertically</li>
+                                        <li>Effective targets: jaw, temple, neck, ribs</li>
+                                        <li>Put your weight and hip rotation into the strike</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Target Areas</h3>
+                        <p>In a self-defense situation, focus on these vulnerable areas:</p>
+                        <ul>
+                            <li><strong>Eyes</strong> - Very sensitive, can cause temporary blindness</li>
+                            <li><strong>Throat</strong> - Vulnerable and can disrupt breathing</li>
+                            <li><strong>Groin</strong> - Causes extreme pain and can immobilize an attacker</li>
+                            <li><strong>Knees</strong> - Relatively weak joint, critical for mobility</li>
+                            <li><strong>Ears</strong> - Clapping both ears simultaneously can disorient</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <div class="info-title">Safety Tip
+                               </div>
+                            <p> Practice these techniques regularly with a partner in a safe environment. Muscle memory is crucial when you need to react quickly under stress.</p>
+                        </div>
+
+                        <!-- <h3>Video Tutorials</h3>
+<p>Watch these guided tutorials to learn proper technique:</p>
+<div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=M4_8PoRQP8w" 
+        title="Basic Self-Defense Moves Tutorial" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div> -->
+
+
+                        
+                        <div id="map" style="height: 400px; width: 100%; border-radius: 10px; margin-top: 20px;"></div>
+                    </div>
+                </div>
+
+                <!-- Emergency Actions Tab Content -->
+                <div class="tab-content" id="emergency">
+                    <div class="card">
+                        <div class="section-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h2>Emergency Response Plan</h2>
+                        </div>
+                        <p>Having a clear plan for emergencies can help you respond quickly and effectively when seconds matter. Familiarize yourself with these procedures before you need them.</p>
+
+                        <div class="sos-section">
+                            <h3><i class="fas fa-phone-alt"></i> Emergency Contacts</h3>
+                            <p>Make sure these numbers are saved in your phone and memorized:</p>
+                            <ul>
+                                <li><strong>Police Emergency</strong>: 100</li>
+                                <li><strong>Women's Helpline</strong>: 1091</li>
+                                <li><strong>Domestic Violence Helpline</strong>: 181</li>
+                                <li><strong>Ambulance</strong>: 108</li>
+                                <li><strong>National Emergency Number</strong>: 112</li>
+                            </ul>
+                            <div class="sos-buttons">
+                                <!-- <button class="sos-button"><i class="fas fa-phone-alt"></i> Call Police</button> -->
+                                <!-- <button class="sos-button"><i class="fas fa-first-aid"></i> Medical Help</button> -->
+                                <!-- <button class="sos-button"><i class="fas fa-comments"></i> Text SOS</button> -->
+                                <!-- <button class="sos-button"><i class="fas fa-map-marker-alt"></i> Share Location</button> -->
+                            </div>
+                        </div>
+
+                        <h3>When You Feel Threatened</h3>
+                        <ol>
+                            <li><strong>Assess the situation</strong> quickly - Is there an escape route?</li>
+                            <li><strong>Create distance</strong> between yourself and the threat if possible</li>
+                            <li><strong>Call for help</strong> - Shout specific commands like "Call the police!"</li>
+                            <li><strong>Activate Guardian Mode</strong> in this app to alert your emergency contacts</li>
+                            <li><strong>Use self-defense techniques</strong> if physically attacked and escape is blocked</li>
+                        </ol>
+
+                        <div class="warning-box">
+                            <div class="warning-title">Trust Your Instincts</div>
+                            <p>Don't worry about appearing rude or paranoid. Your safety is more important than social perceptions. It's better to be cautious and wrong than to ignore warning signs.</p>
+                        </div>
+
+                        <h3>Emergency Features on Your Phone</h3>
+                        <p>Most smartphones have built-in emergency features. Take time to set these up now:</p>
+                        <ul>
+                            <li><strong>Emergency SOS</strong> - Usually activated by pressing the power button multiple times</li>
+                            <li><strong>Emergency contacts</strong> - Add trusted contacts to your phone's emergency information</li>
+                            <li><strong>Medical ID</strong> - Add important medical information for first responders</li>
+                            <li><strong>Offline maps</strong> - Download maps of your area for use without internet</li>
+                        </ul>
+
+                        <h3>After an Incident</h3>
+                        <ol>
+                            <li>Get to a safe location as soon as possible</li>
+                            <li>Contact law enforcement to report the incident</li>
+                            <li>Seek medical attention, even if injuries seem minor</li>
+                            <li>Document everything you remember about the incident</li>
+                            <li>Reach out to support services and trusted people</li>
+                        </ol>
+
+                        <!-- <div class="safety-map">
+                            [Interactive Safety Map - Find Safe Zones Near You]
+                        </div> -->
+
+                        <!-- <button class="emergency-button" id="setupEmergencyBtn">Setup Emergency Features Now</button> -->
+                    </div>
+                </div>
+
+               
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating SOS Button -->
+    <!-- <div class="floating-sos" id="floatingSosBtn">
+        <i class="fas fa-exclamation-circle"></i>
+    </div> -->
+
+    <!-- Emergency Modal -->
+    <div class="modal-overlay" id="emergencyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Emergency SOS</div>
+                <button class="modal-close" id="closeEmergencyModal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p>Choose an emergency action:</p>
+                <div class="sos-buttons" style="flex-direction: column; gap: 10px;">
+                    <button class="sos-button" style="background-color: #e74c3c; color: white;">
+                        <i class="fas fa-phone-alt"></i> Call Police (100)
+                    </button>
+                    <button class="sos-button" style="background-color: #e74c3c; color: white;">
+                        <i class="fas fa-phone-alt"></i> Women's Helpline (1091)
+                    </button>
+                    <button class="sos-button" style="background-color: #e74c3c; color: white;">
+                        <i class="fas fa-bell"></i> Sound Alarm
+                    </button>
+                    <button class="sos-button" style="background-color: #e74c3c; color: white;">
+                        <i class="fas fa-map-marker-alt"></i> Share Location with Guardians
+                    </button>
+                    <button class="sos-button" style="background-color: #e74c3c; color: white;">
+                        <i class="fas fa-camera"></i> Record Evidence
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle user profile dropdown
+        document.getElementById('userProfileDropdown').addEventListener('click', function() {
+            document.getElementById('profileDropdown').classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.user-profile') && !event.target.matches('.user-avatar') && !event.target.matches('.user-name')) {
+                var dropdown = document.getElementById('profileDropdown');
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Tab navigation
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Toggle scenario content
+        function toggleScenario(scenarioId) {
+            const content = document.getElementById(scenarioId);
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+
+        // Emergency Modal
+         emergencyModal = document.getElementById('emergencyModal');
+        const floatingSosBtn = document.getElementById('floatingSosBtn');
+         closeEmergencyModal = document.getElementById('closeEmergencyModal');
+         emergencyGuideBtn = document.getElementById('emergencyGuideBtn');
+
+        floatingSosBtn.addEventListener('click', () => {
+            emergencyModal.style.display = 'flex';
+        });
+
+        emergencyGuideBtn.addEventListener('click', () => {
+            emergencyModal.style.display = 'flex';
+        });
+
+        closeEmergencyModal.addEventListener('click', () => {
+            emergencyModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === emergencyModal) {
+                emergencyModal.style.display = 'none';
+            }
+            
+        });
+
+        // Dropdown category menu
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        
+    </script>
+    <script>
+        // Get elements
+        const emergencyModal = document.getElementById('emergencyModal');
+        const emergencyGuideBtn = document.getElementById('emergencyGuideBtn');
+        const closeEmergencyModal = document.getElementById('closeEmergencyModal');
+        const emergencyInfo = document.getElementById('emergencyInfo');
+    
+        // Emergency Guide Content
+        const emergencyContent = `
+            <strong>Call for Help:</strong> 911 (US) or local emergency number<br><br>
+            <strong>When in Immediate Danger:</strong><br>
+            - Focus on escape and getting to safety<br>
+            - Scream loudly and specifically: "HELP! CALL 911!"<br>
+            - Run toward populated areas or open businesses<br>
+            - Use defensive strikes only to create escape opportunities<br><br>
+            <strong>Medical Emergency After Attack:</strong><br>
+            - Call emergency services immediately<br>
+            - Remain still if seriously injured<br>
+            - Apply direct pressure to bleeding wounds<br>
+            - Document injuries (photos if possible) for legal purposes<br><br>
+            <strong>After Reaching Safety:</strong><br>
+            - Call police to report the incident<br>
+            - Seek medical attention even if injuries seem minor<br>
+            - Write down details while fresh in your mind<br>
+            - Contact a trusted person for support
+        `;
+    
+        // Show emergency modal with relevant information
+        function showEmergencyInfo() {
+            emergencyInfo.innerHTML = emergencyContent;
+            emergencyModal.style.display = 'flex';
+        }
+    
+        emergencyGuideBtn.addEventListener('click', showEmergencyInfo);
+    
+        closeEmergencyModal.addEventListener('click', () => {
+            emergencyModal.style.display = 'none';
+        });
+    
+        window.addEventListener('click', (event) => {
+            if (event.target === emergencyModal) {
+                emergencyModal.style.display = 'none';
+            }
+        });
+        
+    </script>
+    <script src="home.js"></script>
+</body>
+</html>

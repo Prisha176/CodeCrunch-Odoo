@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OneStopWomen - Video Call</title>
+  <link rel="stylesheet" href="consultant.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Jitsi Meet API -->
+  <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+          <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+      </div>
+      <div class="search-container">
+          <div class="search-input">
+              <i class="fas fa-search"></i>
+              <input type="text" id="searchInput" placeholder="Search communities...">
+          </div>
+      </div>
+      <button class="travel-button" onclick="sendLiveLocation()">
+          <i class="fas fa-plane-departure"></i> Guardian Mode
+      </button>
+      <div class="categories-title">BROWSE CATEGORIES</div>
+      <ul class="category-list" id="categoryList">
+          <!-- Security Main Module -->
+          <li class="category-item" data-category="security">
+              <div class="category-icon security">
+                  <i class="fas fa-shield-alt"></i>
+              </div>
+              <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+          </li>
+  
+          <!-- Finance Main Module with Dropdown -->
+          <li class="category-item dropdown" data-category="finance">
+              <div class="category-icon finance">
+                  <i class="fas fa-coins"></i>
+              </div>
+              <span class="category-name">Finance</span>
+              <i class="fas fa-chevron-down dropdown-arrow"></i>
+              <ul class="dropdown-menu">
+                  <li onclick="window.location.href='job2.html';">Job</li>
+                  <li onclick="window.location.href='internship.html';">Internships</li>
+                  <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+              </ul>
+          </li>
+  
+          <!-- Consultant Main Module -->
+          <li class="category-item" data-category="consultant">
+              <div class="category-icon consultant">
+                  <i class="fas fa-briefcase"></i>
+              </div>
+              <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+          </li>
+  
+          <!-- Health & Wellness Main Module -->
+          <li class="category-item" data-category="health">
+              <div class="category-icon health">
+                  <i class="fas fa-heartbeat"></i>
+              </div>
+              <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+          </li>
+  
+          <!-- Govt. Main Module -->
+          <li class="category-item" data-category="government">
+              <div class="category-icon government">
+                  <i class="fas fa-landmark"></i>
+              </div>
+              <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+          </li>
+  
+          <!-- Events Main Module -->
+          <li class="category-item" data-category="events">
+              <div class="category-icon events">
+                  <i class="fas fa-calendar-alt"></i>
+              </div>
+              <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+          </li>
+  
+          <!-- Room Rental Main Module -->
+          <li class="category-item" data-category="room">
+              <div class="category-icon room">
+                  <i class="fas fa-home"></i>
+              </div>
+              <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+          </li>
+      </ul>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-footer">
+          <div class="footer-links">
+            <a href="aboutus.html" class="footer-link">About</a>
+            <a href="privacy.html" class="footer-link">Privacy</a>
+            <a href="faq.html" class="footer-link">FAQ</a>
+            <a href="contactus.html" class="footer-link">Contact</a>
+          </div>
+          <div class="footer">
+              &copy; 2025 One Stop Woman. All rights reserved.
+          </div>
+      </div>
+  </aside>
+  
+
+  <div class="main-content">
+    <div class="page-header">
+      <!-- <h1>Discover Job Opportunities</h1> -->
+      <h1 class="page-title">Consultant</h1>
+      <div class="user-actions">
+      <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+          <i class="fas fa-home"></i>
+      </button>
+      <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+          <i class="fas fa-bookmark"></i>
+      </button> -->
+      <!-- <button class="notification-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+      </button> -->
+      <div class="user-profile" id="userProfileDropdown">
+          <div class="user-avatar">
+              <i class="fas fa-user"></i>
+          </div>
+          <span class="user-name">Priya</span>
+          <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+          
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu" id="profileDropdown">
+              <div class="dropdown-item">
+                  <i class="fas fa-user-circle"></i>
+                  <span>My Profile</span>
+              </div>
+              
+              
+              
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item">
+                  <i class="fas fa-question-circle"></i>
+                  <span>Help & Support</span>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Sign Out</span>
+              </div>
+          </div>
+      </div>
+ 
+    </div>
+    </div>
+<p>Connect with professional consultants in various domains.</p>
+    <!-- Consultant 1 -->
+    <div class="consultant-card">
+      <img src="https://i.imgur.com/0y0y0y0.jpg" alt="Sheryl Sandberg" />
+      <div class="consultant-info">
+        <h3>Sara Blakely</h3>
+        <span>Business Strategy & Entrepreneurship</span>
+        <p>Founder of Spanx, self-made billionaire, and advocate for women entrepreneurs.</p>
+        <div class="rating">
+          ★★★★★ (4.9)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('Sheryl Sandberg')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('Sheryl Sandberg')">Video Call</button>
+      </div>
+    </div>
+
+    <!-- Consultant 2 -->
+    <div class="consultant-card">
+      <img src="https://i.imgur.com/1a1a1a1.jpg" alt="Dr. Sanjay Gupta" />
+      <div class="consultant-info">
+        <h3>Dr. Rebecca Brightman</h3>
+        <span>Women's Health & Hormonal Therapy</span>
+        <p>Assistant Clinical Professor at Mount Sinai School of Medicine, focusing on menopause and hormonal health.</p>
+        <div class="rating">
+          ★★★★★ (4.8)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('Dr. Sanjay Gupta')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('Dr. Sanjay Gupta')">Video Call</button>
+      </div>
+    </div>
+
+    <!-- Consultant 3 -->
+    <div class="consultant-card">
+      <img src="https://i.imgur.com/2b2b2b2.jpg" alt="Marie Forleo" />
+      <div class="consultant-info">
+        <h3>Marie Forleo</h3>
+        <span>Career & Life Coaching</span>
+        <p>Founder of B-School, life coach, and host of "MarieTV."</p>
+        <div class="rating">
+          ★★★★★ (4.7)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('Marie Forleo')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('Marie Forleo')">Video Call</button>
+      </div>
+    </div>
+
+    <!-- Consultant 4 -->
+    <div class="consultant-card">
+      <img src="https://i.imgur.com/3c3c3c3.jpg" alt="Indra Nooyi" />
+      <div class="consultant-info">
+        <h3>Indra Nooyi</h3>
+        <span>Business Leadership</span>
+        <p>Former CEO of PepsiCo, ranked among the world's most powerful women.</p>
+        <div class="rating">
+          ★★★★★ (4.9)
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="chat-btn" onclick="openChat('Indra Nooyi')">Chat</button>
+        <button class="video-btn" onclick="startVideoCall('Indra Nooyi')">Video Call</button>
+      </div>
+    </div>
+
+    
+      
+    </div>
+
+    <!-- Video Call Container -->
+    <div id="video-call-container" style="display: none;">
+      <div id="jitsi-meet"></div>
+      <button id="leave-call-btn" onclick="leaveVideoCall()">
+        <i class="fas fa-phone-slash"></i> Leave Call
+      </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="chatConsultantName"></h2>
+          <button class="close-btn" onclick="closeChat()">×</button>
+        </div>
+        <div class="modal-body">
+          <div id="chatHistory" class="chat-history"></div>
+          <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+   let api;
+let chatData = {}; // Store chat history for each phone number
+
+// ✅ Open Chat with Phone Number
+function openChat(phoneNumber) {
+  const modal = document.getElementById('chatModal');
+  const chatConsultantName = document.getElementById('chatConsultantName');
+  const chatHistory = document.getElementById('chatHistory');
+
+  // Set consultant name to phone number
+  chatConsultantName.textContent = phoneNumber;
+
+  // Load chat history
+  if (!chatData[phoneNumber]) {
+    chatData[phoneNumber] = [];
+  }
+  chatHistory.innerHTML = chatData[phoneNumber].map(msg => `
+    <div class="chat-message ${msg.sender}">
+      <p>${msg.text}</p>
+      <span class="message-time">${msg.time}</span>
+    </div>
+  `).join('');
+
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+  modal.style.display = 'flex';
+}
+
+// Close Chat Modal
+function closeChat() {
+  document.getElementById('chatModal').style.display = 'none';
+}
+
+// Send Message
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const phoneNumber = document.getElementById('chatConsultantName').textContent;
+  const chatHistory = document.getElementById('chatHistory');
+
+  if (input.value.trim() === '') return;
+
+  const message = {
+    sender: 'user',
+    text: input.value.trim(),
+    time: new Date().toLocaleTimeString()
+  };
+  chatData[phoneNumber].push(message);
+
+  chatHistory.innerHTML += `
+    <div class="chat-message user">
+      <p>${message.text}</p>
+      <span class="message-time">${message.time}</span>
+    </div>
+  `;
+
+  input.value = '';
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+// ✅ Start Video Call with Phone Number
+function startVideoCall(phoneNumber) {
+  const videoCallContainer = document.getElementById('video-call-container');
+  videoCallContainer.style.display = 'block';
+
+  // ✅ Sanitize phone number for room name
+  const sanitizedPhone = phoneNumber.replace(/\D/g, '');
+  const roomName = `call-${sanitizedPhone}`;
+  const roomLink = `https://meet.jit.si/${roomName}`;
+  const domain = 'meet.jit.si';
+
+  const options = {
+    roomName: roomName,
+    width: '100%',
+    height: '100%',
+    parentNode: document.querySelector('#jitsi-meet'),
+    userInfo: {
+      displayName: 'User'
+    }
+  };
+
+  // ✅ Start Jitsi Meet video call
+  api = new JitsiMeetExternalAPI(domain, options);
+
+  // ✅ Open chat modal for this consultant
+  openChat(phoneNumber);
+
+  // ✅ Fill the video call link into chat input box (but DON’T send it yet)
+  document.getElementById('chatInput').value = `Join the video call: ${roomLink}`;
+    
+}
+
+function autoSendMessage(phoneNumber, messageText) {
+  const chatHistory = document.getElementById('chatHistory');
+
+  const message = {
+    sender: 'user',
+    text: messageText,
+    time: new Date().toLocaleTimeString()
+  };
+
+  // Ensure chat data for this consultant exists
+  if (!chatData[phoneNumber]) {
+    chatData[phoneNumber] = [];
+  }
+
+  chatData[phoneNumber].push(message);
+
+  // Append message to chat UI
+  chatHistory.innerHTML += `
+    <div class="chat-message user">
+      <p>${message.text}</p>
+      <span class="message-time">${message.time}</span>
+    </div>
+  `;
+
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+
+// Leave the Video Call
+function leaveVideoCall() {
+  if (api) {
+    api.dispose();
+    document.getElementById('video-call-container').style.display = 'none';
+    console.log('Left the video call.');
+  }
+}
+const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    userProfileDropdown.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+    const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+
+dropdownItems.forEach(item => {
+    const dropdownMenu = item.querySelector('.dropdown-menu');
+
+    item.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        item.classList.toggle('active');
+        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!item.contains(e.target)) {
+            item.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+
+  </script>
+
+</body>
+</html>

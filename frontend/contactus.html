@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - One Stop Woman</title>
+    <link rel="stylesheet" href="contactus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar (Same as home.html) -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+
+            <button class="travel-button">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <li class="category-item active" data-category="education">
+                    <div class="category-icon education">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="category-name">Education</span>
+                </li>
+                <li class="category-item" data-category="startup">
+                    <div class="category-icon startup">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <span class="category-name">Startups</span>
+                </li>
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span class="category-name">Government</span>
+                </li>
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span class="category-name">Consultants</span>
+                </li>
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="category-name">Health & Wellness</span>
+                </li>
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="category-name">Room Rentals</span>
+                </li>
+                <li class="category-item" data-category="job">
+                    <div class="category-icon job">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <span class="category-name">Job Board</span>
+                </li>
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span class="category-name">Events</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="aboutus.html" class="footer-link">About</a>
+                    <a href="privacy.html" class="footer-link">Privacy</a>
+                    <a href="faq.html" class="footer-link">FAQ</a>
+                    <a href="contactus.html" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header (Same as home.html) -->
+            <header class="header">
+                <h1 class="feed-title">Contact Us</h1>
+                <div class="header-actions">
+                    <button class="recommended-button">
+                        <i class="fas fa-star"></i> Recommended
+                    </button>
+                    <div class="user-avatar">
+                        SW
+                        <div class="online-status"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contact Form -->
+            <section class="contact-form">
+                <h2>Get in Touch</h2>
+                <p>Have questions or feedback? Fill out the form below, and we'll get back to you as soon as possible.</p>
+
+                <form id="contactForm" action="https://formspree.io/f/mgvaagoy" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+   
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="home.js"></script>
+</body>
+
+</html>

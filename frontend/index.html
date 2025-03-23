@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Women - Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                One Stop <span>Women</span>
+            </div>
+            <div class="welcome-text">
+                <h1>Welcome Back!</h1>
+                <p>Your premier destination for women's needs. Log in to access exclusive content, personalized recommendations, and special offers.</p>
+            </div>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Personalized shopping experience</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Exclusive member discounts</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">24/7 customer support</div>
+                </div>
+            </div>
+            <div class="decoration"></div>
+        </div>
+        <div class="right-panel">
+            <div class="tabs">
+                <button class="tab active" id="login-tab" onclick="openTab('login')">Login</button>
+                <button class="tab" id="signup-tab" onclick="openTab('signup')">Sign Up</button>
+                <button class="tab" id="forgot-tab" onclick="openTab('forgot')">Forgot Password</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login" class="form-container active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
+                    <i class="far fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="forgot-password">
+                    <a href="#" onclick="openTab('forgot')">Forgot Password?</a>
+                </div>
+                <button id="login-btn" class="btn" onclick="login()">Login</button>
+
+                <!-- <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup" class="form-container">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email">
+                    <i class="far fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="Confirm your password">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button id="signup-btn" class="btn" onclick="signUp()">Create Account</button>
+
+                <!-- <div class="social-login">
+                    <p>Or sign up with</p>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- Forgot Password Form -->
+<div id="forgot" class="form-container">
+    <div class="form-group">
+        <label for="forgot-email">Email</label>
+        <input type="email" id="forgot-email" placeholder="Enter your email">
+        <i class="far fa-envelope"></i>
+    </div>
+    <button id="forgot-btn" class="btn" onclick="forgotPassword()">Reset Password</button>
+    <div class="back-to-login">
+        <a href="#" onclick="openTab('login')">Back to Login</a>
+    </div>
+</div>
+
+        </div>
+    </div>
+<script>
+    function openTab(tabName) {
+    // Hide all form containers
+    const formContainers = document.querySelectorAll('.form-container');
+    formContainers.forEach(container => {
+        container.classList.remove('active');
+    });
+
+    // Remove active class from all tabs
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // Show the selected form container
+    document.getElementById(tabName).classList.add('active');
+
+    // Add active class to the clicked tab
+    document.getElementById(`${tabName}-tab`).classList.add('active');
+}
+   async function signUp() {
+    const name = document.getElementById("signup-name").value;
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
+    const confirmPassword = document.getElementById("signup-confirm").value;
+
+    if (!name || !email || !password || !confirmPassword) {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:5004/api/auth/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            alert("Signup successful! Please login.");
+            window.location.href = "index.html";  // ✅ Redirect to login
+        } else {
+            alert(data.message || "Signup failed!");
+        }
+    } catch (error) {
+        alert("Error connecting to server.");
+    }
+}
+
+    
+async function login() {
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    if (!email || !password) {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:5004/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("userId", data.user.id);
+            localStorage.setItem("userEmail", data.user.email); // Store the email
+
+            if (!data.user.contactNumber || !data.user.profession) {
+                alert("Please complete your profile first.");
+                window.location.href = "pro_completion.html";
+            } else {
+                alert("Login successful!");
+                window.location.href = "home.html";
+            }
+        } else {
+            alert(data.message || "Login failed!");
+        }
+    } catch (error) {
+        alert("Error connecting to server.");
+    }
+}
+async function forgotPassword() {
+    const email = document.getElementById("forgot-email").value;
+
+    if (!email) {
+        alert("Please enter your email!");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:5004/api/auth/forgot-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message || "Password reset instructions sent to your email.");
+        } else {
+            alert(data.message || "Failed to send reset instructions.");
+        }
+    } catch (error) {
+        alert("Error connecting to server.");
+    }
+}
+    
+</script>
+<script src="home.js"></script>
+</body>
+</html>

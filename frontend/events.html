@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Stop Woman - Events</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+            <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+        </div>
+        <div class="search-container">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search communities...">
+            </div>
+        </div>
+        <button class="travel-button" onclick="sendLiveLocation()">
+            <i class="fas fa-plane-departure"></i> Guardian Mode
+        </button>
+        <div class="categories-title">BROWSE CATEGORIES</div>
+        <ul class="category-list" id="categoryList">
+            <!-- Security Main Module -->
+            <li class="category-item" data-category="security">
+                <div class="category-icon security">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+            </li>
+    
+            <!-- Finance Main Module with Dropdown -->
+            <li class="category-item dropdown" data-category="finance">
+                <div class="category-icon finance">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <span class="category-name">Finance</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+                <ul class="dropdown-menu">
+                    <li onclick="window.location.href='job2.html';">Job</li>
+                    <li onclick="window.location.href='internship.html';">Internships</li>
+                    <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                </ul>
+            </li>
+    
+            <!-- Consultant Main Module -->
+            <li class="category-item" data-category="consultant">
+                <div class="category-icon consultant">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+            </li>
+    
+            <!-- Health & Wellness Main Module -->
+            <li class="category-item" data-category="health">
+                <div class="category-icon health">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+            </li>
+    
+            <!-- Govt. Main Module -->
+            <li class="category-item" data-category="government">
+                <div class="category-icon government">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+            </li>
+    
+            <!-- Events Main Module -->
+            <li class="category-item" data-category="events">
+                <div class="category-icon events">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+            </li>
+    
+            <!-- Room Rental Main Module -->
+            <li class="category-item" data-category="room">
+                <div class="category-icon room">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+            </li>
+        </ul>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-footer">
+            <div class="footer-links">
+              <a href="aboutus.html" class="footer-link">About</a>
+              <a href="privacy.html" class="footer-link">Privacy</a>
+              <a href="faq.html" class="footer-link">FAQ</a>
+              <a href="contactus.html" class="footer-link">Contact</a>
+            </div>
+            <div class="footer">
+                &copy; 2025 One Stop Woman. All rights reserved.
+            </div>
+        </div>
+    </aside>
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <div class="page-header">
+          <!-- <h1>Discover Job Opportunities</h1> -->
+          <h1 class="page-title">Events</h1>
+          <div class="user-actions">
+          <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+              <i class="fas fa-home"></i>
+          </button>
+          <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+              <i class="fas fa-bookmark"></i>
+          </button> -->
+          <!-- <button class="notification-btn" title="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+          </button> -->
+          <div class="user-profile" id="userProfileDropdown">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+            <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="profileDropdown">
+                <div class="dropdown-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Profile</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </div>
+            </div>
+        </div>
+     
+        </div>
+        </div>
+        <!-- Update the header section in the HTML file -->
+
+        <!-- Startup Grid -->
+        <div class="startup-grid" id="startupGrid">
+          <!-- Startup Card 1 -->
+          <div class="startup-card" data-id="1">
+            <div class="startup-image">
+              <!-- <div class="startup-badge">Seed Stage</div> -->
+            </div>
+            <div class="startup-content">
+              <h3 class="startup-name">Women in Leadership Workshop</h3>
+              <p class="startup-description">
+                A transformative workshop designed to equip women with 
+                leadership skills, confidence, and strategies for career growth.
+
+              </p>
+              <div class="startup-meta">
+                <span class="startup-industry">Other</span>
+              </div>
+              <div class="startup-footer">
+                <div class="startup-founder">
+                  <div class="founder-avatar">SL</div>
+                  <span class="founder-name">Sarah Li</span>
+                </div>
+                <div class="startup-actions">
+                  <!-- Added bookmark-btn class and onclick event -->
+                  <!-- <button
+                    class="startup-action bookmark-btn"
+                    onclick="toggleBookmark(this)"
+                  >
+                    <i class="fas fa-bookmark"></i>
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Startup Card 2 -->
+          <div class="startup-card" data-id="2">
+            <div class="startup-image">
+              <!-- <div class="startup-badge">Growth</div> -->
+            </div>
+            <div class="startup-content">
+              <h3 class="startup-name">Global Women Empowerment Summit</h3>
+              <p class="startup-description">
+                A global conference featuring women leaders, entrepreneurs, 
+                and changemakers discussing gender equality and empowerment.
+              </p>
+              <div class="startup-meta">
+                <span class="startup-industry">Empowerment</span>
+                <span class="startup-stage">Growth</span>
+              </div>
+              <div class="startup-footer">
+                <div class="startup-founder">
+                  <div class="founder-avatar">MP</div>
+                  <span class="founder-name">Maya Patel</span>
+                </div>
+                <div class="startup-actions">
+                  <!-- Added bookmark-btn class and onclick event -->
+                  <!-- <button
+                    class="startup-action bookmark-btn"
+                    onclick="toggleBookmark(this)"
+                  >
+                    <i class="fas fa-bookmark"></i>
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="fab-button">
+          <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Scroll to Top Button -->
+        <button class="scroll-top-button">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </main>
+    </div>
+
+    <!-- Modal for Adding a New Startup -->
+    <div class="modal-overlay" id="addStartupModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Add Your Events</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="addStartupForm">
+            <div class="form-group">
+              <label class="form-label">Event Name</label>
+              <input
+                type="text"
+                class="form-input"
+                id="startupName"
+                placeholder="Enter your startup name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea
+                class="form-textarea"
+                id="startupDescription"
+                placeholder="What does your startup do?"
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Industry</label>
+                <select class="form-select" id="startupIndustry">
+                  <option value="Technology">Technology</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Education">Education</option>
+                  <option value="Sustainability">Sustainability</option>
+                  <option value="Consumer Goods">Consumer Goods</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Organization</label>
+              <input
+                type="text"
+                class="form-input"
+                id="founderName"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Contact Email</label>
+              <input
+                type="email"
+                class="form-input"
+                id="contactEmail"
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Website (optional)</label>
+              <input
+                type="url"
+                class="form-input"
+                id="startupWebsite"
+                placeholder="https://yourwebsite.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"> (optional)</label>
+              <input
+                type="file"
+                class="form-input"
+                id="startupLogo"
+                accept="image/*"
+              />
+              <p class="form-hint">Recommended: Square image, 500x500px</p>
+            </div> 
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelButton">Cancel</button>
+          <button class="btn btn-primary" id="submitButton">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Startup Details -->
+    <div class="modal-overlay" id="startupDetailsModal">
+        <div class="modal-content modal-large">
+          <div class="modal-header">
+            <h3 class="modal-title" id="detailStartupName">Event Name</h3>
+            <button class="modal-close" id="closeDetailsModal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="startup-detail-container">
+              
+              <div class="startup-detail-header">
+                <div class="startup-detail-industry" id="detailStartupIndustry">
+                  Technology
+                </div>
+              </div>
+              
+              <div class="startup-detail-section">
+                <h4>About</h4>
+                <p id="detailStartupDescription">
+                  Event description will appear here.
+                </p>
+              </div>
+              
+              <div class="startup-detail-section">
+                <h4>Founder</h4>
+                <div class="founder-detail">
+                  <div class="founder-avatar" id="detailFounderAvatar">SL</div>
+                  <div class="founder-info">
+                    <h5 id="detailFounderName">Sarah Li</h5>
+                    
+                    <!-- Gmail Validation Input -->
+                    <label for="contactEmail">Contact Email:</label>
+                    <input 
+                      type="email" 
+                      id="contactEmail" 
+                      placeholder="Enter Gmail address" 
+                      oninput="validateGmail()"
+                    />
+                    <p id="emailError" style="color: red; display: none;">
+                      Please enter a valid Gmail address.
+                    </p>
+      
+                  </div>
+                </div>
+              </div>
+      
+              <div class="startup-detail-section">
+                <h4>Website</h4>
+                <a href="#" id="detailStartupWebsite" target="_blank"
+                  >https://startup-website.com</a>
+              </div>
+      
+              <div class="startup-detail-section" id="logoSection">
+                <h4>Logo</h4>
+                <img
+                  id="detailStartupLogo"
+                  class="startup-logo"
+                  src=""
+                  alt="Startup Logo"
+                />
+              </div>
+      
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button class="btn btn-secondary" id="closeDetailButton">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    <link rel="stylesheet" href="events.css" />
+
+    <!-- JavaScript -->
+    <script>
+      // Sample data for startups (normally would come from a database)
+      // Sample data for startups (normally would come from a database)
+      let startups = [
+        {
+          id: 1,
+          name: "FemTech Solutions",
+          description:
+            "A revolutionary platform connecting women entrepreneurs with mentors and resources tailored to their specific industry needs. Our AI-powered matching algorithm ensures founders connect with mentors who understand their unique challenges and can provide targeted guidance. We offer networking events, funding opportunities, and skill-building workshops.",
+          industry: "Technology",
+          founderName: "Sarah Li",
+          founderInitials: "SL",
+          contactEmail: "sarah@femtechsolutions.com",
+          website: "https://femtechsolutions.com",
+          logoUrl: "",
+          bookmarked: false,
+        },
+        {
+          id: 2,
+          name: "HerHealth",
+          description:
+            "A women-focused health platform providing personalized healthcare solutions and tracking for women at every stage of life. Our app uses machine learning to provide insights into women's health patterns, connects users with specialists, and offers community support groups. We're working to close the gender health gap through technology and education.",
+          industry: "Healthcare",
+          founderName: "Maya Patel",
+          founderInitials: "MP",
+          contactEmail: "maya@herhealth.io",
+          website: "https://herhealth.io",
+          logoUrl: "",
+          bookmarked: false,
+        },
+      ];
+      document.addEventListener("DOMContentLoaded", () => {
+  const email = document.getElementById("contactEmail"), err = document.createElement("div");
+  Object.assign(err.style, { color: "red", fontSize: "14px", display: "none" });
+  email.after(err);
+
+  email.addEventListener("input", () => {
+    err.textContent = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.value) ? "" : "Enter a valid Gmail (e.g., example@gmail.com)";
+    err.style.display = err.textContent ? "block" : "none";
+  });
+
+  document.getElementById("submitButton").addEventListener("click", (e) => {
+    if (err.style.display === "block") e.preventDefault();
+  });
+});
+
+
+      // Show scroll to top button when scrolled down
+      window.addEventListener("scroll", function () {
+        const scrollTopButton = document.querySelector(".scroll-top-button");
+        if (window.pageYOffset > 300) {
+          scrollTopButton.classList.add("visible");
+        } else {
+          scrollTopButton.classList.remove("visible");
+        }
+      });
+
+      // Scroll to top functionality
+      document
+        .querySelector(".scroll-top-button")
+        .addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+      // Open add startup modal
+      document
+        .querySelector(".fab-button")
+        .addEventListener("click", function () {
+          document.getElementById("addStartupModal").classList.add("active");
+        });
+
+      // Close add startup modal
+      document
+        .querySelector(".modal-close")
+        .addEventListener("click", function () {
+          document.getElementById("addStartupModal").classList.remove("active");
+        });
+
+      document
+        .querySelector("#cancelButton")
+        .addEventListener("click", function () {
+          document.getElementById("addStartupModal").classList.remove("active");
+        });
+
+      // Handle bookmark functionality
+      function toggleBookmark(startupId, event) {
+        // Stop the event from propagating to the card click handler
+        event.stopPropagation();
+
+        // Find the startup in the array
+        const startupIndex = startups.findIndex((s) => s.id === startupId);
+
+        if (startupIndex !== -1) {
+          // Toggle the bookmarked status
+          startups[startupIndex].bookmarked =
+            !startups[startupIndex].bookmarked;
+
+          // Update the UI
+          const bookmarkIcon = event.currentTarget.querySelector("i");
+
+          if (startups[startupIndex].bookmarked) {
+            bookmarkIcon.classList.remove("far");
+            bookmarkIcon.classList.add("fas");
+            bookmarkIcon.style.color = "var(--primary-purple)";
+          } else {
+            bookmarkIcon.classList.remove("fas");
+            bookmarkIcon.classList.add("far");
+            bookmarkIcon.style.color = "";
+          }
+        }
+      }
+
+      // Initialize bookmarks on page load
+      function initializeBookmarks() {
+        document.querySelectorAll(".startup-action").forEach((button) => {
+          button.addEventListener("click", function (event) {
+            const startupId = parseInt(
+              button.closest(".startup-card").getAttribute("data-id")
+            );
+            toggleBookmark(startupId, event);
+          });
+        });
+      }
+
+      // Submit new startup
+      document
+        .querySelector("#submitButton")
+        .addEventListener("click", function () {
+          // Get form values
+          const name = document.getElementById("startupName").value;
+          const description =
+            document.getElementById("startupDescription").value;
+          const industry = document.getElementById("startupIndustry").value;
+          const founderName = document.getElementById("founderName").value;
+          const contactEmail = document.getElementById("contactEmail").value;
+          const website = document.getElementById("startupWebsite").value;
+          const logoFile = document.getElementById("startupLogo").files[0];
+
+          // Basic validation
+          if (
+            !name ||
+            !description ||
+            !industry ||
+            !founderName ||
+            !contactEmail
+          ) {
+            alert("Please fill out all required fields");
+            return;
+          }
+
+          // Create new startup object
+          const newStartup = {
+            id: startups.length + 1,
+            name: name,
+            description: description,
+            industry: industry,
+            founderName: founderName,
+            founderInitials: getInitials(founderName),
+            contactEmail: contactEmail,
+            website: website || "#",
+            logoUrl: "",
+            bookmarked: false,
+          };
+
+          // Handle logo if provided
+          if (logoFile) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              newStartup.logoUrl = e.target.result;
+
+              // Add to startups array
+              startups.push(newStartup);
+
+              // Add to DOM
+              addStartupCard(newStartup);
+
+              // Reset form and close modal
+              document.getElementById("addStartupForm").reset();
+              document
+                .getElementById("addStartupModal")
+                .classList.remove("active");
+
+              // Show success message
+              alert("Your startup has been added successfully!");
+            };
+            reader.readAsDataURL(logoFile);
+          } else {
+            // Add to startups array without logo
+            startups.push(newStartup);
+
+            // Add to DOM
+            addStartupCard(newStartup);
+
+            // Reset form and close modal
+            document.getElementById("addStartupForm").reset();
+            document
+              .getElementById("addStartupModal")
+              .classList.remove("active");
+
+            // Show success message
+            alert("Your startup has been added successfully!");
+          }
+        });
+
+      // Function to get initials from name
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase();
+      }
+
+      // Function to add startup card to grid
+      function addStartupCard(startup) {
+        const startupGrid = document.getElementById("startupGrid");
+
+        const card = document.createElement("div");
+        card.className = "startup-card";
+        card.setAttribute("data-id", startup.id);
+
+        let imageStyle = "";
+        if (startup.logoUrl) {
+          imageStyle = `background-image: url('${startup.logoUrl}'); background-size: cover; background-position: center;`;
+        }
+
+        const bookmarkClass = startup.bookmarked ? "fas" : "far";
+        const bookmarkColor = startup.bookmarked
+          ? 'style="color: var(--primary-purple);"'
+          : "";
+
+        card.innerHTML = `
+        <div class="startup-image" style="${imageStyle}">
+        </div>
+        <div class="startup-content">
+            <h3 class="startup-name">${startup.name}</h3>
+            <p class="startup-description">${startup.description.substring(
+              0,
+              120
+            )}${startup.description.length > 120 ? "..." : ""}</p>
+            <div class="startup-meta">
+                <span class="startup-industry">${startup.industry}</span>
+            </div>
+            <div class="startup-footer">
+                <div class="startup-founder">
+                    <div class="founder-avatar">${startup.founderInitials}</div>
+                    <span class="founder-name">${startup.founderName}</span>
+                </div>
+                <div class="startup-actions">
+                    <button class="startup-action bookmark-btn">
+                        <i class="${bookmarkClass} fa-bookmark" ${bookmarkColor}></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+        startupGrid.appendChild(card);
+
+        // Add click event to the new card
+        card.addEventListener("click", function () {
+          openStartupDetails(startup.id);
+        });
+
+        // Add bookmark functionality to the new card
+        const bookmarkBtn = card.querySelector(".bookmark-btn");
+        bookmarkBtn.addEventListener("click", function (event) {
+          toggleBookmark(startup.id, event);
+        });
+
+        // Trigger animation
+        setTimeout(() => {
+          card.classList.add("slide-up");
+        }, 10);
+      }
+
+      // Function to open startup details
+      function openStartupDetails(startupId) {
+        const startup = startups.find((s) => s.id === startupId);
+
+        if (!startup) return;
+
+        // Fill in startup details
+        document.getElementById("detailStartupName").textContent = startup.name;
+        document.getElementById("detailStartupIndustry").textContent =
+          startup.industry;
+        document.getElementById("detailStartupDescription").textContent =
+          startup.description;
+        document.getElementById("detailFounderAvatar").textContent =
+          startup.founderInitials;
+        document.getElementById("detailFounderName").textContent =
+          startup.founderName;
+        document.getElementById("detailContactEmail").textContent =
+          startup.contactEmail;
+
+        const websiteLink = document.getElementById("detailStartupWebsite");
+        websiteLink.textContent = startup.website;
+        websiteLink.href = startup.website;
+
+        // Handle logo display
+        const logoSection = document.getElementById("logoSection");
+        const logoImage = document.getElementById("detailStartupLogo");
+
+        if (startup.logoUrl) {
+          logoImage.src = startup.logoUrl;
+          logoSection.style.display = "block";
+        } else {
+          logoSection.style.display = "none";
+        }
+
+        // Show the modal
+        document.getElementById("startupDetailsModal").classList.add("active");
+      }
+
+      // Close startup details modal
+      document
+        .getElementById("closeDetailsModal")
+        .addEventListener("click", function () {
+          document
+            .getElementById("startupDetailsModal")
+            .classList.remove("active");
+        });
+
+      document
+        .getElementById("closeDetailButton")
+        .addEventListener("click", function () {
+          document
+            .getElementById("startupDetailsModal")
+            .classList.remove("active");
+        });
+
+      // Filter buttons
+      const filterButtons = document.querySelectorAll(".filter-button");
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+
+      // Animation for startup cards
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("slide-up");
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      // Initialize existing cards
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add click events to existing startup cards
+        document.querySelectorAll(".startup-card").forEach((card) => {
+          observer.observe(card);
+
+          // Add click event to open detail modal
+          card.addEventListener("click", function () {
+            const startupId = parseInt(this.getAttribute("data-id"));
+            openStartupDetails(startupId);
+          });
+        });
+
+        // Initialize bookmark functionality
+        initializeBookmarks();
+
+        // Update the bookmark icons to use Font Awesome classes
+        document.querySelectorAll(".startup-action i").forEach((icon) => {
+          icon.classList.remove("fas");
+          icon.classList.add("far");
+        });
+      });
+      // Add this to your existing JavaScript file
+
+      
+      const bookmarksButton = document.getElementById("bookmarks-button");
+
+      // Add event listener to the button
+      bookmarksButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default action if it's a link
+
+        // Navigate to bookmarks page
+        window.location.href = "bookmarks.html";
+      });
+      
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+   
+
+   
+    
+    const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+
+dropdownItems.forEach(item => {
+    const dropdownMenu = item.querySelector('.dropdown-menu');
+
+    item.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        item.classList.toggle('active');
+        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!item.contains(e.target)) {
+            item.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    userProfileDropdown.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+
+
+    </script>
+
+    <style>
+      /* Add some basic styles for logo handling */
+      .startup-image {
+        height: 150px;
+        background-color: #f0f0f0;
+        position: relative;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .startup-logo {
+        max-width: 100%;
+        max-height: 200px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+      }
+
+    </style>
+    <script src="home.js"></script>
+  </body>
+</html>

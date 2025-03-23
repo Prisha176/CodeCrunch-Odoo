@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Stop Woman - Internships</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- CSS styles remain the same -->
+  </head>
+
+  <body>
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+        </div>
+        <div class="search-container">
+          <div class="search-input">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search communities..."
+            />
+          </div>
+        </div>
+        <button class="travel-button" onclick="sendLiveLocation()">
+          <i class="fas fa-plane-departure"></i> Guardian Mode
+        </button>
+        <div class="categories-title">BROWSE CATEGORIES</div>
+        <ul class="category-list" id="categoryList">
+          <!-- Security Main Module -->
+          <li class="category-item" data-category="security">
+            <div class="category-icon security">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <span
+              onclick="window.location.href='security.html';"
+              class="category-name"
+              >Security</span
+            >
+          </li>
+
+          <!-- Finance Main Module with Dropdown -->
+          <li class="category-item dropdown" data-category="finance">
+            <div class="category-icon finance">
+              <i class="fas fa-coins"></i>
+            </div>
+            <span class="category-name">Finance</span>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+            <ul class="dropdown-menu">
+              <li onclick="window.location.href='job2.html';">Job</li>
+              <li onclick="window.location.href='internship.html';">
+                Internships
+              </li>
+              <li onclick="window.location.href='startup.html';">
+                Gruha Udhyog
+              </li>
+            </ul>
+          </li>
+
+          <!-- Consultant Main Module -->
+          <li class="category-item" data-category="consultant">
+            <div class="category-icon consultant">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <span
+              onclick="window.location.href='consultant.html';"
+              class="category-name"
+              >Consultant</span
+            >
+          </li>
+
+          <!-- Health & Wellness Main Module -->
+          <li class="category-item" data-category="health">
+            <div class="category-icon health">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <span
+              onclick="window.location.href='health.html';"
+              class="category-name"
+              >Health & Wellness</span
+            >
+          </li>
+
+          <!-- Govt. Main Module -->
+          <li class="category-item" data-category="government">
+            <div class="category-icon government">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <span
+              onclick="window.location.href='gov.html';"
+              class="category-name"
+              >Government</span
+            >
+          </li>
+
+          <!-- Events Main Module -->
+          <li class="category-item" data-category="events">
+            <div class="category-icon events">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <span
+              onclick="window.location.href='events.html';"
+              class="category-name"
+              >Events</span
+            >
+          </li>
+
+          <!-- Room Rental Main Module -->
+          <li class="category-item" data-category="room">
+            <div class="category-icon room">
+              <i class="fas fa-home"></i>
+            </div>
+            <span
+              onclick="window.location.href='roomSeeker.html';"
+              class="category-name"
+              >Room Rental</span
+            >
+          </li>
+        </ul>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-footer">
+          <div class="footer-links">
+            <a href="aboutus.html" class="footer-link">About</a>
+            <a href="privacy.html" class="footer-link">Privacy</a>
+            <a href="faq.html" class="footer-link">FAQ</a>
+            <a href="contactus.html" class="footer-link">Contact</a>
+          </div>
+          <div class="footer">
+            &copy; 2025 One Stop Woman. All rights reserved.
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="page-header">
+          <!-- <h1>Discover Job Opportunities</h1> -->
+          <h1 class="page-title">Internship</h1>
+          <div class="user-actions">
+            <button
+              onclick="window.location.href='home.html';"
+              class="home-btn"
+              id="homeButton"
+              title="Go to Home"
+            >
+              <i class="fas fa-home"></i>
+            </button>
+            <button
+              class="bookmark-btn"
+              id="savedInternshipsBtn"
+              title="Saved Internships"
+            >
+              <i class="fas fa-bookmark"></i>
+            </button>
+            <!-- <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button> -->
+                <div class="user-profile" id="userProfileDropdown">
+                  <div class="user-avatar">
+                      <i class="fas fa-user"></i>
+                  </div>
+                  <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+                  <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+                  
+                  <!-- Dropdown Menu -->
+                  <div class="dropdown-menu" id="profileDropdown">
+                      <div class="dropdown-item">
+                          <i class="fas fa-user-circle"></i>
+                          <span>My Profile</span>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-item">
+                          <i class="fas fa-question-circle"></i>
+                          <span>Help & Support</span>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-item" onclick="logout()">
+                          <i class="fas fa-sign-out-alt"></i>
+                          <span>Sign Out</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- Filter Section -->
+        <div class="filter-container slide-up">
+          <div class="filter-group">
+            <div class="filter-label">Field</div>
+            <select class="filter-select" id="fieldFilter">
+              <option value="">All Fields</option>
+              <option value="tech">Technology</option>
+              <option value="marketing">Marketing</option>
+              <option value="finance">Finance</option>
+              <option value="hr">Human Resources</option>
+              <option value="design">Design</option>
+              <option value="content">Content Writing</option>
+              <option value="education">Education</option>
+              <option value="research">Research</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Duration</div>
+            <select class="filter-select" id="durationFilter">
+              <option value="">Any Duration</option>
+              <option value="1-2">1-2 months</option>
+              <option value="3-6">3-6 months</option>
+              <option value="6+">6+ months</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Work Type</div>
+            <select class="filter-select" id="workTypeFilter">
+              <option value="">All Types</option>
+              <option value="remote">Remote</option>
+              <option value="inperson">In-Person</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Stipend</div>
+            <select class="filter-select" id="stipendFilter">
+              <option value="">Any</option>
+              <option value="paid">Paid Only</option>
+              <option value="5000-10000">₹5,000-₹10,000</option>
+              <option value="10000-20000">₹10,000-₹20,000</option>
+              <option value="20000+">₹20,000+</option>
+            </select>
+          </div>
+          <button class="filter-button" onclick="applyFilters()">
+            <i class="fas fa-filter"></i> Apply Filters
+          </button>
+        </div>
+
+        <!-- Internships List -->
+        <div id="internshipsList">
+          <!-- Internship Card 1 -->
+          <div class="scheme-card slide-up">
+            <button class="scheme-bookmark" title="Save internship">
+              <i class="far fa-bookmark"></i>
+            </button>
+            <div class="scheme-header">
+              <div class="scheme-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <div class="scheme-info">
+                <h2 class="scheme-name">Frontend Developer Intern</h2>
+                <p class="scheme-ministry">TechSolutions Inc.</p>
+                <div class="scheme-tags">
+                  <span class="scheme-tag">Technology</span>
+                  <span class="scheme-tag">Remote</span>
+                  <span class="scheme-tag">Paid</span>
+                </div>
+              </div>
+            </div>
+            <p class="scheme-description">
+              Join our team as a Frontend Developer Intern and gain hands-on
+              experience with React, Vue.js, and other modern web technologies.
+              Work on real-world projects under the guidance of experienced
+              developers.
+            </p>
+            <div class="scheme-details">
+              <div class="detail-item">
+                <span class="detail-label">Duration</span>
+                <span class="detail-value">3 months</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Stipend</span>
+                <span class="detail-value">₹15,000/month</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Deadline</span>
+                <span class="detail-value">April 15, 2025</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Remote</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="action-button primary-button">Apply Now</button>
+              <button class="action-button secondary-button">
+                More Details
+              </button>
+              <button class="share-btn">
+                <i class="fas fa-share-alt"></i> Share
+              </button>
+            </div>
+          </div>
+
+          <!-- Internship Card 2 -->
+          <div class="scheme-card slide-up">
+            <button class="scheme-bookmark" title="Save internship">
+              <i class="far fa-bookmark"></i>
+            </button>
+            <div class="scheme-header">
+              <div class="scheme-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="scheme-info">
+                <h2 class="scheme-name">Digital Marketing Intern</h2>
+                <p class="scheme-ministry">GrowthMarket Solutions</p>
+                <div class="scheme-tags">
+                  <span class="scheme-tag">Marketing</span>
+                  <span class="scheme-tag">Hybrid</span>
+                  <span class="scheme-tag">Paid</span>
+                </div>
+              </div>
+            </div>
+            <p class="scheme-description">
+              Gain practical experience in digital marketing strategies
+              including social media management, content creation, SEO, and
+              performance analysis. Work alongside marketing professionals on
+              real client campaigns.
+            </p>
+            <div class="scheme-details">
+              <div class="detail-item">
+                <span class="detail-label">Duration</span>
+                <span class="detail-value">6 months</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Stipend</span>
+                <span class="detail-value">₹12,000/month</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Deadline</span>
+                <span class="detail-value">April 30, 2025</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Bangalore (Hybrid)</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="action-button primary-button">Apply Now</button>
+              <button class="action-button secondary-button">
+                More Details
+              </button>
+              <button class="share-btn">
+                <i class="fas fa-share-alt"></i> Share
+              </button>
+            </div>
+          </div>
+
+          <!-- Internship Card 3 -->
+          <div class="scheme-card slide-up">
+            <button class="scheme-bookmark" title="Save internship">
+              <i class="far fa-bookmark"></i>
+            </button>
+            <div class="scheme-header">
+              <div class="scheme-icon">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+              <div class="scheme-info">
+                <h2 class="scheme-name">Content Writing Intern</h2>
+                <p class="scheme-ministry">Createforce Media</p>
+                <div class="scheme-tags">
+                  <span class="scheme-tag">Content</span>
+                  <span class="scheme-tag">Remote</span>
+                  <span class="scheme-tag">Flexible</span>
+                </div>
+              </div>
+            </div>
+            <p class="scheme-description">
+              Join our team as a Content Writing Intern to develop your skills
+              in creating engaging blog posts, articles, and social media
+              content. Perfect opportunity for students with a flair for writing
+              and communication.
+            </p>
+            <div class="scheme-details">
+              <div class="detail-item">
+                <span class="detail-label">Duration</span>
+                <span class="detail-value">2 months</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Stipend</span>
+                <span class="detail-value">₹8,000/month</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Deadline</span>
+                <span class="detail-value">May 10, 2025</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">Remote</span>
+              </div>
+            </div>
+            <div class="scheme-actions">
+              <button class="action-button primary-button">Apply Now</button>
+              <button class="action-button secondary-button">
+                More Details
+              </button>
+              <button class="share-btn">
+                <i class="fas fa-share-alt"></i> Share
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Integration Section -->
+        <div class="api-section">
+          <h2 class="section-title">Latest Internship Opportunities</h2>
+          <div id="apiInternshipsList">
+            <!-- API-loaded internships will appear here -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchInternships(); // Fetch internships when page loads
+      });
+
+      // Backend API URL
+      const BACKEND_API_URL = "http://localhost:5001/fetch-internships";
+
+      // Function to fetch internships with optional filters
+      async function fetchInternships(filters = {}) {
+        try {
+          document.getElementById("apiInternshipsList").innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Loading latest internships...</p>
+            </div>
+        `;
+
+          // API request to backend
+          const response = await fetch(BACKEND_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filters),
+          });
+
+          const internships = await response.json();
+          displayInternships(internships);
+        } catch (error) {
+          console.error("Error fetching internships:", error);
+          document.getElementById("apiInternshipsList").innerHTML =
+            "<p>Failed to fetch internships. Please try again.</p>";
+        }
+      }
+
+      // Function to collect filter values and apply filters
+      function applyFilters() {
+        const selectedField = document.getElementById("fieldFilter").value;
+        const selectedDuration =
+          document.getElementById("durationFilter").value;
+        const selectedWorkType =
+          document.getElementById("workTypeFilter").value;
+        const selectedStipend = document.getElementById("stipendFilter").value;
+
+        const filters = {
+          field: selectedField || null,
+          duration: selectedDuration || null,
+          workType: selectedWorkType || null,
+          stipend: selectedStipend || null,
+        };
+
+        fetchInternships(filters);
+      }
+
+      // Function to display internships in HTML
+      function displayInternships(internships) {
+        const internshipsContainer =
+          document.getElementById("apiInternshipsList");
+        internshipsContainer.innerHTML = ""; // Clear previous results
+
+        if (
+          !internships ||
+          !Array.isArray(internships) ||
+          internships.length === 0
+        ) {
+          internshipsContainer.innerHTML = "<p>No internships found.</p>";
+          return;
+        }
+
+        internships.forEach((internship) => {
+          const internshipHTML = `
+            <div class="scheme-card slide-up">
+                <button class="scheme-bookmark" title="Save internship">
+                    <i class="far fa-bookmark"></i>
+                </button>
+                <div class="scheme-header">
+                    <div class="scheme-info">
+                        <h2 class="scheme-name">${internship.title}</h2>
+                        <p class="scheme-ministry">${
+                          internship.company || "Company not specified"
+                        }</p>
+                    </div>
+                </div>
+                <p class="scheme-description">${
+                  internship.description || "No description available."
+                }</p>
+                <div class="scheme-details">
+                    <div class="detail-item"><span class="detail-label">Duration</span>
+                        <span class="detail-value">${
+                          internship.duration || "Not specified"
+                        }</span>
+                    </div>
+                    <div class="detail-item"><span class="detail-label">Stipend</span>
+                        <span class="detail-value">${
+                          internship.stipend || "Not specified"
+                        }</span>
+                    </div>
+                    <div class="detail-item"><span class="detail-label">Deadline</span>
+                        <span class="detail-value">${
+                          internship.deadline || "Open"
+                        }</span>
+                    </div>
+                    <div class="detail-item"><span class="detail-label">Location</span>
+                        <span class="detail-value">${
+                          internship.location ||
+                          internship.workType ||
+                          "Not specified"
+                        }</span>
+                    </div>
+                </div>
+                <div class="scheme-actions">
+                    <a href="${
+                      internship.url
+                    }" target="_blank" class="action-button primary-button">Apply Now</a>
+                </div>
+            </div>
+        `;
+          internshipsContainer.innerHTML += internshipHTML;
+        });
+      }
+
+      // Event Listener for Filter Button
+      document
+        .querySelector(".filter-button")
+        .addEventListener("click", applyFilters);
+      document.addEventListener("DOMContentLoaded", () => {
+        
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (event) => {
+          if (!userProfileDropdown.contains(event.target)) {
+            profileDropdown.classList.remove("show");
+          }
+        });
+      });
+      const userProfileDropdown = document.getElementById(
+        "userProfileDropdown"
+      );
+      const profileDropdown = document.getElementById("profileDropdown");
+
+      userProfileDropdown.addEventListener("click", function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle("show");
+      });
+
+      // Close the dropdown when clicking outside of it
+      window.addEventListener("click", function () {
+        if (profileDropdown.classList.contains("show")) {
+          profileDropdown.classList.remove("show");
+        }
+      });
+      const dropdownItems = document.querySelectorAll(
+        ".category-item.dropdown"
+      );
+
+      dropdownItems.forEach((item) => {
+        const dropdownMenu = item.querySelector(".dropdown-menu");
+
+        item.addEventListener("click", function (e) {
+          e.stopPropagation(); // Prevent the click from bubbling up
+          item.classList.toggle("active");
+          dropdownMenu.style.display = item.classList.contains("active")
+            ? "block"
+            : "none";
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!item.contains(e.target)) {
+            item.classList.remove("active");
+            dropdownMenu.style.display = "none";
+          }
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="internship.css" />
+    <script src="internship.js"></script>
+    <script src="home.js"></script>
+  </body>
+</html>

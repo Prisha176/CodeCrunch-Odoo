@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Seeker</title>
+    <link rel="stylesheet" href="roomSeeker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+            <button class="travel-button" onclick="sendLiveLocation()">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <!-- Security Main Module -->
+                <li class="category-item" data-category="security">
+                    <div class="category-icon security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+                </li>
+        
+                <!-- Finance Main Module with Dropdown -->
+                <li class="category-item dropdown" data-category="finance">
+                    <div class="category-icon finance">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <span class="category-name">Finance</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <ul class="dropdown-menu">
+                        <li onclick="window.location.href='job2.html';">Job</li>
+                        <li onclick="window.location.href='internship.html';">Internships</li>
+                        <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                    </ul>
+                </li>
+        
+                <!-- Consultant Main Module -->
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+                </li>
+        
+                <!-- Health & Wellness Main Module -->
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+                </li>
+        
+                <!-- Govt. Main Module -->
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+                </li>
+        
+                <!-- Events Main Module -->
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+                </li>
+        
+                <!-- Room Rental Main Module -->
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+                </li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="aboutus.css" class="footer-link">About</a>
+                    <a href="#" class="privacy.html">Privacy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="faq.html" class="footer-link">FAQs</a>
+                    <a href="contactus.html" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <!-- <h1>Discover Job Opportunities</h1> -->
+                <h1 class="page-title">Roomseekers</h1>
+                <div class="user-actions">
+                <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+                    <i class="fas fa-bookmark"></i>
+                </button> -->
+                <!-- <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button> -->
+                <div class="user-profile" id="userProfileDropdown">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+                    <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+                    
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown-menu" id="profileDropdown">
+                        <div class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help & Support</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign Out</span>
+                        </div>
+                    </div>
+                </div>
+           
+              </div>
+              </div>
+        <section class="room-listings">
+            <div class="room-card">
+                <img src="user1.jpg" alt="User Image" class="profile-pic">
+                <div class="room-details">
+                    <h2 class="user-name">Samantha</h2>
+                    <p>Looking for a roommate in a 2BHK apartment. Rent is split equally.</p>
+                    <p class="room-info"><i class="fas fa-map-marker-alt"></i> Location: San Francisco, CA</p>
+                    <p class="room-info"><i class="fas fa-door-open"></i> 1 space available</p>
+                    <p class="contact-info"><i class="fas fa-phone"></i> Contact: +1 234 567 890</p>
+                </div>
+            </div>
+
+            <div class="room-card">
+                <img src="user2.jpg" alt="User Image" class="profile-pic">
+                <div class="room-details">
+                    <h2 class="user-name">Emily</h2>
+                    <p>Cozy 1BHK apartment near downtown. Looking for a quiet roommate.</p>
+                    <p class="room-info"><i class="fas fa-map-marker-alt"></i> Location: New York, NY</p>
+                    <p class="room-info"><i class="fas fa-door-open"></i> 1 space available</p>
+                    <p class="contact-info"><i class="fas fa-phone"></i> Contact: +1 987 654 321</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Add Room Button -->
+        <button class="add-room-btn" onclick="openModal()">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Modal for Adding Room Details -->
+        <div id="addRoomModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Add Room Details</h2>
+                <form id="roomForm">
+                    <label for="roomDescription">Room Description:</label>
+                    <textarea id="roomDescription" name="roomDescription" required></textarea>
+
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+
+                    <label for="spaceAvailable">Spaces Available:</label>
+                    <input type="number" id="spaceAvailable" name="spaceAvailable" required>
+
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required>
+                    
+                    <button type="submit">Add Room</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript to handle modal open/close and form submission
+        function openModal() {
+            document.getElementById('addRoomModal').style.display = 'block';
+        }
+    
+        function closeModal() {
+            document.getElementById('addRoomModal').style.display = 'none';
+        }
+    
+        document.getElementById('roomForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            const description = document.getElementById('roomDescription').value;
+            const location = document.getElementById('location').value;
+            const spaceAvailable = document.getElementById('spaceAvailable').value;
+            const contactNumber = document.getElementById('contactNumber').value;
+    
+            // Validation: Space available cannot be 0
+            if (spaceAvailable <= 0) {
+                alert("Spaces available must be greater than 0.");
+                return;
+            }
+    
+            // Validation: Contact number must be exactly 10 digits and contain only numbers
+            const contactNumberPattern = /^\d{10}$/;
+            if (!contactNumberPattern.test(contactNumber)) {
+                alert("Contact number must be exactly 10 digits and contain only numbers.");
+                return;
+            }
+    
+            // Create a new room card
+            const roomListings = document.querySelector('.room-listings');
+            const newRoomCard = document.createElement('div');
+            newRoomCard.classList.add('room-card');
+            newRoomCard.innerHTML = `
+                <img src="user3.jpg" alt="User Image" class="profile-pic">
+                <div class="room-details">
+                    <h2 class="user-name">New User</h2>
+                    <p>${description}</p>
+                    <p class="room-info"><i class="fas fa-map-marker-alt"></i> Location: ${location}</p>
+                    <p class="room-info"><i class="fas fa-door-open"></i> ${spaceAvailable} space(s) available</p>
+                    <p class="contact-info"><i class="fas fa-phone"></i> Contact: ${contactNumber}</p>
+                </div>
+            `;
+    
+            roomListings.appendChild(newRoomCard);
+            closeModal();
+        });
+       
+        const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    userProfileDropdown.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+    const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+
+dropdownItems.forEach(item => {
+    const dropdownMenu = item.querySelector('.dropdown-menu');
+
+    item.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        item.classList.toggle('active');
+        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!item.contains(e.target)) {
+            item.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+    <script src="home.js"></script>
+</body>
+</html>
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Seeker</title>
+    <link rel="stylesheet" href="roomSeeker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+         Sidebar 
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search communities...">
+                </div>
+            </div>
+
+            <button class="travel-button">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list">
+                <li class="category-item"><i class="fas fa-graduation-cap"></i> Education</li>
+                <li class="category-item"><i class="fas fa-rocket"></i> Startups</li>
+                <li class="category-item"><i class="fas fa-landmark"></i> Government</li>
+                <li class="category-item"><i class="fas fa-briefcase"></i> Consultants</li>
+                <li class="category-item"><i class="fas fa-heartbeat"></i> Health & Wellness</li>
+                <li class="category-item active"><i class="fas fa-home"></i> Room Rentals</li>
+                <li class="category-item"><i class="fas fa-suitcase"></i> Job Board</li>
+                <li class="category-item"><i class="fas fa-calendar-alt"></i> Events</li>
+            </ul>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-footer">
+                <a href="#">About</a> | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Help</a>
+                <p>&copy; 2025 One Stop Woman. All rights reserved.</p>
+            </div>
+        </aside>
+
+        
+          <header>
+            <img src="user2.jpg" alt="" class="profile-pic-owner">
+         </header>
+          
+          Main Content 
+        <main class="main-content">
+            <header class="header">
+                <h1 class="page-title">Room Seeker</h1>
+                
+            </header>
+
+            Room Listings 
+            <section class="room-listings">
+                <div class="room-card">
+                    <img src="user1.jpg" alt="User Image" class="profile-pic">
+                    <div class="room-details">
+                        <h2 class="user-name">Samantha</h2>
+                        <p>Looking for a roommate in a 2BHK apartment. Rent is split equally.</p>
+                        <p class="room-info"><i class="fas fa-map-marker-alt"></i> Location: San Francisco, CA</p>
+                        <p class="room-info"><i class="fas fa-door-open"></i> 1 space available</p>
+                        <p class="contact-info"><i class="fas fa-phone"></i> Contact: +1 234 567 890</p>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <img src="user2.jpg" alt="User Image" class="profile-pic">
+                    <div class="room-details">
+                        <h2 class="user-name">Emily</h2>
+                        <p>Cozy 1BHK apartment near downtown. Looking for a quiet roommate.</p>
+                        <p class="room-info"><i class="fas fa-map-marker-alt"></i> Location: New York, NY</p>
+                        <p class="room-info"><i class="fas fa-door-open"></i> 1 space available</p>
+                        <p class="contact-info"><i class="fas fa-phone"></i> Contact: +1 987 654 321</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+         Floating Add Room Button 
+        <button class="add-room-btn">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</body>
+</html>-->

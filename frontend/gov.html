@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Woman - Government Schemes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS styles remain the same -->
+</head>
+
+<body>
+    <!-- <link rel="stylesheet" href="govt.css"> -->
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+            <button class="travel-button" onclick="sendLiveLocation()">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <!-- Security Main Module -->
+                <li class="category-item" data-category="security">
+                    <div class="category-icon security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='security.html';" class="category-name">Security</span>
+                </li>
+        
+                <!-- Finance Main Module with Dropdown -->
+                <li class="category-item dropdown" data-category="finance">
+                    <div class="category-icon finance">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <span class="category-name">Finance</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <ul class="dropdown-menu">
+                        <li onclick="window.location.href='job2.html';">Job</li>
+                        <li onclick="window.location.href='internship.html';">Internships</li>
+                        <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                    </ul>
+                </li>
+        
+                <!-- Consultant Main Module -->
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+                </li>
+        
+                <!-- Health & Wellness Main Module -->
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+                </li>
+        
+                <!-- Govt. Main Module -->
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+                </li>
+        
+                <!-- Events Main Module -->
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+                </li>
+        
+                <!-- Room Rental Main Module -->
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+                </li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="aboutus.html" class="footer-link">About</a>
+                    <a href="privacy.html" class="footer-link">Privacy</a>
+                    <a href="faq.html" class="footer-link">FAQ</a>
+                    <a href="contactus.html" class="footer-link">Contact</a>               </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <!-- <h1>Discover Job Opportunities</h1> -->
+                <h1 class="page-title">Government Schemes</h1>
+                <div class="user-actions">
+                <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+                    <i class="fas fa-bookmark"></i>
+                </button> -->
+                <!-- <button class="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button> -->
+                <div class="user-profile" id="userProfileDropdown">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+                    <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+                    
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown-menu" id="profileDropdown">
+                        <div class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>My Profile</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help & Support</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign Out</span>
+                        </div>
+                    </div>
+                </div>
+           
+              </div>
+              </div>
+            
+            <!-- Filter Section -->
+            <div class="filter-container slide-up">
+                <div class="filter-group">
+                    <div class="filter-label">Category</div>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="education">Education</option>
+                        <!-- <option value="education">Education</option> -->
+                        <option value="entrepreneurship">Entrepreneurship</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="employment">Employment</option>
+                        <option value="financial">Financial Assistance</option>
+                        <option value="rural">Rural Development</option>
+                        <option value="singleParent">Single Parent</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-label">Age Group</div>
+                    <select class="filter-select" id="ageFilter">
+                        <option value="">All Ages</option>
+                        <option value="18-25">18-25 years</option>
+                        <option value="26-35">26-35 years</option>
+                        <option value="36-45">36-45 years</option>
+                        <option value="46-60">46-60 years</option>
+                        <option value="60+">Above 60</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-label">State</div>
+                    <select class="filter-select" id="stateFilter">
+                        <option value="">All States</option>
+                        <option value="andhra">Andhra Pradesh</option>
+                        <option value="assam">Assam</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="tamilnadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="uttarpradesh">Uttar Pradesh</option>
+                        <option value="westbengal">West Bengal</option>
+                    </select>
+                </div>
+                <button class="filter-button" onclick="applyFilters()">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+                
+            </div>
+            
+            <!-- Schemes List -->
+            <div id="schemesList">
+                <!-- Scheme Card 1 -->
+                <div class="scheme-card slide-up">
+                    <!-- <button class="scheme-bookmark" title="Save scheme">
+                        <i class="far fa-bookmark"></i>
+                    </button> -->
+                    <div class="scheme-header">
+                        <div class="scheme-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="scheme-info">
+                            <h2 class="scheme-name">Beti Bachao Beti Padhao</h2>
+                            <p class="scheme-ministry">Ministry of Women & Child Development</p>
+                            <div class="scheme-tags">
+                                <span class="scheme-tag">Education</span>
+                                <span class="scheme-tag">Girl Child</span>
+                                <span class="scheme-tag">National</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="scheme-description">
+                        Beti Bachao Beti Padhao (BBBP) is a scheme launched by the Government of India to address the declining Child Sex Ratio and related issues of empowerment of women over a life-cycle continuum.
+                    </p>
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Eligibility</span>
+                            <span class="detail-value">Girl Child</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Age Group</span>
+                            <span class="detail-value">0-23 years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Deadline</span>
+                            <span class="detail-value">Ongoing</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <span class="detail-value">Active</span>
+                        </div>
+                    </div>
+                    <div class="scheme-actions">
+                        <button class="action-button primary-button">Apply Now</button>
+                        <!-- <button class="action-button secondary-button">More Details</button> -->
+                        <!-- <button class="share-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button> -->
+                    </div>
+                </div>
+
+                <!-- Scheme Card 2 -->
+                <div class="scheme-card slide-up">
+                    <!-- <button class="scheme-bookmark" title="Save scheme">
+                        <i class="far fa-bookmark"></i>
+                    </button> -->
+                    <div class="scheme-header">
+                        <div class="scheme-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="scheme-info">
+                            <h2 class="scheme-name">Stand-Up India</h2>
+                            <p class="scheme-ministry">Ministry of Finance</p>
+                            <div class="scheme-tags">
+                                <span class="scheme-tag">Entrepreneurship</span>
+                                <span class="scheme-tag">Finance</span>
+                                <span class="scheme-tag">National</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="scheme-description">
+                        Stand-Up India Scheme facilitates bank loans between 10 lakh and 1 crore to at least one Scheduled Caste (SC) or Scheduled Tribe (ST) borrower and at least one woman borrower per bank branch for setting up a greenfield enterprise.
+                    </p>
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Eligibility</span>
+                            <span class="detail-value">Women, SC/ST</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Age Group</span>
+                            <span class="detail-value">18+ years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Loan Amount</span>
+                            <span class="detail-value">₹10L - ₹1Cr</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <span class="detail-value">Active</span>
+                        </div>
+                    </div>
+                    <div class="scheme-actions">
+                        <button class="action-button primary-button">Apply Now</button>
+                        <!-- <button class="action-button secondary-button">More Details</button> -->
+                        <!-- <button class="share-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button> -->
+                    </div>
+                </div>
+
+                <!-- Scheme Card 3 -->
+                <div class="scheme-card slide-up">
+                    <!-- <button class="scheme-bookmark" title="Save scheme">
+                        <i class="far fa-bookmark"></i>
+                    </button> -->
+                    <div class="scheme-header">
+                        <div class="scheme-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="scheme-info">
+                            <h2 class="scheme-name">Pradhan Mantri Matru Vandana Yojana</h2>
+                            <p class="scheme-ministry">Ministry of Women & Child Development</p>
+                            <div class="scheme-tags">
+                                <span class="scheme-tag">Healthcare</span>
+                                <span class="scheme-tag">Maternity</span>
+                                <span class="scheme-tag">National</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="scheme-description">
+                        Pradhan Mantri Matru Vandana Yojana (PMMVY) is a maternity benefit program that provides cash incentives to pregnant and lactating women for improving health seeking behavior and compensating wage loss.
+                    </p>
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Eligibility</span>
+                            <span class="detail-value">Pregnant/Lactating Women</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Benefit Amount</span>
+                            <span class="detail-value">₹5,000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Application Mode</span>
+                            <span class="detail-value">Anganwadi Center</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <span class="detail-value">Active</span>
+                        </div>
+                    </div>
+                    <div class="scheme-actions">
+                        <a href="https://www.myscheme.gov.in/schemes/bbbp" target="_blank" class="action-button primary-button">Apply Now</a>
+                        <!-- <button class="action-button secondary-button">More Details</button> -->
+                        <!-- <button class="share-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Integration Section -->
+<div class="api-section">
+    <h2 class="section-title">Live Government Schemes for Women</h2>
+    <div id="apiSchemesList">
+        <!-- API-loaded schemes will appear here -->
+    </div>
+</div>
+
+        </main>
+    </div>
+    
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+    fetchSchemes();
+});
+
+// Backend API URL (Ensure your backend is running on this port)
+const BACKEND_API_URL = "http://localhost:5003/fetch-schemes";
+
+// Function to fetch schemes from the backend
+async function fetchSchemes() {
+    try {
+        // Show loading message
+        document.getElementById("apiSchemesList").innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Loading latest schemes...</p>
+            </div>
+        `;
+
+        // Get filter values
+        const selectedCategory = document.getElementById("categoryFilter").value;
+        const selectedAge = document.getElementById("ageFilter").value;
+        const selectedState = document.getElementById("stateFilter").value;
+
+        // Construct query to request JSON from the backend
+        let filterQuery = `Provide a JSON list of government schemes for women in India. 
+    Each scheme should include: name, ministry, categories, eligibility, 
+    benefits, description, deadline, status, and the official application URL (if available).
+    If an official URL is not found, provide a relevant government website link.
+    Return only valid JSON.`;
+
+        if (selectedCategory) filterQuery += ` Filter by category: ${selectedCategory}.`;
+        if (selectedAge) filterQuery += ` Filter by age group: ${selectedAge}.`;
+        if (selectedState) filterQuery += ` Filter by state: ${selectedState}.`;
+
+        // Call the backend proxy
+        const response = await fetch(BACKEND_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filterQuery }),
+        });
+
+        // Handle response
+        const schemes = await response.json();
+        displaySchemes(schemes);
+    } catch (error) {
+        console.error("Error fetching schemes:", error);
+        document.getElementById("apiSchemesList").innerHTML = "<p>Failed to fetch schemes. Please try again.</p>";
+    }
+}
+
+// Function to display schemes in the HTML
+function displaySchemes(schemes) {
+    const schemesContainer = document.getElementById("apiSchemesList");
+    schemesContainer.innerHTML = ""; // Clear previous results
+
+    if (!schemes || !Array.isArray(schemes) || schemes.length === 0) {
+        schemesContainer.innerHTML = "<p>No schemes found.</p>";
+        return;
+    }
+
+    // Loop through each scheme and create HTML
+    schemes.forEach((scheme) => {
+        const schemeURL = scheme.url || `https://www.google.com/search?q=${encodeURIComponent(scheme.name)}`;
+
+        const schemeHTML = `
+            <div class="scheme-card slide-up">
+                
+                <div class="scheme-header">
+                    <div class="scheme-icon"><i class="fas fa-star"></i></div>
+                    <div class="scheme-info">
+                        <h2 class="scheme-name">${scheme.name}</h2>
+                        <p class="scheme-ministry">${scheme.ministry || "Ministry not specified"}</p>
+                        <div class="scheme-tags">
+                            ${scheme.categories ? scheme.categories.map(cat => `<span class="scheme-tag">${cat}</span>`).join('') : ""}
+                        </div>
+                    </div>
+                </div>
+                <p class="scheme-description">${scheme.description || "No description available."}</p>
+                <div class="scheme-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Eligibility</span>
+                        <span class="detail-value">${scheme.eligibility || "Not specified"}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Benefit</span>
+                        <span class="detail-value">${scheme.benefits || "Not specified"}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Deadline</span>
+                        <span class="detail-value">${scheme.deadline || "Ongoing"}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value">${scheme.status || "Active"}</span>
+                    </div>
+                </div>
+                <div class="scheme-actions">
+                    <a href="${schemeURL}" target="_blank" class="action-button primary-button">Apply Now</a>
+                </div>
+            </div>
+        `;
+        schemesContainer.innerHTML += schemeHTML;
+    });
+}
+
+// Function to apply filters
+function applyFilters() {
+    fetchSchemes();
+}
+
+// Event Listener for Filter Button
+document.querySelector(".filter-button").addEventListener("click", applyFilters);
+const dropdownItems = document.querySelectorAll('.category-item.dropdown');
+
+dropdownItems.forEach(item => {
+    const dropdownMenu = item.querySelector('.dropdown-menu');
+
+    item.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up
+        item.classList.toggle('active');
+        dropdownMenu.style.display = item.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!item.contains(e.target)) {
+            item.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    userProfileDropdown.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevent the click from bubbling up to the window
+        profileDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function () {
+        if (profileDropdown.classList.contains('show')) {
+            profileDropdown.classList.remove('show');
+        }
+    });
+
+        </script>
+        <link rel="stylesheet" href="govt.css">
+        <script src="gov.js"></script>
+        <script src="home.js"></script>
+</body>
+</html>
+</antArtifact>

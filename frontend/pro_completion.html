@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Women - Complete Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css"> <!-- Same CSS as the login page -->
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                One Stop <span>Women</span>
+            </div>
+            <div class="welcome-text">
+                <h1>Complete Your Profile</h1>
+                <p>Help us personalize your experience by completing your profile. This information will help us serve you better.</p>
+            </div>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Secure and private</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Quick and easy</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">Personalized experience</div>
+                </div>
+            </div>
+            <div class="decoration"></div>
+        </div>
+        <div class="right-panel">
+            <!-- Step 1: Contact Number -->
+            <div id="step1" class="form-container active">
+                <h2>Step 1: Contact Number</h2>
+                <div class="form-group">
+                    <label for="contact-number">Contact Number</label>
+                    <input type="tel" id="contact-number" placeholder="Enter your contact number" required>
+                    <i class="fas fa-phone"></i>
+                    <small class="error-message" id="contact-number-error"></small>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep('step1')" disabled>Back</button>
+                    <button class="btn" onclick="validateStep1()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Profession -->
+            <div id="step2" class="form-container">
+                <h2>Step 2: Profession</h2>
+                <div class="form-group">
+                    <label for="profession">Profession</label>
+                    <input type="text" id="profession" placeholder="Enter your profession" required>
+                    <i class="fas fa-briefcase"></i>
+                    <small class="error-message" id="profession-error"></small>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep('step1')">Back</button>
+                    <button class="btn" onclick="validateStep2()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Emergency Contacts -->
+            <div id="step3" class="form-container">
+                <h2>Step 3: Emergency Contacts</h2>
+                <div id="emergency-contacts" class="scrollable-section">
+                    <div class="emergency-contact">
+                        <div class="form-group">
+                            <label for="emergency-name-1">Name</label>
+                            <input type="text" id="emergency-name-1" placeholder="Enter name" required oninput="checkAddButton()">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergency-contact-1">Contact Number</label>
+                            <input type="tel" id="emergency-contact-1" placeholder="Enter contact number" required oninput="checkAddButton()">
+                            <i class="fas fa-phone"></i>
+                            <small class="error-message" id="emergency-contact-1-error"></small>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-add" id="add-contact-button" disabled onclick="addEmergencyContact()">
+                    <i class="fas fa-plus"></i> Add Another Person
+                </button>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="prevStep('step2')">Back</button>
+                    <button class="btn" onclick="validateStep3()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Profile Picture -->
+<div id="step4" class="form-container">
+    <h2>Step 4: Profile Picture (Optional)</h2>
+    <div class="form-group">
+        <label for="profile-picture">Upload Profile Picture</label>
+        <input type="file" id="profile-picture" accept="image/*" onchange="previewPhoto(event)">
+        <i class="fas fa-camera"></i>
+    </div>
+    <!-- Photo Preview -->
+    <div id="photo-preview" class="photo-preview">
+        <img id="preview-image" src="#" alt="Profile Picture Preview" style="display: none;">
+    </div>
+    <div class="button-group">
+        <button class="btn btn-secondary" onclick="prevStep('step3')">Back</button>
+        <button class="btn" onclick="submitProfile()">Complete Profile</button>
+    </div>
+</div></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle step navigation
+        function nextStep(nextStepId) {
+            const currentStep = document.querySelector('.form-container.active');
+            const nextStep = document.getElementById(nextStepId);
+
+            if (currentStep && nextStep) {
+                currentStep.classList.remove('active');
+                nextStep.classList.add('active');
+            }
+        }
+
+        function prevStep(prevStepId) {
+            const currentStep = document.querySelector('.form-container.active');
+            const prevStep = document.getElementById(prevStepId);
+
+            if (currentStep && prevStep) {
+                currentStep.classList.remove('active');
+                prevStep.classList.add('active');
+            }
+        }
+
+        // Function to validate Step 1 (Contact Number)
+        function validateStep1() {
+            const contactNumber = document.getElementById('contact-number').value;
+            const errorMessage = document.getElementById('contact-number-error');
+
+            if (!contactNumber) {
+                errorMessage.textContent = 'Contact number is required.';
+                return;
+            }
+
+            if (!/^\d{10}$/.test(contactNumber)) {
+                errorMessage.textContent = 'Please enter a valid 10-digit mobile number.';
+                return;
+            }
+
+            errorMessage.textContent = '';
+            nextStep('step2');
+        }
+
+        // Function to preview the selected photo
+function previewPhoto(event) {
+    const fileInput = event.target;
+    const previewImage = document.getElementById('preview-image');
+    const photoPreview = document.getElementById('photo-preview');
+
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block'; // Show the image
+        };
+
+        reader.readAsDataURL(fileInput.files[0]); // Read the selected file
+    } else {
+        previewImage.src = '#';
+        previewImage.style.display = 'none'; // Hide the image if no file is selected
+    }
+}
+
+        // Function to validate Step 2 (Profession)
+        function validateStep2() {
+            const profession = document.getElementById('profession').value;
+            const errorMessage = document.getElementById('profession-error');
+
+            if (!profession) {
+                errorMessage.textContent = 'Profession is required.';
+                return;
+            }
+
+            errorMessage.textContent = '';
+            nextStep('step3');
+        }
+
+        // Function to validate Step 3 (Emergency Contacts)
+        function validateStep3() {
+            const emergencyContacts = document.querySelectorAll('.emergency-contact');
+            let isValid = true;
+
+            emergencyContacts.forEach((contact, index) => {
+                const name = contact.querySelector(`#emergency-name-${index + 1}`).value;
+                const number = contact.querySelector(`#emergency-contact-${index + 1}`).value;
+                const errorMessage = contact.querySelector(`#emergency-contact-${index + 1}-error`);
+
+                if (!name || !number) {
+                    errorMessage.textContent = 'Both name and contact number are required.';
+                    isValid = false;
+                } else if (!/^\d{10}$/.test(number)) {
+                    errorMessage.textContent = 'Please enter a valid 10-digit mobile number.';
+                    isValid = false;
+                } else {
+                    errorMessage.textContent = '';
+                }
+            });
+
+            if (isValid) {
+                nextStep('step4');
+            }
+        }
+
+        // Function to add another emergency contact field
+        function addEmergencyContact() {
+            const emergencyContacts = document.getElementById('emergency-contacts');
+            const newContact = document.createElement('div');
+            newContact.className = 'emergency-contact';
+            const newIndex = emergencyContacts.children.length + 1;
+            newContact.innerHTML = `
+                <div class="form-group">
+                    <label for="emergency-name-${newIndex}">Name</label>
+                    <input type="text" id="emergency-name-${newIndex}" placeholder="Enter name" required oninput="checkAddButton()">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <label for="emergency-contact-${newIndex}">Contact Number</label>
+                    <input type="tel" id="emergency-contact-${newIndex}" placeholder="Enter contact number" required oninput="checkAddButton()">
+                    <i class="fas fa-phone"></i>
+                    <small class="error-message" id="emergency-contact-${newIndex}-error"></small>
+                </div>
+            `;
+            emergencyContacts.appendChild(newContact);
+            document.getElementById('add-contact-button').disabled = true; // Disable button after adding new fields
+        }
+
+        // Function to check if "Add Another Person" button should be enabled
+        function checkAddButton() {
+            const emergencyContacts = document.querySelectorAll('.emergency-contact');
+            const lastContact = emergencyContacts[emergencyContacts.length - 1];
+            const name = lastContact.querySelector('input[type="text"]').value;
+            const number = lastContact.querySelector('input[type="tel"]').value;
+
+            if (name && number && /^\d{10}$/.test(number)) {
+                document.getElementById('add-contact-button').disabled = false;
+            } else {
+                document.getElementById('add-contact-button').disabled = true;
+            }
+        }
+    
+    // Retrieve userId from localStorage
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+        alert("User not found. Please sign up first.");
+        window.location.href = "index.html"; // Redirect if no userId
+    }
+
+    // Function to handle step navigation
+    function nextStep(nextStepId) {
+        const currentStep = document.querySelector('.form-container.active');
+        const nextStep = document.getElementById(nextStepId);
+
+        if (currentStep && nextStep) {
+            currentStep.classList.remove('active');
+            nextStep.classList.add('active');
+        }
+    }
+
+    function prevStep(prevStepId) {
+        const currentStep = document.querySelector('.form-container.active');
+        const prevStep = document.getElementById(prevStepId);
+
+        if (currentStep && prevStep) {
+            currentStep.classList.remove('active');
+            prevStep.classList.add('active');
+        }
+    }
+
+    
+    // Function to preview the selected photo
+    function previewPhoto(event) {
+        const fileInput = event.target;
+        const previewImage = document.getElementById('preview-image');
+        const photoPreview = document.getElementById('photo-preview');
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            previewImage.src = '#';
+            previewImage.style.display = 'none';
+        }
+    }
+
+    // Function to submit the profile details to the server
+    async function submitProfile() {
+        const contactNumber = document.getElementById("contact-number").value;
+        const profession = document.getElementById("profession").value;
+        const emergencyContacts = [];
+
+        document.querySelectorAll(".emergency-contact").forEach((contact, index) => {
+            const name = contact.querySelector(`#emergency-name-${index + 1}`).value;
+            const number = contact.querySelector(`#emergency-contact-${index + 1}`).value;
+            if (name && number) {
+                //emergencyContacts.push({ name, number });
+                emergencyContacts.push({ name, phone: number }); 
+
+            }
+        });
+
+        const profilePictureInput = document.getElementById("profile-picture");
+        let profilePicture = "";
+
+        if (profilePictureInput.files.length > 0) {
+            const file = profilePictureInput.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = async function () {
+                profilePicture = reader.result;
+
+                const profileData = {
+                    userId,
+                    contactNumber,
+                    profession,
+                    emergencyContacts,
+                    profilePicture,
+                };
+
+                try {
+                    const token = localStorage.getItem("token"); // Retrieve JWT token
+if (!token) {
+    alert("Unauthorized! Please log in again.");
+    window.location.href = "index.html"; // Redirect to login
+    return;
+}
+
+const response = await fetch("http://localhost:5004/api/profile/update", {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // Include token
+    },
+    body: JSON.stringify(profileData),
+});
+
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert("Profile completed successfully!");
+                        window.location.href = "home.html"; // Redirect after completion
+                    } else {
+                        alert(data.message || "Profile completion failed!");
+                    }
+                } catch (error) {
+                    alert("Error connecting to the server.");
+                }
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            const profileData = {
+                userId,
+                contactNumber,
+                profession,
+                emergencyContacts,
+                profilePicture: "",
+            };
+
+            try {
+                
+                const token = localStorage.getItem("token"); // Retrieve JWT token
+if (!token) {
+    alert("Unauthorized! Please log in again.");
+    window.location.href = "index.html"; // Redirect to login
+    return;
+}
+
+const response = await fetch("http://localhost:5004/api/profile/update", {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // Include token
+    },
+    body: JSON.stringify(profileData),
+});
+
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Profile completed successfully!");
+                    window.location.href = "home.html"; // Redirect after completion
+                } else {
+                    alert(data.message || "Profile completion failed!");
+                }
+            } catch (error) {
+                alert("Error connecting to the server.");
+            }
+        }
+    }
+
+    // Function to add another emergency contact field
+    function addEmergencyContact() {
+        const emergencyContacts = document.getElementById('emergency-contacts');
+        const newContact = document.createElement('div');
+        newContact.className = 'emergency-contact';
+        const newIndex = emergencyContacts.children.length + 1;
+        newContact.innerHTML = `
+            <div class="form-group">
+                <label for="emergency-name-${newIndex}">Name</label>
+                <input type="text" id="emergency-name-${newIndex}" placeholder="Enter name" required oninput="checkAddButton()">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="form-group">
+                <label for="emergency-contact-${newIndex}">Contact Number</label>
+                <input type="tel" id="emergency-contact-${newIndex}" placeholder="Enter contact number" required oninput="checkAddButton()">
+                <i class="fas fa-phone"></i>
+                <small class="error-message" id="emergency-contact-${newIndex}-error"></small>
+            </div>
+        `;
+        emergencyContacts.appendChild(newContact);
+        document.getElementById('add-contact-button').disabled = true;
+    }
+
+    function checkAddButton() {
+        const emergencyContacts = document.querySelectorAll('.emergency-contact');
+        const lastContact = emergencyContacts[emergencyContacts.length - 1];
+        const name = lastContact.querySelector('input[type="text"]').value;
+        const number = lastContact.querySelector('input[type="tel"]').value;
+
+        if (name && number && /^\d{10}$/.test(number)) {
+            document.getElementById('add-contact-button').disabled = false;
+        } else {
+            document.getElementById('add-contact-button').disabled = true;
+        }
+    }
+
+
+    </script>
+</body>
+</html>

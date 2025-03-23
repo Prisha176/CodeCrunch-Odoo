@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Woman - Community Hub</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="#"><i class="fas fa-venus"></i> One Stop Woman</a>
+            </div>
+            <div class="search-container">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search communities...">
+                </div>
+            </div>
+            <button class="travel-button" onclick="sendLiveLocation()">
+                <i class="fas fa-plane-departure"></i> Guardian Mode
+            </button>
+            <div class="categories-title">BROWSE CATEGORIES</div>
+            <ul class="category-list" id="categoryList">
+                <!-- Security Main Module -->
+                <li class="category-item" data-category="security">
+                    <div class="category-icon security">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='safety.html';" class="category-name">Security</span>
+                </li>
+        
+                <!-- Finance Main Module with Dropdown -->
+                <li class="category-item dropdown" data-category="finance">
+                    <div class="category-icon finance">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <span class="category-name">Finance</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <ul class="dropdown-menu">
+                        <li onclick="window.location.href='job2.html';">Job</li>
+                        <li onclick="window.location.href='internship.html';">Internships</li>
+                        <li onclick="window.location.href='startup.html';">Gruha Udhyog</li>
+                    </ul>
+                </li>
+        
+                <!-- Consultant Main Module -->
+                <li class="category-item" data-category="consultant">
+                    <div class="category-icon consultant">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span onclick="window.location.href='consultant.html';" class="category-name">Consultant</span>
+                </li>
+        
+                <!-- Health & Wellness Main Module -->
+                <li class="category-item" data-category="health">
+                    <div class="category-icon health">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span onclick="window.location.href='health.html';" class="category-name">Health & Wellness</span>
+                </li>
+        
+                <!-- Govt. Main Module -->
+                <li class="category-item" data-category="government">
+                    <div class="category-icon government">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <span onclick="window.location.href='gov.html';" class="category-name">Government</span>
+                </li>
+        
+                <!-- Events Main Module -->
+                <li class="category-item" data-category="events">
+                    <div class="category-icon events">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <span onclick="window.location.href='events.html';" class="category-name">Events</span>
+                </li>
+        
+                <!-- Room Rental Main Module -->
+                <li class="category-item" data-category="room">
+                    <div class="category-icon room">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span onclick="window.location.href='roomSeeker.html';" class="category-name">Room Rental</span>
+                </li>
+            </ul>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-footer">
+                <div class="footer-links">
+                    <a href="aboutus.html" class="footer-link">About</a>
+                    <a href="privacy.html" class="footer-link">Privacy</a>
+                    <a href="faq.html" class="footer-link">FAQ</a>
+                    <a href="contactus.html" class="footer-link">Contact</a>
+                </div>
+                <div class="footer">
+                    &copy; 2025 One Stop Woman. All rights reserved.
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <!-- Your Original Header -->
+            <div class="page-header">
+                <h1 class="page-title">Community Feed</h1>
+                <div class="user-actions">
+                    <button onclick="window.location.href='home.html';" class="home-btn" id="homeButton" title="Go to Home">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <!-- <button class="bookmark-btn" id="savedInternshipsBtn" title="Saved Internships">
+                        <i class="fas fa-bookmark"></i>
+                    </button> -->
+                    <div class="user-profile" id="userProfileDropdown">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name" id="displayName">Loading...</span> <!-- Email will be displayed here -->
+                        <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-item">
+                                <i class="fas fa-user-circle"></i>
+                                <span>My Profile</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Help & Support</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Sign Out</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+          
+                </div>
+            </div>
+                      <!-- Scenarios Section -->
+            <div class="scenarios-section">
+                <div class="scenario">
+                    <div class="scenario-icon">🚨</div>
+                    <div class="scenario-content">
+                        <div class="scenario-title" id="scenarioTitle">Walking Alone at Night</div>
+                        <p class="scenario-text" id="scenarioText">If you feel unsafe while walking alone at night, stay in well-lit areas and avoid isolated paths. Carry a personal safety alarm and share your location with a trusted contact.</p>
+                    </div>
+                </div>
+                <div class="scenario-actions">
+                    <button class="read-more-btn" id="readMoreBtn">Read More</button>
+                </div>
+                <!-- Additional Details (Hidden by Default) -->
+                <div class="additional-details" id="additionalDetails">
+                    <h3>Detailed Advice</h3>
+                    <p>Here are some additional steps you can take:</p>
+                    <ul>
+                        <li>Always be aware of your surroundings.</li>
+                        <li>Use apps like <strong>Guardian Mode</strong> to share your live location with friends or family.</li>
+                        <li>Carry a whistle or personal safety device.</li>
+                    </ul>
+                    <h3>Video Resource</h3>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/example-video-link" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+    
+    
+    <button class="fab-button">
+        <i class="fas fa-plus"></i>
+    </button>
+    <!-- <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button> -->
+    <div class="modal-overlay" id="exampleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Create New Post</div>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="postForm">
+                    <textarea id="postText" placeholder="Write something..." required></textarea>
+                    <label for="postImage">Upload Image (Optional)</label>
+                    <input type="file" id="postImage" accept="image/*">
+                    <input type="text" id="postHashtags" placeholder="Add hashtags (comma separated)">
+                    <button type="submit" class="recommended-button">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        // Array of scenarios
+        const scenarios = [
+                {
+                    icon: "🚨",
+                    title: "Walking Alone at Night",
+                    text: "If you feel unsafe while walking alone at night, stay in well-lit areas and avoid isolated paths. Carry a personal safety alarm and share your location with a trusted contact.",
+                    details: `
+                        <h3>Detailed Advice</h3>
+                        <p>Here are some additional steps you can take:</p>
+                        <ul>
+                            <li>Always be aware of your surroundings.</li>
+                            <li>Use apps like <strong>Guardian Mode</strong> to share your live location with friends or family.</li>
+                            <li>Carry a whistle or personal safety device.</li>
+                        </ul>
+                        <h3>Video Resource</h3>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/example-video-link" frameborder="0" allowfullscreen></iframe>
+                    `
+                },
+                {
+                    icon: "🚕",
+                    title: "Unsafe Ride-Sharing",
+                    text: "If your ride-sharing driver behaves suspiciously, share your live location with a trusted contact and ask the driver to stop in a safe, public area.",
+                    details: `
+                        <h3>Detailed Advice</h3>
+                        <p>Here are some additional steps you can take:</p>
+                        <ul>
+                            <li>Always verify the driver's details before entering the vehicle.</li>
+                            <li>Sit in the back seat and avoid sharing personal information.</li>
+                            <li>Use apps with emergency features like <strong>Uber's SOS</strong>.</li>
+                        </ul>
+                        <h3>Video Resource</h3>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/example-video-link" frameborder="0" allowfullscreen></iframe>
+                    `
+                },
+                {
+                    icon: "🏠",
+                    title: "Break-In at Home",
+                    text: "If you hear someone trying to break into your home, lock yourself in a secure room, call the police, and make noise to deter the intruder.",
+                    details: `
+                        <h3>Detailed Advice</h3>
+                        <p>Here are some additional steps you can take:</p>
+                        <ul>
+                            <li>Install a security system with cameras and alarms.</li>
+                            <li>Keep emergency numbers saved on your phone.</li>
+                            <li>Use self-defense tools if necessary.</li>
+                        </ul>
+                        <h3>Video Resource</h3>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/example-video-link" frameborder="0" allowfullscreen></iframe>
+                    `
+                }
+            ];
+
+            // Function to update the scenario
+            function updateScenario() {
+                const scenarioIcon = document.querySelector(".scenario-icon");
+                const scenarioTitle = document.getElementById("scenarioTitle");
+                const scenarioText = document.getElementById("scenarioText");
+                const additionalDetails = document.getElementById("additionalDetails");
+
+                // Get a random scenario from the array
+                const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+
+                // Update the DOM
+                scenarioIcon.textContent = randomScenario.icon;
+                scenarioTitle.textContent = randomScenario.title;
+                scenarioText.textContent = randomScenario.text;
+                additionalDetails.innerHTML = randomScenario.details;
+            }
+
+            // Change the scenario every 5 seconds
+            setInterval(updateScenario, 2000);
+
+            // Initial call to display the first scenario
+            updateScenario();
+
+            // Toggle additional details on "Read More" button click
+            const readMoreBtn = document.getElementById("readMoreBtn");
+            const additionalDetails = document.getElementById("additionalDetails");
+
+            readMoreBtn.addEventListener("click", function () {
+                additionalDetails.classList.toggle("show");
+            });
+        
+    </script> -->
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    // Array of scenarios
+    const scenarios = [
+    {
+        icon: "🚨",
+        title: "Walking Alone at Night",
+        text: "If you feel unsafe while walking alone at night, stay in well-lit areas and avoid isolated paths. Carry a personal safety alarm and share your location with a trusted contact.",
+        quiz: [
+            {
+                question: "What should you do if you feel unsafe while walking alone at night?",
+                options: [
+                    "Stay in well-lit areas",
+                    "Take shortcuts through dark alleys",
+                    "Ignore your surroundings"
+                ],
+                correctAnswer: "Stay in well-lit areas"
+            },
+            {
+                question: "What is a good tool to carry for personal safety?",
+                options: [
+                    "A personal safety alarm",
+                    "A heavy book",
+                    "A glass bottle"
+                ],
+                correctAnswer: "A personal safety alarm"
+            },
+            {
+                question: "Who should you share your location with?",
+                options: [
+                    "A trusted contact",
+                    "A stranger",
+                    "No one"
+                ],
+                correctAnswer: "A trusted contact"
+            }
+        ]
+    },
+    {
+        icon: "🚕",
+        title: "Unsafe Ride-Sharing",
+        text: "If your ride-sharing driver behaves suspiciously, share your live location with a trusted contact and ask the driver to stop in a safe, public area.",
+        quiz: [
+            {
+                question: "What should you do if your ride-sharing driver behaves suspiciously?",
+                options: [
+                    "Share your live location with a trusted contact",
+                    "Confront the driver aggressively",
+                    "Ignore the behavior"
+                ],
+                correctAnswer: "Share your live location with a trusted contact"
+            },
+            {
+                question: "Where should you ask the driver to stop?",
+                options: [
+                    "In a safe, public area",
+                    "In a dark, isolated area",
+                    "At your home"
+                ],
+                correctAnswer: "In a safe, public area"
+            },
+            {
+                question: "What is a good practice when using ride-sharing apps?",
+                options: [
+                    "Verify the driver's details before entering the vehicle",
+                    "Sit in the front seat",
+                    "Share personal information with the driver"
+                ],
+                correctAnswer: "Verify the driver's details before entering the vehicle"
+            }
+        ]
+    },
+    {
+        icon: "🏠",
+        title: "Break-In at Home",
+        text: "If you hear someone trying to break into your home, lock yourself in a secure room, call the police, and make noise to deter the intruder.",
+        quiz: [
+            {
+                question: "What should you do if you hear someone trying to break into your home?",
+                options: [
+                    "Lock yourself in a secure room and call the police",
+                    "Open the door to confront the intruder",
+                    "Hide under the bed and stay silent"
+                ],
+                correctAnswer: "Lock yourself in a secure room and call the police"
+            },
+            {
+                question: "What is a good way to deter an intruder?",
+                options: [
+                    "Make noise to alert neighbors",
+                    "Turn off all the lights",
+                    "Stay completely silent"
+                ],
+                correctAnswer: "Make noise to alert neighbors"
+            },
+            {
+                question: "What should you do after securing yourself?",
+                options: [
+                    "Call the police",
+                    "Open the door to check",
+                    "Go back to sleep"
+                ],
+                correctAnswer: "Call the police"
+            }
+        ]
+    }
+];
+    // Variables to control the timer
+    let intervalId;
+    let isTimerRunning = true;
+    // Function to display the quiz
+function displayQuiz(quiz) {
+    const additionalDetails = document.getElementById("additionalDetails");
+    additionalDetails.innerHTML = ""; // Clear previous content
+
+    // Create a quiz container
+    const quizContainer = document.createElement("div");
+    quizContainer.className = "quiz-container";
+
+    // Add each question to the quiz
+    quiz.forEach((q, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "quiz-question";
+        questionDiv.innerHTML = `
+            <h3>Question ${index + 1}: ${q.question}</h3>
+            <ul class="quiz-options">
+                ${q.options.map(option => `
+                    <li>
+                        <input type="radio" name="question${index}" value="${option}">
+                        <label>${option}</label>
+                    </li>
+                `).join("")}
+            </ul>
+        `;
+        quizContainer.appendChild(questionDiv);
+    });
+
+    // Add a submit button
+    const submitButton = document.createElement("button");
+    submitButton.className = "submit-quiz-btn";
+    submitButton.textContent = "Submit Quiz";
+    submitButton.addEventListener("click", () => checkAnswers(quiz));
+    quizContainer.appendChild(submitButton);
+
+    // Append the quiz to the additional details section
+    additionalDetails.appendChild(quizContainer);
+}
+
+// Function to check quiz answers
+function checkAnswers(quiz) {
+    let score = 0;
+    quiz.forEach((q, index) => {
+        const selectedOption = document.querySelector('input[name="question${index}"]:checked');
+        if (selectedOption && selectedOption.value === q.correctAnswer) {
+            score++;
+        }
+    });
+    alert(`You scored ${score} out of ${quiz.length}!`);
+}
+
+
+    // Function to update the scenario
+    function updateScenario() {
+        const scenarioIcon = document.querySelector(".scenario-icon");
+        const scenarioTitle = document.getElementById("scenarioTitle");
+        const scenarioText = document.getElementById("scenarioText");
+        const additionalDetails = document.getElementById("additionalDetails");
+
+        // Get a random scenario from the array
+        const randomScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+
+        // Update the DOM
+    scenarioIcon.textContent = randomScenario.icon;
+    scenarioTitle.textContent = randomScenario.title;
+    scenarioText.textContent = randomScenario.text;
+     // Display the quiz when "Read More" is clicked
+     displayQuiz(randomScenario.quiz);
+    }
+
+    // Function to start the timer
+    function startTimer() {
+        if (!intervalId) {
+            intervalId = setInterval(updateScenario, 2000); // Change scenario every 10 seconds
+        }
+    }
+
+    // Function to stop the timer
+    function stopTimer() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+
+    // Initial call to display the first scenario
+    updateScenario();
+
+    // Start the timer initially
+    startTimer();
+
+    // Toggle additional details on "Read More" button click
+    const readMoreBtn = document.getElementById("readMoreBtn");
+    const additionalDetails = document.getElementById("additionalDetails");
+
+    readMoreBtn.addEventListener("click", function () {
+        additionalDetails.classList.toggle("show");
+
+        // Stop or start the timer based on the visibility of additional details
+        if (additionalDetails.classList.contains("show")) {
+            stopTimer(); // Stop the timer when details are shown
+        } else {
+            startTimer(); // Start the timer when details are hidden
+        }
+    });
+});
+    </script>
+    <script src="home.js"></script>
+</body>
+</html>
